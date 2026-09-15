@@ -294,24 +294,55 @@ export function useDish(dishId?: string | null) {
     queryFn: async () => {
       if (!dishId) return null;
 
-      if (!isSupabaseConfigured) {
-        return MOCK_DISHES.find(d => d.dish_id === dishId && d.content_status === 'Published') || null;
+      const mockMatch = MOCK_DISHES.find(d => d.dish_id === dishId) || null;
+
+      if (isSupabaseConfigured) {
+        try {
+          const { data } = await supabase
+            .from('dishes')
+            .select('*')
+            .eq('dish_id', dishId)
+            .eq('content_status', 'Published')
+            .single();
+
+          if (data) {
+            const dbDish = data as Dish;
+            const mergedDish: Dish = {
+              ...(mockMatch || {}),
+              ...dbDish,
+            };
+
+            // Ensure rich fields are always populated if database row has empty/null arrays
+            if ((!mergedDish.visual_cues || mergedDish.visual_cues.length === 0) && mockMatch?.visual_cues) {
+              mergedDish.visual_cues = mockMatch.visual_cues;
+            }
+            if ((!mergedDish.key_ingredients || mergedDish.key_ingredients.length === 0) && mockMatch?.key_ingredients) {
+              mergedDish.key_ingredients = mockMatch.key_ingredients;
+            }
+            if (!mergedDish.summary && mockMatch?.summary) {
+              mergedDish.summary = mockMatch.summary;
+            }
+            if (!mergedDish.did_you_know && mockMatch?.did_you_know) {
+              mergedDish.did_you_know = mockMatch.did_you_know;
+            }
+            if (!mergedDish.origin_history_preview && mockMatch?.origin_history_preview) {
+              mergedDish.origin_history_preview = mockMatch.origin_history_preview;
+            }
+            if (!mergedDish.origin_history_full && mockMatch?.origin_history_full) {
+              mergedDish.origin_history_full = mockMatch.origin_history_full;
+            }
+            if (!mergedDish.google_maps_query && mockMatch?.google_maps_query) {
+              mergedDish.google_maps_query = mockMatch.google_maps_query;
+            }
+
+            return mergedDish;
+          }
+        } catch {
+          // fallback
+        }
       }
 
-      try {
-        const { data } = await supabase
-          .from('dishes')
-          .select('*')
-          .eq('dish_id', dishId)
-          .eq('content_status', 'Published')
-          .single();
-
-        if (data) return data as Dish;
-      } catch {
-        // fallback
-      }
-
-      return MOCK_DISHES.find(d => d.dish_id === dishId && d.content_status === 'Published') || null;
+      return mockMatch;
     },
     enabled: Boolean(dishId),
     staleTime: 1000 * 60 * 10,

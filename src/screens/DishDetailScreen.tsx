@@ -92,35 +92,47 @@ export function parseStructuredSections(rawData?: string[] | string | null): { t
 
   entries.forEach((entry) => {
     if (!entry || typeof entry !== 'string') return;
-    const trimmed = entry.trim();
-    if (!trimmed || trimmed === '-' || trimmed.toLowerCase() === 'n/a') return;
+    let clean = entry.trim();
+    if (clean.startsWith('{') && clean.endsWith('}')) {
+      clean = clean.slice(1, -1);
+    }
+    if (clean.startsWith('"') && clean.endsWith('"')) {
+      clean = clean.slice(1, -1);
+    }
+    clean = clean.replace(/\\"/g, '"').replace(/\\n/g, '\n').trim();
+    if (!clean || clean === '-' || clean.toLowerCase() === 'n/a') return;
 
     let blocks: string[] = [];
-    if (trimmed.includes('|')) {
-      blocks = trimmed.split('|').map((b) => b.trim()).filter(Boolean);
-    } else if (/\r?\n\s*\r?\n/.test(trimmed)) {
-      blocks = trimmed.split(/(?:\r?\n\s*){2,}/).map((b) => b.trim()).filter(Boolean);
+    if (clean.includes('|')) {
+      blocks = clean.split('|').map((b) => b.trim()).filter(Boolean);
+    } else if (/\r?\n\s*\r?\n/.test(clean)) {
+      blocks = clean.split(/(?:\r?\n\s*){2,}/).map((b) => b.trim()).filter(Boolean);
+    } else if (clean.includes(';')) {
+      blocks = clean.split(';').map((b) => b.trim()).filter(Boolean);
     } else {
-      const lines = trimmed.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+      const lines = clean.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
       if (lines.length >= 2 && lines.length % 2 === 0) {
         for (let i = 0; i < lines.length; i += 2) {
           blocks.push(`${lines[i]}\n${lines[i + 1]}`);
         }
       } else {
-        blocks = [trimmed];
+        blocks = [clean];
       }
     }
 
     blocks.forEach((block) => {
-      if (block.includes(':')) {
-        const [t, ...d] = block.split(':');
+      let bClean = block.trim().replace(/^[\{\}\"\'\\]+/g, '').replace(/[\{\}\"\'\\]+$/g, '').trim();
+      if (!bClean) return;
+
+      if (bClean.includes(':')) {
+        const [t, ...d] = bClean.split(':');
         const cleanTitle = t.replace(/^(?:step\s*)?0*\d+[\s\.\:\-\)\–]+\s*/i, '').trim();
         const desc = d.join(':').trim();
         if (cleanTitle) {
           results.push({ title: cleanTitle, description: desc });
         }
       } else {
-        const blockLines = block.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+        const blockLines = bClean.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
         if (blockLines.length >= 2) {
           const cleanTitle = blockLines[0].replace(/^(?:step\s*)?0*\d+[\s\.\:\-\)\–]+\s*/i, '').trim();
           const desc = blockLines.slice(1).join(' ').trim();
