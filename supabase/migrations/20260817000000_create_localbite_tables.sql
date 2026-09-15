@@ -56,9 +56,13 @@ CREATE TABLE IF NOT EXISTS dishes (
   origin_history_preview TEXT,
   origin_history_full TEXT,
   did_you_know TEXT,
-  key_ingredients TEXT[],
+  key_ingredients TEXT[] NOT NULL DEFAULT '{}',
   pronunciation_phonetic TEXT,
-  pronunciation_audio_url TEXT
+  pronunciation_audio_url TEXT,
+  visual_cues TEXT[] NOT NULL DEFAULT '{}',
+  google_maps_query TEXT,
+  image_url TEXT,
+  image_urls TEXT[] NOT NULL DEFAULT '{}'
 );
 
 -- 5. DISH_LOCATIONS JOIN TABLE
