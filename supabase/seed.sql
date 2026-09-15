@@ -2744,16 +2744,6 @@ Carefully shaped by hand, gently steamed, and meticulously finished with a delic
 
  03 Milk, Sugar, and Fat
  These ingredients create the soft, lightly sweet character common in Japanese bakery bread."}']::text[], 'ah-poh-roh pahn', 'N/A', ARRAY[]::text[], NULL),
-(NULL, '-', '-', 'kanto', 'tokyo', 'This record contains no named dish or food product and should not be populated with invented culinary information. The source row is a placeholder, so the safest treatment is to keep the descriptive fields explicitly marked as unavailable until a real dish name is supplied.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], '-', 0, 0, 'Published', ARRAY[]::text[], 'Not vegetarian', 'Not halal', TRUE, 'No historical origin can be established because the source row does not identify a dish or product. Any claimed creator, date, recipe, or cultural background would therefore be speculative.', NULL, 'A blank or placeholder dish name is not evidence of a regional food. This row should be resolved before it is used in a finished culinary database.', ARRAY['{"01 No Verified Ingredient
- No ingredient can be assigned without a named food.
- 
-
- 02 No Verified Recipe
- There is no documented recipe attached to the placeholder record.
- 
-
- 03 No Verified Component
- Further research requires a real dish or product name."}']::text[], '-', 'N/A', ARRAY[]::text[], NULL),
 ('ogai-mochi', 'Ogai Mochi', '鴎外餅', 'kanto', 'tokyo', 'A literary-themed Japanese sweet associated with Bunkyo and the former residence of novelist Mori Ogai, shaped as a soft mochi confection with a sweet filling. Its identity is cultural as much as culinary, linking a simple traditional sweet with one of Tokyo''s best-known writers.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 200, 600, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Ogai Mochi was created as a Bunkyo confection connected with Mori Ogai and the former Kanchoro residence. It is a modern literary souvenir inspired by the neighborhood''s cultural history rather than a sweet known to have been invented by Ogai himself.', NULL, 'The name is a tribute to Mori Ogai, not proof that the novelist created or ate this exact confection. Its value lies in the connection between a familiar wagashi form and Bunkyo''s literary heritage.', ARRAY['{"01 Glutinous Rice
  Rice-based dough creates the soft, chewy outer layer.
  
@@ -2998,7 +2988,6 @@ INSERT INTO dish_locations (dish_id, location_id, relationship, display_priority
 ('yuzu-hinohara-black-tea', 'hinohara-village', 'best-known', 1, 'Yuzu / Hinohara Black Tea in Hinohara Village', 'Published'),
 ('hinohara-potatoes', 'hinohara-village', 'best-known', 1, 'Hinohara Potatoes in Hinohara Village', 'Published'),
 ('apollo-pan', 'fuchu-city', 'best-known', 1, 'Apollo Pan in Fuchu City', 'Published'),
-(NULL, 'fussa-city', 'best-known', 1, '- in Fussa City', 'Published'),
 ('ogai-mochi', 'bunkyo-ward', 'best-known', 1, 'Ogai Mochi in Bunkyo Ward', 'Published'),
 ('kanchorou-ginkgo-sable', 'bunkyo-ward', 'best-known', 1, 'Kanchorou Ginkgo Sable in Bunkyo Ward', 'Published'),
 ('machida-silk-melon', 'machida-city', 'best-known', 1, 'Machida Silk Melon in Machida City', 'Published'),
