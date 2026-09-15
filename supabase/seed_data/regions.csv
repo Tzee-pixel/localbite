@@ -1,0 +1,9 @@
+region_id,region_name,display_order,food_discovery_lens
+hokkaido,Hokkaido,1,
+tohoku,Tohoku,2,
+kanto,Kanto,3,
+chubu,Chubu,4,
+kansai,Kansai,5,
+chugoku,Chugoku,6,
+shikoku,Shikoku,7,
+kyuushuu,Kyuushuu,8,

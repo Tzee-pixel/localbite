@@ -1,0 +1,116 @@
+dish_id,location_id,relationship,display_priority,editorial_note,link_status
+aochu,aogashima-village,best-known,1,Aochu in Aogashima Village,Published
+hingya-no-shio,aogashima-village,best-known,1,Hingya no Shio in Aogashima Village,Published
+haijima-highball,akishima-city,best-known,1,Haijima Highball in Akishima City,Published
+haijima-negi-miso,akishima-city,best-known,1,Haijima Negi Miso in Akishima City,Published
+akigawa-sweet-corn,akiruno-city,best-known,1,Akigawa Sweet Corn in Akiruno City,Published
+norabou-na,akiruno-city,best-known,1,Norabou-na in Akiruno City,Published
+bunka-fry,adachi-ward,best-known,1,Bunka Fry in Adachi Ward,Published
+senju-no-suzumeyaki,adachi-ward,best-known,1,Senju no Suzumeyaki in Adachi Ward,Published
+yarikake-dango,adachi-ward,best-known,1,Yarikake Dango in Adachi Ward,Published
+yuyu-toden-wagashi,arakawa-ward,best-known,1,Yuyu Toden - Wagashi in Arakawa Ward,Published
+arakawa-monja,arakawa-ward,best-known,1,Arakawa Monja in Arakawa Ward,Published
+okara-soy-milk-karinto,itabashi-ward,best-known,1,Okara & Soy Milk Karinto in Itabashi Ward,Published
+niku-no-marusan-homemade-ham-cutlet,itabashi-ward,best-known,1,Niku no Marusan Homemade Ham Cutlet in Itabashi Ward,Published
+inagi-pears,inagi-city,best-known,1,Inagi Pears in Inagi City,Published
+inagi-mukashibanashi-manju,inagi-city,best-known,1,Inagi Mukashibanashi Manju in Inagi City,Published
+komatsuna,edogawa-ward,best-known,1,Komatsuna in Edogawa Ward,Published
+salad-komatsuna,edogawa-ward,best-known,1,Salad Komatsuna in Edogawa Ward,Published
+ome-senbei,ome-city,best-known,1,Ome Senbei in Ome City,Published
+noshikon,ome-city,best-known,1,Noshikon in Ome City,Published
+bekko-sushi,oshima-town,best-known,1,Bekko Sushi in Oshima Town,Published
+zako-teishoku,oshima-town,best-known,1,Zako Teishoku in Oshima Town,Published
+gyunu-senbei,oshima-town,best-known,1,Gyunu Senbei in Oshima Town,Published
+omori-nori,ota-ward,best-known,1,Omori Nori in Ota Ward,Published
+shima-zushi,ogasawara-village,best-known,1,Shima-zushi in Ogasawara Village,Published
+kame-ni,ogasawara-village,best-known,1,Kame-ni in Ogasawara Village,Published
+same-burger,ogasawara-village,best-known,1,Same Burger in Ogasawara Village,Published
+shikaku-mame-tempura,ogasawara-village,best-known,1,Shikaku-mame Tempura in Ogasawara Village,Published
+akaba-miso-soup,ogasawara-village,best-known,1,Akaba Miso Soup in Ogasawara Village,Published
+shima-lemon-jelly,ogasawara-village,best-known,1,Shima Lemon Jelly in Ogasawara Village,Published
+okutama-yamame,okutama-town,best-known,1,Okutama Yamame in Okutama Town,Published
+okutama-wasabi,okutama-town,best-known,1,Okutama Wasabi in Okutama Town,Published
+sashimi-konnyaku,okutama-town,best-known,1,Sashimi Konnyaku in Okutama Town,Published
+kusa-dango,katsushika-ward,best-known,1,Kusa Dango in Katsushika Ward,Published
+kawazakana-ryori,katsushika-ward,best-known,1,Kawazakana Ryori in Katsushika Ward,Published
+motsuyaki,katsushika-ward,best-known,1,Motsuyaki in Katsushika Ward,Published
+takinogawa-gobo,kita-ward,best-known,1,Takinogawa Gobo in Kita Ward,Published
+kiyose-bo,kiyose-city,best-known,1,Kiyose Bo in Kiyose City,Published
+kiyose-man,kiyose-city,best-known,1,Kiyose Man in Kiyose City,Published
+kunitachi-brewery-craft-beer,kunitachi-city,best-known,1,Kunitachi Brewery Craft Beer in Kunitachi City,Published
+kinmedai-no-nitsuke,kozushima-village,best-known,1,Kinmedai no Nitsuke in Kozushima Village,Published
+toyosu-market-kaisendon,koto-ward,best-known,1,Toyosu Market Kaisendon in Koto Ward,Published
+koganei-sakura-junmai-ginjo,koganei-city,best-known,1,Koganei Sakura Junmai Ginjo in Koganei City,Published
+fight-monaka,kokubunji-city,best-known,1,Fight Monaka in Kokubunji City,Published
+kate-udon,kodaira-city,best-known,1,Kate Udon in Kodaira City,Published
+komae-honey,komae-city,best-known,1,Komae Honey in Komae City,Published
+sable-manju-komae,komae-city,best-known,1,Sable Manju Komae in Komae City,Published
+komae-jomon-madeleine,komae-city,best-known,1,Komae Jomon Madeleine in Komae City,Published
+oden-croquette,shinagawa-ward,best-known,1,Oden Croquette in Shinagawa Ward,Published
+edomae-anago,shinagawa-ward,best-known,1,Edomae Anago in Shinagawa Ward,Published
+harajuku-crepe,shibuya-ward,best-known,1,Harajuku Crepe in Shibuya Ward,Published
+omoide-yokocho-yakitori,shinjuku-ward,best-known,1,Omoide Yokocho Yakitori in Shinjuku Ward,Published
+ogikubo-ramen,suginami-ward,best-known,1,Ogikubo Ramen in Suginami Ward,Published
+chanko-nabe,sumida-ward,best-known,1,Chanko Nabe in Sumida Ward,Published
+chomeiji-sakura-mochi,sumida-ward,best-known,1,Chomeiji Sakura Mochi in Sumida Ward,Published
+daikan-mochi,setagaya-ward,best-known,1,Daikan Mochi in Setagaya Ward,Published
+okura-daikon,setagaya-ward,best-known,1,Okura Daikon in Setagaya Ward,Published
+ningyoyaki,taito-ward,best-known,1,Ningyoyaki in Taito Ward,Published
+dojo-nabe,taito-ward,best-known,1,Dojo Nabe in Taito Ward,Published
+kaminari-okoshi,taito-ward,best-known,1,Kaminari Okoshi in Taito Ward,Published
+edo-style-tendon,taito-ward,best-known,1,Edo-style Tendon in Taito Ward,Published
+udora-yaki-udo-manju,tachikawa-city,best-known,1,Udora-yaki & Udo Manju in Tachikawa City,Published
+tachikawa-yakiton,tachikawa-city,best-known,1,Tachikawa Yakiton in Tachikawa City,Published
+tachikawa-pudding,tachikawa-city,best-known,1,Tachikawa Pudding in Tachikawa City,Published
+sakura-polvoron,tama-city,best-known,1,Sakura Polvoron in Tama City,Published
+tama-no-sanpomichi,tama-city,best-known,1,Tama no Sanpomichi in Tama City,Published
+ponpoko-udon,tama-city,best-known,1,Ponpoko Udon in Tama City,Published
+tsukishima-monjayaki,chuo-ward,best-known,1,Tsukishima Monjayaki in Chuo Ward,Published
+tsukiji-tamagoyaki,chuo-ward,best-known,1,Tsukiji Tamagoyaki in Chuo Ward,Published
+ginza-omurice,chuo-ward,best-known,1,Ginza Omurice in Chuo Ward,Published
+jindaiji-soba,chofu-city,best-known,1,Jindaiji Soba in Chofu City,Published
+seiro-soba,chiyoda-ward,best-known,1,Seiro Soba in Chiyoda Ward,Published
+mori-soba,chiyoda-ward,best-known,1,Mori Soba in Chiyoda Ward,Published
+shio-daifuku,toshima-ward,best-known,1,Shio Daifuku in Toshima Ward,Published
+otafuku-mame,toshima-ward,best-known,1,Otafuku Mame in Toshima Ward,Published
+tsubaki-oil,toshima-village,best-known,1,Tsubaki Oil in Toshima Village,Published
+8-tier-soft-serve-daily-chico,nakano-ward,best-known,1,8-Tier Soft Serve - Daily Chico in Nakano Ward,Published
+oyaki-refu-tei,nakano-ward,best-known,1,Oyaki - Refu-tei in Nakano Ward,Published
+kusaya,niijima-village,best-known,1,Kusaya in Niijima Village,Published
+asahi-karinto,nishitokyo-city,best-known,1,Asahi Karinto in Nishitokyo City,Published
+nerima-daikon-takuan,nerima-ward,best-known,1,Nerima Daikon Takuan in Nerima Ward,Published
+nerima-daikon-manju,nerima-ward,best-known,1,Nerima Daikon Manju in Nerima Ward,Published
+nerima-daifuku,nerima-ward,best-known,1,Nerima Daifuku in Nerima Ward,Published
+nerima-sabl,nerima-ward,best-known,1,Nerima Sablé in Nerima Ward,Published
+hachioji-ramen,hachioji-city,best-known,1,Hachioji Ramen in Hachioji City,Published
+hachijo-shochu,hachijo-town,best-known,1,Hachijo Shochu in Hachijo Town,Published
+hachijo-fruit-lemon,hachijo-town,best-known,1,Hachijo Fruit Lemon in Hachijo Town,Published
+karuta-senbei-hamurin-senbei,hamura-city,best-known,1,Karuta Senbei / Hamurin Senbei in Hamura City,Published
+hamura-no-seki,hamura-city,best-known,1,Hamura no Seki in Hamura City,Published
+sakura-sable-sazareishi,hamura-city,best-known,1,Sakura Sable / Sazareishi in Hamura City,Published
+noka-no-nidango,higashikurume-city,best-known,1,Noka no Nidango in Higashikurume City,Published
+wasanbon-kogei-kashi,higashikurume-city,best-known,1,Wasanbon Kogei Kashi in Higashikurume City,Published
+higashimurayama-black-yakisoba,higashimurayama-city,best-known,1,Higashimurayama Black Yakisoba in Higashimurayama City,Published
+musashino-udon,higashimurayama-city,best-known,1,Musashino Udon in Higashimurayama City,Published
+higashiyamato-cha-udon,higashiyamato-city,best-known,1,Higashiyamato Cha Udon in Higashiyamato City,Published
+sayama-tea,higashiyamato-city,best-known,1,Sayama Tea in Higashiyamato City,Published
+hino-pears,hino-city,best-known,1,Hino Pears in Hino City,Published
+hinode-tomato,hinode-town,best-known,1,Hinode Tomato in Hinode Town,Published
+yuzu-hinohara-black-tea,hinohara-village,best-known,1,Yuzu / Hinohara Black Tea in Hinohara Village,Published
+hinohara-potatoes,hinohara-village,best-known,1,Hinohara Potatoes in Hinohara Village,Published
+apollo-pan,fuchu-city,best-known,1,Apollo Pan in Fuchu City,Published
+,fussa-city,best-known,1,- in Fussa City,Published
+ogai-mochi,bunkyo-ward,best-known,1,Ogai Mochi in Bunkyo Ward,Published
+kanchorou-ginkgo-sable,bunkyo-ward,best-known,1,Kanchorou Ginkgo Sable in Bunkyo Ward,Published
+machida-silk-melon,machida-city,best-known,1,Machida Silk Melon in Machida City,Published
+hengo-dango,mikurajima-village,best-known,1,Hengo Dango in Mikurajima Village,Published
+sakuyuri-no-kinton,mikurajima-village,best-known,1,Sakuyuri no Kinton in Mikurajima Village,Published
+hayaki,mikurajima-village,best-known,1,Hayaki in Mikurajima Village,Published
+jinenjo-karukan-manju,mizuho-town,best-known,1,Jinenjo Karukan Manju in Mizuho Town,Published
+kiwi-amazake,mitaka-city,best-known,1,Kiwi Amazake in Mitaka City,Published
+azabu-juban-bean-snacks,minato-ward,best-known,1,Azabu Juban Bean Snacks in Minato Ward,Published
+akame-satoimo,miyake-village,best-known,1,Akame Satoimo in Miyake Village,Published
+muroaji-ashitaba-smoked-fish,miyake-village,best-known,1,Muroaji Ashitaba Smoked Fish in Miyake Village,Published
+musashino-jigona-udon,musashino-city,best-known,1,Musashino Jigona Udon in Musashino City,Published
+murayama-kate-udon,musashimurayama-city,best-known,1,Murayama Kate Udon in Musashimurayama City,Published
+meguro-no-sanma,meguro-ward,best-known,1,Meguro no Sanma in Meguro Ward,Published
