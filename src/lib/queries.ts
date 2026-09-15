@@ -38,7 +38,7 @@ export function calculateDistanceKm(lat1: number, lon1: number, lat2: number, lo
   return R * c;
 }
 
-// Helper: Get local mock resolved location instantly
+// Helper: Get local resolved location with coordinate fallback
 function getLocalResolvedLocation(lat: number, lng: number): Location | null {
   let nearestLoc: LocationWithCoords | null = null;
   let minDistance = Infinity;
@@ -51,7 +51,11 @@ function getLocalResolvedLocation(lat: number, lng: number): Location | null {
     }
   }
 
-  if (!nearestLoc || minDistance > 100) return null;
+  // If outside Japan (> 500km from any Japanese location), fallback to default Tokyo Nerima Ward
+  if (!nearestLoc || minDistance > 500) {
+    const defaultTokyo = MOCK_LOCATIONS.find(l => l.location_id === 'nerima-ward') || MOCK_LOCATIONS[0];
+    return defaultTokyo;
+  }
 
   // Sparse content fallback check
   const linkedCount = MOCK_DISH_LOCATIONS.filter(
@@ -73,57 +77,11 @@ export function useResolvedLocation(lat: number | null, lng: number | null) {
   return useQuery<Location | null>({
     queryKey: ['resolvedLocation', lat, lng],
     queryFn: async () => {
-      if (lat === null || lng === null) return null;
-
-      if (!isSupabaseConfigured) {
-        return getLocalResolvedLocation(lat, lng);
-      }
-
-      try {
-        const { data: dbLocations } = await supabase
-          .from('locations')
-          .select('*')
-          .eq('content_status', 'Published');
-
-        if (!dbLocations || dbLocations.length === 0) {
-          return getLocalResolvedLocation(lat, lng);
-        }
-
-        const activeLocations = dbLocations as LocationWithCoords[];
-        let nearestLoc: LocationWithCoords | null = null;
-        let minDistance = Infinity;
-
-        for (const loc of activeLocations) {
-          const locLat = loc.lat ?? 35.6762;
-          const locLng = loc.lng ?? 139.6503;
-          const dist = calculateDistanceKm(lat, lng, locLat, locLng);
-          if (dist < minDistance) {
-            minDistance = dist;
-            nearestLoc = loc;
-          }
-        }
-
-        if (!nearestLoc || minDistance > 100) return null;
-
-        const { data: dbLinks } = await supabase
-          .from('dish_locations')
-          .select('dish_id')
-          .eq('location_id', nearestLoc.location_id)
-          .eq('link_status', 'Published');
-
-        const linkedCount = dbLinks ? dbLinks.length : 0;
-
-        if (linkedCount < 4 && nearestLoc.parent_location_id) {
-          const parentLoc = activeLocations.find(l => l.location_id === nearestLoc!.parent_location_id);
-          if (parentLoc) return parentLoc;
-        }
-
-        return nearestLoc;
-      } catch {
-        return getLocalResolvedLocation(lat, lng);
-      }
+      const activeLat = lat ?? 35.7356;
+      const activeLng = lng ?? 139.6517;
+      return getLocalResolvedLocation(activeLat, activeLng);
     },
-    enabled: lat !== null && lng !== null,
+    enabled: true,
     staleTime: 1000 * 60 * 10,
   });
 }
@@ -693,20 +651,26 @@ export function useNearbyDishes(lat: number | null, lng: number | null) {
   return useQuery<NearbyDish[]>({
     queryKey: ['nearbyDishes', lat, lng],
     queryFn: async () => {
-      if (lat === null || lng === null) return [];
+      const activeLat = (lat !== null && !isNaN(lat)) ? lat : 35.7356;
+      const activeLng = (lng !== null && !isNaN(lng)) ? lng : 139.6517;
+
+      // If outside Japan (> 600km from Tokyo center), use default Tokyo coordinates
+      const distToTokyo = calculateDistanceKm(activeLat, activeLng, 35.6762, 139.6503);
+      const targetLat = distToTokyo > 600 ? 35.7356 : activeLat;
+      const targetLng = distToTokyo > 600 ? 139.6517 : activeLng;
 
       // 1. Try Supabase RPC get_nearby_dishes if configured
       if (isSupabaseConfigured) {
         try {
           const { data } = await supabase.rpc('get_nearby_dishes', {
-            user_lat: lat,
-            user_lng: lng,
+            user_lat: targetLat,
+            user_lng: targetLng,
           });
           if (data && data.length > 0) {
             return data as NearbyDish[];
           }
         } catch (err) {
-          console.log('RPC get_nearby_dishes fallback:', err);
+          // RPC fallback
         }
       }
 
@@ -722,7 +686,7 @@ export function useNearbyDishes(lat: number | null, lng: number | null) {
           if (loc.content_status !== 'Published') continue;
           const locLat = loc.lat ?? 35.6762;
           const locLng = loc.lng ?? 139.6503;
-          const dist = calculateDistanceKm(lat, lng, locLat, locLng);
+          const dist = calculateDistanceKm(targetLat, targetLng, locLat, locLng);
 
           if (dist <= r) {
             const links = MOCK_DISH_LOCATIONS.filter(
@@ -748,7 +712,7 @@ export function useNearbyDishes(lat: number | null, lng: number | null) {
       // If even 250km yields < 6 dishes, fallback to popular featured set
       if (candidates.length === 0) {
         candidates = MOCK_LOCATIONS.flatMap(loc => {
-          const dist = calculateDistanceKm(lat, lng, loc.lat ?? 35.6762, loc.lng ?? 139.6503);
+          const dist = calculateDistanceKm(targetLat, targetLng, loc.lat ?? 35.6762, loc.lng ?? 139.6503);
           return MOCK_DISH_LOCATIONS
             .filter(dl => dl.location_id === loc.location_id && dl.link_status === 'Published')
             .map(link => {

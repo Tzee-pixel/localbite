@@ -1759,1132 +1759,804 @@ ON CONFLICT (location_id) DO UPDATE SET location_name = EXCLUDED.location_name, 
 
 -- 4. DISHES
 INSERT INTO dishes (dish_id, dish_name, japanese_name, region_id, primary_prefecture_id, summary, seasons, tags, dietary_guidance, price_min, price_max, content_status, home_filter_tags, vegetarian_status, halal_status, featured, origin_history_preview, origin_history_full, did_you_know, key_ingredients, pronunciation_phonetic, pronunciation_audio_url, visual_cues, google_maps_query) VALUES
-('aochu', 'Aochu', '青酎', 'kanto', 'tokyo', 'A rare artisanal sweet potato shochu distilled exclusively on the isolated volcanic island of Aogashima. Crafted by local islanders using indigenous yeast strains and sweet potatoes, it delivers a robust earthy aroma with a complex, velvety finish.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains none. Vegan-friendly.', 2000, 5000, 'Published', ARRAY['{"Vegetarian","Halal"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Distilled since the Edo period by island women as a household drink, it evolved into a prized craft spirit shaped by the island''s fertile volcanic soil and subtropical climate.', NULL, 'Because production is strictly limited to Aogashima''s tiny population, it is nationally revered as the phantom shochu.', ARRAY['{"01 Local Sweet Potatoes
-Sun-ripened sweet potatoes harvested from the rich volcanic soil of Aogashima.
-
-02 Barley Koji
-Steamed barley inoculated with koji mold to initiate natural starch conversion.
-
-03 Volcanic Basalt Water
-Pure rainfall filtered through porous subterranean layers of volcanic basalt rock."}']::text[], 'ah-oh-choo', NULL, ARRAY[]::text[], NULL),
-('hingya-no-shio', 'Hingya no Shio', 'ひんぎゃの塩', 'kanto', 'tokyo', 'A mineral-rich gourmet sea salt crystallized using the natural geothermal steam of Aogashima volcano. Deep Kuroshio ocean water is slowly evaporated over gentle volcanic steam vents to yield crunchy, savory salt pyramids.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains none. Vegan-friendly.', 600, 1500, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'The name ''Hingya'' refers to the volcanic steam vents on the island. This salt-making method harnesses the island''s natural geothermal energy, a practice deeply tied to Aogashima''s volcanic landscape.', NULL, 'It takes weeks of slow evaporation over the volcanic vents to produce this salt, resulting in its signature large, crunchy crystals.', ARRAY['{"01 Kuroshio Pacific Water
-Pure deep ocean water drawn directly from the swift Pacific Kuroshio current.
-
-02 Natural Sea Minerals
-Naturally occurring calcium and magnesium retained during low-temperature evaporation."}']::text[], 'heen-gyah no shee-oh', NULL, ARRAY[]::text[], NULL),
-('haijima-highball', 'Haijima Highball', '拝島ハイボール', 'kanto', 'tokyo', 'A signature local highball crafted in Akishima City using crisp underground spring water. Mixed with quality Japanese whisky and effervescent soda, it offers a clean, ultra-refreshing taste.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains none. Vegetarian-friendly.', 500, 900, 'Published', ARRAY['{"Vegetarian","Quick bite","Dine-in"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Created to celebrate the local drinking culture around Haijima Station, this highball has become a beloved staple in the area''s izakayas.', NULL, 'Akishima is famous for being the only municipality in Tokyo providing 100% pure underground water for tap supply.', ARRAY['{"01 Japanese Blended Whisky
-Smooth oak-aged Japanese malt whisky selected for clean aromatic balance.
-
-02 Akishima Spring Water Soda
-Highly carbonated sparkling water crafted from pure Akishima deep subterranean wells.
-
-03 Fresh Lemon Wedge
-Freshly sliced citrus wedge adding bright acidity and aromatic zest."}']::text[], 'hah-ee-jee-mah hye-bohl', NULL, ARRAY[]::text[], NULL),
-('haijima-negi-miso', 'Haijima Negi Miso', '拝島ねぎみそ', 'kanto', 'tokyo', 'A rich savory condiment prepared by sautéing locally grown green onions with aromatic fermented miso paste. It delivers an intense umami punch with sweet caramelized onion notes perfect over warm rice.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains Soy, Sesame. Vegan-friendly.', 450, 850, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Originating as a farmstead preserving method in western Tokyo to extend the shelf life of seasonal scallion harvests.', NULL, 'This versatile miso paste is commonly spread over rice balls before charcoal grilling to create fragrant yaki-onigiri.', ARRAY['{"01 Fresh Haijima Scallions
-Locally harvested sweet green onions chopped fine for tender texture.
-
-02 Fermented Rice Miso
-Aged red and white soy miso paste delivering deep savory depth.
-
-03 Toasted Sesame Oil
-Pure roasted sesame oil added during pan-sautéing for nutty fragrance."}']::text[], 'hah-ee-jee-mah neh-gee mee-so', NULL, ARRAY[]::text[], NULL),
-('akigawa-sweet-corn', 'Akigawa Sweet Corn', '秋川とうもろこし', 'kanto', 'tokyo', 'Exceptionally sweet and juicy corn cultivated along the fertile riverbanks of the Akigawa Valley in Akiruno City. Plucked early in the morning, these golden kernels are so crisp and sweet they can even be enjoyed raw.', ARRAY['{"Summer"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains none. Vegan-friendly.', 250, 500, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'The pure waters of the Akigawa River and the valley''s distinct temperature differences create the perfect environment for cultivating this premium corn.', NULL, 'During the summer harvest season, you''ll find local farmers boiling or grilling these sweet cobs right by the roadside!', ARRAY['{"01 Fresh Sweet Corn Ears
-Morning-harvested sweet corn grown in river mineral soils.
-
-02 Sweet Butter Dip
-Creamy Hokkaido butter melted over grilled cob ears.
-
-03 Soy Sauce Drizzle
-Aged soy sauce brushed over open flame for savory glaze."}']::text[], 'ah-kee-gah-wah toh-moh-roh-koh-she', NULL, ARRAY[]::text[], NULL),
-('norabou-na', 'Norabou-na', 'のらぼう菜', 'kanto', 'tokyo', 'A tender local leafy green with crisp stems and a mild, sweet flavor, traditionally grown in western Tokyo. Norabou-na is valued for its edible stems and leaves and is commonly prepared simply by boiling, blanching, or stir-frying so its fresh green flavor remains clear.', ARRAY['{"Spring"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 150, 400, 'Published', ARRAY['{"Vegetarian","Halal","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Norabou-na is an old Tokyo-area vegetable associated with western suburban farming and has been cultivated in the Akiruno area for generations. Its continued use reflects traditional household vegetable growing and seasonal spring cooking rather than a single inventor.', NULL, 'The stalks and leaves can be eaten together, making it less wasteful than greens that require extensive trimming. Harvested stems are especially prized for their tender bite.', ARRAY['{"01 Norabou-na Leaves
- Tender leaves provide a mild green flavor and soft texture.
- 
-
- 02 Norabou-na Stems
- The thick stems add crispness and remain pleasantly firm after brief cooking.
- 
-
- 03 Light Seasoning
- Soy sauce, sesame, or simple dashi-based seasoning lets the vegetable''s sweetness remain noticeable."}']::text[], 'noh-rah-boh-nah', NULL, ARRAY[]::text[], NULL),
-('bunka-fry', 'Bunka Fry', '文化フライ', 'kanto', 'tokyo', 'A distinctive Adachi street snack made from seasoned wheat dough shaped into a flat, sandal-like form, coated with breadcrumbs, and deep-fried. The finished fritter is lightly sweet, crisp outside, soft inside, and traditionally served hot with a generous amount of special sauce.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, soy', 100, 300, 'Published', ARRAY['{"Quick bite"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Bunka Fry was devised by Hasegawa Shoten in Umeda, Adachi Ward, and became a familiar festival-stall snack in the postwar period. It survived mainly through local memory after regular street-stall production declined around 2001.', NULL, 'Despite its name, Bunka Fry contains no meat or fish in the basic preparation. It is a flour-based snack whose character comes from the crisp coating, slight sweetness, and savory sauce.', ARRAY['{"01 Wheat Dough
- A simple wheat-flour dough forms the soft, chewy center.
- 
-
- 02 Breadcrumbs
- Breadcrumbs create the crisp fried shell and browned exterior.
- 
-
- 03 Special Sauce
- The signature sauce adds sweetness, saltiness, and concentrated savory flavor."}']::text[], 'boon-kah foo-rye', NULL, ARRAY[]::text[], NULL),
-('senju-no-suzumeyaki', 'Senju no Suzumeyaki', '千住のすずめ焼き', 'kanto', 'tokyo', 'A traditional Senju-style small-fish dish in which whole small fish are skewered and grilled with a savory-sweet glaze. The name refers to their small, sparrow-like appearance, while the preparation belongs to the old river-and-market food culture of the Senju area.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish, soy', 500, 1200, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Suzumeyaki is associated with the historic food culture around Senju, where small freshwater fish were preserved and sold as a practical local food. The surviving style reflects Edo-period riverine cooking rather than a single documented inventor.', NULL, 'The name evokes grilled sparrows, but it describes the fish''s small appearance, not the bird itself. Eating it with the glaze highlights the contrast between crisp edges and tender fish.', ARRAY['{"01 Small Freshwater Fish
- Small fish such as crucian carp or similar local species form the traditional base.
- 
-
- 02 Soy Sauce-Based Glaze
- Soy sauce provides saltiness and umami while developing a dark finish during grilling.
- 
-
- 03 Sweet Cooking Seasoning
- Sugar or mirin balances the glaze and helps it adhere to the fish."}']::text[], 'sen-joo no soo-zoo-meh-yah-kee', NULL, ARRAY[]::text[], NULL),
-('yarikake-dango', 'Yarikake Dango', '槍かけだんご', 'kanto', 'tokyo', 'A traditional rice dumpling specialty associated with Senju, formed from chewy rice-flour dumplings on skewers and finished with a sweet or savory topping. The name is linked to a local story about resting a spear, while the dumplings are enjoyed as a simple old-fashioned snack.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 150, 500, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Yarikake Dango is tied to the old Senju travel and lodging area and its famous legend about a spear being rested nearby. The dumpling tradition belongs to the historic neighborhood food culture and is preserved through long-running local confectionery shops.', NULL, 'The name connects the confection to a travel-era story rather than to an ingredient. Freshly made dumplings are at their best while the surface is still soft and the glaze glossy.', ARRAY['{"01 Rice Flour Dumplings
- Steamed and shaped rice dough provides the soft, chewy body.
- 
-
- 02 Sweet Bean or Soy-Based Topping
- Depending on the style, the dumplings may be finished with sweet red bean paste or a savory-sweet glaze.
- 
-
- 03 Sugar
- Sugar balances the toppings and gives the finished skewer its characteristic sweetness."}']::text[], 'yah-ree-kah-keh dahn-goh', NULL, ARRAY[]::text[], NULL),
-('yuyu-toden-wagashi', 'Yuyu Toden - Wagashi', 'ゆうゆう都電（和菓子）', 'kanto', 'tokyo', 'A traditional Japanese confection shaped like the tramcars of the Toden Arakawa Line, created as a playful local souvenir from Arakawa. Sold as a shop-exclusive wagashi in Machiya, it connects a familiar streetcar image with a soft, sweet confectionary format.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains wheat', 200, 600, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Yuyu Toden was developed as a confection associated with the Toden Arakawa Line and is sold exclusively at the Machiya shop of Chikuryuan Okano. Its design turns a well-known Arakawa transport symbol into a local sweet.', NULL, 'The confection is especially popular with children because the tram shape is easy to recognize. It is also a local souvenir tied directly to the neighborhood where the streetcar runs.', ARRAY['{"01 Sweet Bean Filling
- Sweet bean paste provides the familiar wagashi center.
- 
-
- 02 Rice-Based Confectionery Dough
- A soft Japanese confectionery exterior holds the molded tram shape.
- 
-
- 03 Sugar
- Sugar provides the characteristic sweetness of the finished wagashi."}']::text[], 'yoo-yoo toh-den wah-gah-she', NULL, ARRAY[]::text[], NULL),
-('arakawa-monja', 'Arakawa Monja', 'あらかわもんじゃ', 'kanto', 'tokyo', 'A sizzling monjayaki style associated with Arakawa Ward, where a thin dashi-rich batter cooks into a loose, savory mixture on a hot griddle. Cabbage and other ingredients are cooked together, producing the soft texture and concentrated browned edges that define monjayaki.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, soy, various toppings', 800, 2000, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Monjayaki became deeply established in Tokyo''s working-class neighborhoods, and Arakawa developed its own local eating culture around the dish. The ward''s style reflects the broader shitamachi tradition rather than a single inventor.', NULL, 'A tiny metal spatula is used both to cook and eat monjayaki. The most prized bites are often the small, crisp pieces that form against the griddle.', ARRAY['{"01 Dashi-Flavored Batter
- A thin mixture of flour and dashi creates the characteristic loose texture.
- 
-
- 02 Cabbage
- Finely chopped cabbage adds sweetness, moisture, and texture.
- 
-
- 03 Local Toppings
- Seafood, meat, vegetables, cheese, or other additions create the chosen flavor profile."}']::text[], 'ah-rah-kah-wah mon-jah', NULL, ARRAY[]::text[], NULL),
-('okara-soy-milk-karinto', 'Okara & Soy Milk Karinto', 'おからと豆乳のかりんとう', 'kanto', 'tokyo', 'A crunchy karinto made with okara and soy milk, turning familiar soybean by-products into a sweet, crisp snack. The version produced by Nakano Confectionery in Itabashi is recognized locally for its practical use of soy ingredients and its light, pleasantly crumbly bite.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains soy, wheat', 300, 700, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'The product is made by Nakano Confectionery and is listed among Itabashi''s recognized local specialty foods. Its concept combines traditional karinto-making with okara and soy milk, reflecting an effort to use more of the soybean after tofu production.', NULL, 'Okara is the soybean pulp left after making soy milk or tofu. Using it in confectionery gives the snack a distinctive crumb and turns a tofu-making by-product into part of the finished food.', ARRAY['{"01 Okara
- Soybean pulp adds body and a slightly nutty, crumbly character.
- 
-
- 02 Soy Milk
- Soy milk enriches the dough and reinforces the soybean flavor.
- 
-
- 03 Wheat Flour and Sugar
- Flour provides structure while sugar supplies the characteristic sweetness of karinto."}']::text[], 'oh-kah-rah to toh-nyoo no kah-reen-toh', NULL, ARRAY[]::text[], NULL),
-('niku-no-marusan-homemade-ham-cutlet', 'Niku no Marusan Homemade Ham Cutlet', '肉のマルサン 自家製ハムカツ', 'kanto', 'tokyo', 'A thick, butcher-shop-style ham cutlet made from a substantial slice of ham, coated and fried until the outside is crisp and golden. Niku no Marusan in Kamitabashi sells this house-made version as one of the products recognized by the Itabashi local specialty program.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains meat, wheat, egg', 150, 400, 'Published', ARRAY['{"Quick bite"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Ham cutlets became a familiar Japanese butcher-shop food during the twentieth century, and Niku no Marusan developed its own house-made version for its Kamitabashi customers. The shop''s cutlet was later selected for Itabashi''s local specialty program.', NULL, 'Niku no Marusan is a neighborhood butcher that also prepares cooked foods in-house. The ham cutlet is designed as an everyday, ready-to-eat side rather than a formal restaurant dish.', ARRAY['{"01 Ham
- A thick slice of cured ham supplies the savory center.
- 
-
- 02 Egg and Flour
- The standard cutlet coating uses flour and egg to help the crumbs adhere.
- 
-
- 03 Panko Breadcrumbs
- Japanese breadcrumbs create the crisp, light-textured crust after frying."}']::text[], 'nee-koo no mah-roo-sahn hah-moo-kah-tsoo', NULL, ARRAY[]::text[], NULL),
-('inagi-pears', 'Inagi Pears', '稲城の梨', 'kanto', 'tokyo', 'Large, juicy Japanese pears grown in Inagi, a long-established pear-growing area in Tokyo. Local fruit is prized for abundant juice, pronounced sweetness, and a crisp texture, with farm stands becoming especially busy during the harvest period from late summer into autumn.', ARRAY['{"Fall"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 500, 3000, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Pear cultivation in Inagi is traced by the city to the Genroku era, when two local men are said to have brought back a pear cultivar from the Kyoto region. Commercial production became established later in the nineteenth century, leading to today''s regional brand.', NULL, 'The city says local pear stalls begin appearing prominently around mid-August. Inagi pears are also widely purchased as gifts and shipped outside Tokyo during the harvest season.', ARRAY['{"01 Japanese Pears
- Crisp Japanese pears provide the signature juicy sweetness and clean aroma.
- 
-
- 02 Orchard Fruit
- Fruit is harvested at orchard ripeness for direct sale and local distribution.
- 
-
- 03 Natural Fruit Juice
- The pear''s high natural juice content creates the refreshing texture associated with the Inagi brand."}']::text[], 'ee-nah-gee no nah-she', NULL, ARRAY[]::text[], NULL),
-('inagi-mukashibanashi-manju', 'Inagi Mukashibanashi Manju', '稲城の昔ばなしまんじゅう', 'kanto', 'tokyo', 'A soft Japanese steamed bun created as an Inagi souvenir around local folktales and storytelling. The confection pairs a tender outer cake with a sweet filling, turning the city''s traditional narratives into a compact gift suitable for visitors and everyday tea service.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains wheat', 150, 500, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'The confection was developed as a local Inagi souvenir inspired by the city''s traditional folktales. Its purpose is cultural as well as culinary, using wagashi to give local stories a portable form.', NULL, 'The phrase old folktales refers to traditional local stories passed between generations. The manju turns that cultural theme into a food souvenir rather than representing a single historic recipe.', ARRAY['{"01 Wheat Flour
- Flour forms the soft steamed outer cake.
- 
-
- 02 Sweet Bean Filling
- Sweet bean paste supplies the traditional wagashi-style filling.
- 
-
- 03 Sugar
- Sugar balances the filling and dough and gives the manju its gentle sweetness."}']::text[], 'ee-nah-gee moo-kah-she-bah-nah-she mahn-joo', NULL, ARRAY[]::text[], NULL),
-('komatsuna', 'Komatsuna', '小松菜', 'kanto', 'tokyo', 'A dark green leafy vegetable strongly associated with Edogawa, where the Komatsugawa area gave the crop its name. Komatsuna has crisp stems and a mild sweetness, and today it is grown year-round, although its original peak season is winter when cool weather intensifies its flavor.', ARRAY['{"Winter"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 100, 300, 'Published', ARRAY['{"Vegetarian","Halal","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Komatsuna''s name is traditionally linked to the eighth shogun Tokugawa Yoshimune, who is said to have eaten local winter greens during a hawking visit and named them after Komatsugawa. Historical texts later confirm the reputation of the vegetable in the area.', NULL, 'Komatsuna can be harvested several times a year in modern cultivation, but winter remains its traditional season. Frost is said to make the leaves sweeter and more flavorful.', ARRAY['{"01 Komatsuna Leaves
- The dark leaves provide a mild mustardy note and high vegetable freshness.
- 
-
- 02 Komatsuna Stems
- Crisp stems give the vegetable its characteristic crunch.
- 
-
- 03 Natural Vegetable Sugars
- Cool-season growth concentrates sweetness, especially in traditional winter crops."}']::text[], 'koh-mah-tsoo-nah', NULL, ARRAY[]::text[], NULL),
-('salad-komatsuna', 'Salad Komatsuna', 'サラダ小松菜', 'kanto', 'tokyo', 'A tender, mild form of komatsuna developed specifically for comfortable raw eating, with less bitterness and more perceived sweetness than traditional mature greens. The product was developed through an Edogawa agricultural-academic-public partnership and is marketed for salads, juices, and other uncooked uses.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 150, 400, 'Published', ARRAY['{"Vegetarian","Halal"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Salad Komatsuna was developed through a joint Edogawa agricultural, academic, and public-sector project studying the safety and nutritional value of eating komatsuna raw. After two years of research, the product was commercialized as a milder salad-oriented form.', NULL, 'The project specifically tested raw-eating suitability, which is why this version is much less assertive in taste than mature cooking greens. It can also be blended directly into juice.', ARRAY['{"01 Salad Komatsuna
- Tender leaves provide a mild flavor designed for raw eating.
- 
-
- 02 Crisp Stems
- The young stems add fresh crunch without requiring boiling.
- 
-
- 03 Natural Vegetable Sugars
- A sweeter taste helps the greens work in salads and fresh juices."}']::text[], 'sah-rah-dah koh-mah-tsoo-nah', NULL, ARRAY[]::text[], NULL),
-('ome-senbei', 'Ome Senbei', '青梅せんべい', 'kanto', 'tokyo', 'A traditional rice-cracker-style confection associated with Ome, known for its light sweetness and crisp, delicate bite. The local souvenir is shaped and baked into thin pieces that travel well, making it a familiar tea-time gift from western Tokyo.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains wheat', 300, 1000, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Ome Senbei is a long-standing local confection associated with the city''s souvenir culture rather than a single documented inventor. Its style reflects the broader Japanese tradition of crisp baked sweets made for tea and gifting.', NULL, 'The crackers are particularly suited to tea because their modest sweetness lets the roasted grain aroma remain noticeable. Their dry texture also makes them easy to carry as a travel souvenir.', ARRAY['{"01 Rice Flour
- Rice provides the crisp, light structure associated with senbei.
- 
-
- 02 Wheat Flour
- A small amount of wheat-based flour contributes structure in the local recipe.
- 
-
- 03 Sugar
- Sugar gives the cracker its gently sweet finish."}']::text[], 'oh-meh sen-bay', NULL, ARRAY[]::text[], NULL),
-('noshikon', 'Noshikon', 'のしこん', 'kanto', 'tokyo', 'A locally made konnyaku specialty associated with Ome, produced in thin rolled sheets rather than the standard rectangular blocks. The translucent pieces have a springy, pleasantly firm texture and are typically served chilled with a savory sauce or alongside other simple Japanese foods.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 200, 500, 'Published', ARRAY['{"Vegetarian","Halal"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Noshikon is a specialized local konnyaku product whose name comes from its rolled form. It belongs to Ome''s regional food tradition of working with konnyaku as a practical, low-cost staple ingredient.', NULL, 'Konnyaku has almost no inherent flavor, so texture is the main attraction. Chilling the slices and adding a concentrated dipping sauce makes the springy bite more pronounced.', ARRAY['{"01 Konnyaku Flour
- Konnyaku powder provides the gelatinous, elastic base.
- 
-
- 02 Water
- Water hydrates the konnyaku flour and creates the final firm gel texture.
- 
-
- 03 Alkaline Setting Agent
- A traditional alkaline ingredient helps the konnyaku mixture set into a stable gel."}']::text[], 'noh-she-kon', NULL, ARRAY[]::text[], NULL),
-('bekko-sushi', 'Bekko Sushi', 'べっこう寿司', 'kanto', 'tokyo', 'A distinctive island sushi from Izu Oshima made by marinating slices of local fish in a sweet-savory soy sauce before placing them over vinegared rice. The marinade gives the fish a glossy amber-brown appearance, which explains the name referring to tortoiseshell.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish, soy', 1000, 2000, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Bekko sushi developed as a practical island preparation for seasoning fish with soy sauce and keeping its flavor appealing. The style became characteristic of Oshima''s food culture and is now treated as one of the island''s representative dishes.', NULL, 'The name bekko refers to tortoiseshell, a reference to the amber-brown shine created by the soy marinade. In Oshima, mustard is traditionally preferred with the sushi instead of wasabi.', ARRAY['{"01 Local White Fish
- Fish such as sawara is sliced thinly for marinating.
- 
-
- 02 Soy Sauce Marinade
- Soy sauce provides saltiness, umami, and the characteristic amber color.
- 
-
- 03 Vinegared Sushi Rice
- Lightly sweetened vinegared rice balances the savory fish and marinade."}']::text[], 'bek-koh zoo-she', NULL, ARRAY[]::text[], NULL),
-('zako-teishoku', 'Zako Teishoku', 'ざこ定食', 'kanto', 'tokyo', 'A casual island set meal built around small local fish, often served grilled, fried, or simmered with rice and everyday side dishes. The concept reflects Oshima''s practical seafood cooking, where modest catches are turned into a satisfying complete meal rather than treated as luxury ingredients.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish, soy', 800, 1500, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Zako teishoku is best understood as a local set-meal style using small fish rather than as one fixed historical recipe. Its roots lie in Oshima''s fishing households and the practical use of readily available catches.', NULL, 'The word zako refers broadly to small fish rather than one exact species. Because the term is flexible, the fish and preparation can vary with the day''s catch and the restaurant.', ARRAY['{"01 Small Local Fish
- The day''s small catch provides the central protein and can be grilled, fried, or simmered.
- 
-
- 02 Steamed Rice
- Plain rice provides a neutral base for the strongly flavored fish.
- 
-
- 03 Miso Soup and Seasonal Sides
- Soup and small vegetable dishes complete the balanced set-meal format."}']::text[], 'zah-koh tay-shoh-koo', NULL, ARRAY[]::text[], NULL),
-('gyunu-senbei', 'Gyunu Senbei', '牛乳せんべい', 'kanto', 'tokyo', 'A crisp, lightly sweet milk biscuit from Izu Oshima, made into thin baked pieces that pair naturally with tea or coffee. The simple recipe reflects the island''s dairy connection and produces a dry, fragrant snack with a delicate snap.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains dairy, wheat, egg', 400, 1000, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Milk Senbei became established as an Oshima souvenir using the island''s dairy connection and the Japanese tradition of producing crisp baked gift sweets. The exact commercial origin is associated with local confectionery makers rather than a single national inventor.', NULL, 'Despite its name, milk senbei is closer to a thin sweet biscuit than a savory rice cracker. The milky aroma becomes more noticeable when the biscuit is eaten with a warm drink.', ARRAY['{"01 Wheat Flour
- Wheat flour provides the biscuit''s structure.
- 
-
- 02 Milk
- Milk gives the cracker its gentle dairy aroma and pale finish.
- 
-
- 03 Sugar
- Sugar adds the restrained sweetness typical of the confection."}']::text[], 'gyoo-nyoo sen-bay', NULL, ARRAY[]::text[], NULL),
-('omori-nori', 'Omori Nori', '大森の海苔', 'kanto', 'tokyo', 'A historic nori-producing tradition from Omori, where calm, nutrient-rich Tokyo Bay waters once supported one of Japan''s major seaweed-growing areas. Although cultivation ended in the 1960s, Omori remains a major center for nori wholesalers, grading, processing, and distribution.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 500, 3000, 'Published', ARRAY['{"Vegetarian","Halal"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Nori cultivation began along the Omori-to-Shinagawa coast about three centuries ago, and Omori became a leading production area from the Meiji era through the early Showa period. Cultivation ended in 1963 after fishing rights were relinquished amid coastal development, but the local trade continued.', NULL, 'Omori was once important enough to spread nori cultivation and processing techniques to other parts of Japan. Today the area''s nori wholesalers still judge and process seaweed from production regions around the country.', ARRAY['{"01 Edible Seaweed
- Porphyra-type seaweed forms the raw material for dried nori sheets.
- 
-
- 02 Seawater Minerals
- The sea environment influences the mineral content and flavor of the growing seaweed.
- 
-
- 03 Toasting
- Gentle roasting develops the characteristic crisp texture and nutty aroma."}']::text[], 'oh-moh-ree no-ree', NULL, ARRAY[]::text[], NULL),
-('shima-zushi', 'Shima-zushi', '島寿司', 'kanto', 'tokyo', 'A classic Ogasawara island sushi made with slices of local fish marinated in soy sauce and mirin before being placed over mildly sweet vinegared rice. Traditionally served with mustard instead of wasabi, the style is defined by its glossy fish, sweet-savory seasoning, and strong island identity.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains soy, gluten, fish', 1000, 2500, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Shima-zushi grew from the island food culture of the Ogasawara Islands, where fish was seasoned before serving to suit island conditions and local tastes. The technique is a part of the broader Japanese island sushi tradition rather than a recipe credited to one inventor.', NULL, 'Ogasawara''s official tourism association specifically notes mustard rather than wasabi as the traditional accompaniment. The sweet vinegared rice helps balance the soy-based fish marinade.', ARRAY['{"01 Local White Fish
- Fish such as sawara is sliced for the soy-based marinade.
- 
-
- 02 Soy Sauce and Mirin
- The marinade gives the fish its savory sweetness and characteristic glossy color.
- 
-
- 03 Vinegared Rice
- Mildly sweetened sushi rice provides balance and structure."}']::text[], 'shee-mah zoo-she', NULL, ARRAY[]::text[], NULL),
-('kame-ni', 'Kame-ni', '亀煮', 'kanto', 'tokyo', 'A traditional Ogasawara preparation of sea turtle cooked slowly with a savory-sweet seasoning until the meat becomes tender. It reflects the islands'' historical use of marine resources and is now best understood as part of Ogasawara''s heritage cuisine rather than an everyday food.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains turtle meat', 800, 2000, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Kame-ni belongs to the traditional food culture of Ogasawara, where sea turtle was historically harvested and cooked as a local resource. Modern discussion of the dish is closely linked to the islands'' cultural history and contemporary wildlife protections.', NULL, 'The name simply means turtle simmered or braised. Because sea turtles are protected wildlife, this dish should not be treated as an ordinary freely available menu item.', ARRAY['{"01 Sea Turtle
- Historically harvested turtle provided the central meat, although present-day access is governed by conservation rules.
- 
-
- 02 Soy Sauce
- Soy sauce supplies the deep savory base of the braising liquid.
- 
-
- 03 Sugar and Sake
- Sweet and aromatic cooking seasonings balance the strong marine flavor."}']::text[], 'kah-meh nee', NULL, ARRAY[]::text[], NULL),
-('same-burger', 'Same Burger', 'サメバーガー', 'kanto', 'tokyo', 'A modern Ogasawara specialty that replaces ordinary burger meat with locally caught shark, creating a firm, lean seafood filling inside a soft bun. The format turns a traditional island catch into an approachable contemporary street-food style and highlights the archipelago''s strong connection with fishing.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish, gluten, egg', 600, 1200, 'Published', ARRAY['{"Quick bite","Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Shark burgers are a modern island-food development rather than an Edo-period traditional dish. The concept reflects Ogasawara''s contemporary effort to use local seafood in accessible dishes while giving visitors a distinctive taste of the islands.', NULL, 'Shark has a firmer texture than many mild white fish, which is why sauces and a soft bun work well with it. The burger format makes an unfamiliar island ingredient easier for visitors to try.', ARRAY['{"01 Local Shark
- Lean shark meat provides the firm seafood center.
- 
-
- 02 Wheat Burger Bun
- The soft bun balances the denser texture of the seafood.
- 
-
- 03 Sauce and Salad Vegetables
- Sauce, lettuce, or other toppings add moisture and freshness to the sandwich."}']::text[], 'sah-meh bah-gah', NULL, ARRAY[]::text[], NULL),
-('shikaku-mame-tempura', 'Shikaku-mame Tempura', '四角豆の天ぷら', 'kanto', 'tokyo', 'A crisp vegetable tempura featuring winged bean, a warm-climate crop suited to the subtropical Ogasawara Islands. The beans are lightly battered and fried so their ridged, star-like cross-section stays visible, producing a delicate shell around a fresh, slightly grassy interior.', ARRAY['{"Summer"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains gluten, fried in oil', 500, 1000, 'Published', ARRAY['{"Vegetarian","Quick bite","Dine-in","Seasonal peak"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Winged bean is among the subtropical vegetables grown in Ogasawara, and tempura is a straightforward local way to showcase the crop. The dish reflects island adaptation to warm-climate agriculture rather than a single documented invention.', NULL, 'The winged ridges of the bean are edible, so the vegetable keeps an unusual sculptural appearance after frying. A light batter lets the fresh vegetable flavor remain noticeable.', ARRAY['{"01 Winged Beans
- Young winged beans provide the crisp, fresh vegetable center.
- 
-
- 02 Tempura Batter
- A light flour-and-water batter forms the delicate fried coating.
- 
-
- 03 Frying Oil
- Hot oil quickly sets the batter while keeping the interior fresh and green."}']::text[], 'she-kah-koo mah-meh ten-poo-rah', NULL, ARRAY[]::text[], NULL),
-('akaba-miso-soup', 'Akaba Miso Soup', 'アカバの味噌汁', 'kanto', 'tokyo', 'A deeply savory fish soup made with akabha, the local name for red-spotted grouper, a prized reef fish of the Ogasawara Islands. The fish is simmered with miso to create a rich broth that combines a clean marine sweetness with the fermented depth of Japanese miso.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish, soy', 600, 1500, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Akabha miso soup is a recognized Ogasawara island dish made from the fish locally called akabha, or red-spotted grouper. Its roots lie in island fishing cuisine and the practical use of prized reef fish in a nourishing soup.', NULL, 'The fish is considered a high-value local catch, so using it in miso soup turns bones and flavorful pieces into a particularly rich broth. The local name akabha refers to the red grouper family fish used in the dish.', ARRAY['{"01 Red-Spotted Grouper
- Akabha provides the fish''s clean marine sweetness and gelatin-rich texture.
- 
-
- 02 Miso
- Fermented soybean paste forms the salty, savory soup base.
- 
-
- 03 Dashi and Aromatics
- Stock ingredients and simple aromatics deepen the broth without masking the fish."}']::text[], 'ah-kah-bah mee-so soo-poo', NULL, ARRAY[]::text[], NULL),
-('shima-lemon-jelly', 'Shima Lemon Jelly', '島レモンゼリー', 'kanto', 'tokyo', 'A bright jelly dessert made with Ogasawara''s distinctive island lemon, prized for its rounded shape, lively aroma, and relatively gentle acidity. The fruit is especially well suited to jelly because its juice and fragrant peel create a clean, refreshing citrus character.', ARRAY['{"Fall"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan (if agar used)', 300, 600, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Dine-in","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Island lemon, also known as Kikuji lemon, was introduced to Ogasawara from Hachijojima after the islands returned to Japan. Local producers later developed products such as jelly and jam to showcase the fruit''s unusually mild acidity and fragrance.', NULL, 'Ogasawara island lemons are about one and a half times the size of ordinary lemons and can be eaten while still green. Their rounded shape and gentler acidity make them especially versatile for sweets.', ARRAY['{"01 Island Lemon Juice
- Fresh lemon juice supplies the bright citrus aroma and balanced acidity.
- 
-
- 02 Lemon Zest
- Finely grated peel intensifies the fragrance of the fruit.
- 
-
- 03 Gelatin or Jelly Setting Agent
- The setting ingredient creates the clean, trembling texture of the dessert."}']::text[], 'she-mah reh-mon zeh-ree', NULL, ARRAY[]::text[], NULL),
-('okutama-yamame', 'Okutama Yamame', '奥多摩やまめ', 'kanto', 'tokyo', 'A farmed yamame trout specialty from the Okutama mountains, where clear, cold water supports the production of prized landlocked trout. The fish has a clean flavor and delicate flesh and is commonly served grilled, especially with salt, to preserve its subtle mountain-stream character.', ARRAY['{"Summer"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish', 1000, 3000, 'Published', ARRAY['{"Dine-in","Seasonal peak"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Okutama Yamame is a regional aquaculture product developed around the area''s cold, clean mountain water. Modern hatchery production allows the local specialty to be supplied consistently while retaining the characteristics associated with mountain trout.', NULL, 'Yamame is a landlocked salmonid related to other Japanese trout. It is especially good grilled over charcoal or wood, where the skin develops a crisp aromatic edge.', ARRAY['{"01 Yamame Trout
- Freshwater trout supplies the delicate, clean-tasting flesh.
- 
-
- 02 Salt
- Salt is the classic seasoning for highlighting the fish''s subtle flavor.
- 
-
- 03 Mountain Water
- Cold, clean water is central to the character and production environment of the local fish."}']::text[], 'oh-koo-tah-mah yah-mah-meh', NULL, ARRAY[]::text[], NULL),
-('okutama-wasabi', 'Okutama Wasabi', '奥多摩わさび', 'kanto', 'tokyo', 'A fragrant Japanese wasabi grown in the clean spring waters of Okutama, one of western Tokyo''s mountain food regions. The root has a fresh, green aroma and a brief, penetrating heat that is prized when freshly grated rather than stored for long periods.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 500, 2000, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Dine-in"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Wasabi has been cultivated in Okutama''s cool mountain streams and spring-water environments as part of the region''s long agricultural tradition. The specialty depends on clean flowing water and shaded growing conditions rather than ordinary field cultivation.', NULL, 'Freshly grated wasabi delivers a short, nasal heat that fades much faster than the burn of dried horseradish powder. The finest aroma is noticeable immediately after grating.', ARRAY['{"01 Wasabi Rhizome
- The grated rhizome provides the signature green aroma and sharp heat.
- 
-
- 02 Clean Spring Water
- Cold, clear flowing water creates the conditions needed for high-quality wasabi cultivation.
- 
-
- 03 Wasabi Leaves and Stems
- The plant''s above-ground parts are also edible in local cooking and preserves."}']::text[], 'oh-koo-tah-mah wah-sah-bee', NULL, ARRAY[]::text[], NULL),
-('sashimi-konnyaku', 'Sashimi Konnyaku', '刺身こんにゃく', 'kanto', 'tokyo', 'A chilled konnyaku preparation cut into thin slices and served like sashimi, prized more for its springy texture than for a strong flavor. The translucent pieces are usually paired with a savory dipping sauce, making the dish a light, refreshing counterpoint to richer mountain foods.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free (depending on sauce)', 400, 900, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Dine-in"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Sashimi konnyaku comes from Japan''s long tradition of using konnyaku as a preserved mountain food. The Okutama version fits the area''s broader konnyaku-making culture, where clean water and locally processed konnyaku are valued regional foods.', NULL, 'Because konnyaku is mild on its own, the dipping sauce determines much of the finished flavor. Chilling the slices makes their springy texture especially refreshing.', ARRAY['{"01 Konnyaku
- Set konnyaku jelly provides the distinctive elastic texture.
- 
-
- 02 Clean Water
- Water is essential to the hydration and setting of the konnyaku.
- 
-
- 03 Miso or Soy-Based Sauce
- A savory dipping sauce supplies most of the dish''s salt, umami, and aroma."}']::text[], 'sah-shee-mee kon-nyah-koo', NULL, ARRAY[]::text[], NULL),
-('kusa-dango', 'Kusa Dango', '草だんご', 'kanto', 'tokyo', 'A chewy rice dumpling flavored with aromatic yomogi leaves, traditionally served as a simple Japanese sweet with red bean paste. In Tokyo''s old neighborhood confectionery tradition, kusa dango is prized for its fresh green color, herbal fragrance, and pleasantly elastic bite.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free (typically)', 150, 600, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Dine-in"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Kusa dango is a long-established Japanese wagashi style, traditionally made by mixing yomogi with pounded rice dough. Tokyo examples became associated with temple districts and long-running confectionery shops rather than one single inventor.', NULL, 'Yomogi gives kusa dango a grassy, slightly bitter fragrance that balances sweet bean paste. The strongest aroma is usually noticeable when the dumplings are freshly made.', ARRAY['{"01 Glutinous Rice Flour
- Rice flour creates the soft, chewy dumpling texture.
- 
-
- 02 Yomogi
- Mugwort provides the herbal fragrance and natural green color.
- 
-
- 03 Sweet Red Bean Paste
- Anko supplies the principal sweetness and creamy contrast."}']::text[], 'koo-sah dahn-goh', NULL, ARRAY[]::text[], NULL),
-('kawazakana-ryori', 'Kawazakana Ryori', '川魚料理', 'kanto', 'tokyo', 'A broad style of freshwater fish cooking associated with Tokyo''s river communities, especially the mountain and waterside districts. Dishes vary by the catch and season but often emphasize simple grilling, simmering, or frying so the clean flavor of river fish remains central.', ARRAY['{"Summer"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish, soy, wheat', 2500, 6000, 'Published', ARRAY['{"Dine-in","Seasonal peak"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'River-fish cooking is much older than the modern municipality boundaries of Tokyo and grew from the practical use of local streams and rivers. The contemporary regional style preserves methods such as salt grilling, simmering, and frying rather than a single fixed recipe.', NULL, 'Freshwater fish are often best with restrained seasoning because their flavor is delicate. Eating the fish soon after cooking keeps the skin crisp and the flesh moist.', ARRAY['{"01 Freshwater Fish
- Trout, sweetfish, carp, or other river fish provide the central protein depending on location and season.
- 
-
- 02 Salt
- Salt grilling is one of the simplest traditional preparations.
- 
-
- 03 Soy or Miso Seasoning
- Simmered versions use savory Japanese seasonings instead of heavy spices."}']::text[], 'kah-wah-zah-kah-nah ryoh-ree', NULL, ARRAY[]::text[], NULL),
-('motsuyaki', 'Motsuyaki', 'もつ焼き', 'kanto', 'tokyo', 'A classic Tokyo neighborhood dish of skewered pork offal grilled over high heat, especially associated with working-class drinking districts. The pieces are lightly charred and commonly seasoned with salt or a savory tare, giving them a smoky, intensely savory flavor.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains meat (pork/beef)', 100, 500, 'Published', ARRAY['{"Quick bite","Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Motsuyaki grew from the urban izakaya and street-food culture of twentieth-century Japan, where inexpensive offal was grilled quickly and served with drinks. Tokyo neighborhood shops developed their own sauces, cuts, and preferred grilling styles.', NULL, 'Different cuts have dramatically different textures, from tender liver to chewy intestine. Regular customers often have a favorite cut and seasoning, so mixed skewers are a useful introduction.', ARRAY['{"01 Pork Offal
- Intestine, liver, stomach, and other edible cuts provide the distinctive range of textures.
- 
-
- 02 Salt
- Salt highlights the natural savory flavor and grilled aroma.
- 
-
- 03 Sweet-Savory Tare
- A soy-based tare adds sweetness, umami, and a glossy charred finish."}']::text[], 'moh-tsoo-yah-kee', NULL, ARRAY[]::text[], NULL),
-('takinogawa-gobo', 'Takinogawa Gobo', '滝野川ごぼう', 'kanto', 'tokyo', 'A historic long-rooted burdock associated with the Takinogawa area of northern Tokyo, known for its strong aroma and firm, flavorful flesh. The local variety became famous as a traditional vegetable and is valued in simmered dishes, kinpira, and other preparations that reward its distinctive bite.', ARRAY['{"Fall"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 500, 1500, 'Published', ARRAY['{"Vegetarian","Halal","Dine-in","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Takinogawa burdock was cultivated in Edo-period Tokyo and became a recognized local vegetable of the Takinogawa district. The variety is part of the city''s heritage vegetable tradition and later declined as modern compact varieties became more convenient for growers.', NULL, 'The long roots can be difficult to harvest without specialized soil preparation. Their firm texture makes them particularly good for simmering and kinpira-style cooking.', ARRAY['{"01 Takinogawa Burdock
- The heritage root provides a firm bite and deep earthy aroma.
- 
-
- 02 Water
- Soaking the cut root in water helps manage browning and prepares it for cooking.
- 
-
- 03 Soy-Based Seasoning
- Soy sauce, sugar, or mirin brings out the burdock''s savory-sweet character."}']::text[], 'tah-kee-noh-gah-wah goh-boh', NULL, ARRAY[]::text[], NULL),
-('kiyose-bo', 'Kiyose Bo', 'きよせ棒', 'kanto', 'tokyo', 'A crunchy vegetable snack from Kiyose made with local carrot and burdock powders, created around the city''s strong root-vegetable production. The kinpira-burdock flavor combines savory seasoning with a light, crisp texture, making the snack suitable for casual eating, drinks, or souvenirs.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains soy, wheat', 410, 410, 'Published', ARRAY['{"Quick bite"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Kiyose Bo was launched to mark the centenary of Kiyose Station and uses powders made from locally associated carrots and burdock. The product was designed as a contemporary souvenir that turns local produce into a shelf-stable snack.', NULL, 'The original kinpira-burdock flavor uses both carrot and burdock powders, linking the snack to Kiyose''s vegetable-growing identity. A later corn-potage version was also introduced using local corn.', ARRAY['{"01 Burdock Powder
- Burdock supplies the earthy, savory vegetable character.
- 
-
- 02 Carrot Powder
- Carrot adds gentle sweetness and reinforces the local root-vegetable theme.
- 
-
- 03 Kinpira Seasoning
- Soy-based savory seasoning gives the snack its familiar Japanese side-dish flavor."}']::text[], 'kee-yoh-seh boh', NULL, ARRAY[]::text[], NULL),
-('kiyose-man', 'Kiyose Man', '清瀬まん', 'kanto', 'tokyo', 'A chilled savory bun from Kiyose filled with spiced keema-style curry and local corn, with a later version adding Kiyose-grown carrots. The result combines warm curry spices with the natural sweetness of local vegetables in a convenient steamed-bun format.', ARRAY['{"Fall"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, meat, soy', 350, 350, 'Published', ARRAY['{"Quick bite","Seasonal peak"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Kiyose Man was launched by the Kiyose Tourism Association as a regional product using Kiyose-grown ingredients. The revived version added local carrots to the earlier corn-and-keema curry filling to soften the spice and increase vegetable depth.', NULL, 'The current version uses the sweet kernels of locally grown corn and carrot to mellow the curry''s spice. The product became popular enough in its first release to sell out quickly.', ARRAY['{"01 Keema Curry Filling
- Spiced minced-meat curry provides the savory center.
- 
-
- 02 Kiyose Corn
- Fresh local corn adds sweetness and texture.
- 
-
- 03 Kiyose Carrot
- Carrot contributes sweetness, color, and a gentle finish that softens the spice."}']::text[], 'kee-yoh-seh mahn', NULL, ARRAY[]::text[], NULL),
-('kunitachi-brewery-craft-beer', 'Kunitachi Brewery Craft Beer', 'くにぶる', 'kanto', 'tokyo', 'A craft beer brewed by KUNITACHI BREWERY, Kunitachi''s first craft brewery, established in 2020 by the long-running local sake retailer Sekiya. The brewery explores classic beer styles and experimental small-batch ideas, including beers inspired by Kunitachi''s history and urban identity.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan', 600, 1500, 'Published', ARRAY['{"Vegetarian","Quick bite","Dine-in"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'KUNITACHI BREWERY was established in 2020 by Sekiya, a sake retailer with more than a century of history. The brewery was created under the philosophy that old traditions can support new experiments in local brewing.', NULL, 'One of its beers, 1926, takes its name and design cues from Kunitachi Station''s historic station building. The brewery therefore uses local history as part of the beer''s identity.', ARRAY['{"01 Malted Barley
- Malted grain provides fermentable sugars and the malt backbone of the beer.
- 
-
- 02 Hops
- Hops contribute bitterness and aromatic character according to the style.
- 
-
- 03 Brewing Water
- Water provides the base for fermentation and influences the beer''s final balance."}']::text[], 'koo-nee-boo-roo', NULL, ARRAY[]::text[], NULL),
-('kinmedai-no-nitsuke', 'Kinmedai no Nitsuke', '金目鯛の煮付け', 'kanto', 'tokyo', 'A classic island preparation of splendid alfonsino simmered slowly in a sweet-savory soy broth until the flesh becomes tender and aromatic. On the Izu Islands, the dish highlights a prized local catch with a gentle balance of soy, sugar, and cooking sake.', ARRAY['{"Winter"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish, soy, wheat', 2000, 5000, 'Published', ARRAY['{"Dine-in","Seasonal peak"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Simmered kinmedai is rooted in Izu island fishing cuisine, where the fish has long been treated as a valuable catch. The technique is a traditional Japanese method rather than a dish credited to a single inventor.', NULL, 'The dark red skin is one reason kinmedai is visually distinctive before cooking. Simmering with a sweet soy broth also helps keep the delicate flesh moist.', ARRAY['{"01 Splendid Alfonsino
- Kinmedai provides tender, mildly sweet meat with a rich gelatinous skin.
- 
-
- 02 Soy Sauce
- Soy sauce forms the savory base of the braising liquid.
- 
-
- 03 Sugar and Cooking Sake
- Sweetness and sake balance the saltiness and round out the fish''s flavor."}']::text[], 'keen-meh-dye no nee-tsoo-keh', NULL, ARRAY[]::text[], NULL),
-('toyosu-market-kaisendon', 'Toyosu Market Kaisendon', '豊洲市場の海鮮丼', 'kanto', 'tokyo', 'A market-style seafood rice bowl built around fresh sashimi toppings served over seasoned rice at Toyosu Market. Menus vary by shop and catch, but the concept emphasizes abundant seafood, careful selection, and the energetic atmosphere of Tokyo''s wholesale market.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish, soy, wheat', 2000, 6000, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Seafood rice bowls are a modern market dining tradition that developed around Tokyo''s wholesale seafood trade. At Toyosu, restaurants continue the tradition established at the former Tsukiji market, including shops with histories extending back more than a century.', NULL, 'Some Toyosu seafood bowl shops trace their business history to the old Nihonbashi and Tsukiji markets. The actual seafood selection changes with market supply, so there is no single fixed topping list.', ARRAY['{"01 Sushi Rice
- Seasoned rice provides the neutral, lightly acidic base.
- 
-
- 02 Fresh Sashimi Seafood
- Tuna and other market seafood provide the main flavor and visual variety.
- 
-
- 03 Soy Sauce
- A small amount of soy sauce seasons the seafood and rice at the table."}']::text[], 'toh-yoh-soo ee-chee-bah no kye-sen-don', NULL, ARRAY[]::text[], NULL),
-('koganei-sakura-junmai-ginjo', 'Koganei Sakura Junmai Ginjo', '小金井桜純米吟醸', 'kanto', 'tokyo', 'A junmai ginjo sake associated with Koganei''s celebrated cherry-blossom landscape, combining polished rice with the fragrant, clean style expected from ginjo brewing. The local branding connects the sake with Koganei''s historic cherry trees and the city''s broader cultural identity.', ARRAY['{"Spring"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 1500, 4000, 'Published', ARRAY['{"Vegetarian","Halal","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'The sake was developed as a local regional product linking Koganei with its famous cherry-tree heritage. Its identity is cultural and contemporary, drawing on the city''s historic cherry landscape rather than an ancient sake recipe.', NULL, 'Junmai ginjo is brewed from rice, koji, and water without added distilled alcohol, with rice polished to the ginjo range. Serving it slightly chilled generally makes its aroma easier to appreciate.', ARRAY['{"01 Polished Rice
- Highly polished sake rice provides a clean fermentation base.
- 
-
- 02 Rice Koji
- Koji converts rice starch into fermentable sugars during brewing.
- 
-
- 03 Brewing Water
- Water shapes the fermentation and final texture of the sake."}']::text[], 'koh-gah-nay sah-koo-rah joon-my geen-joh', NULL, ARRAY[]::text[], NULL),
-('fight-monaka', 'Fight Monaka', 'ファイトもなか', 'kanto', 'tokyo', 'A playful monaka confection from Kokubunji built around the city''s local identity and the idea of encouragement. Crisp wafer shells hold a sweet filling, creating the familiar contrast of delicate shell, smooth center, and a compact shape designed for gifting.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains wheat', 200, 500, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Fight Monaka is a locally branded Kokubunji confection rather than a historic Edo recipe. Its concept uses the familiar Japanese monaka format to create a positive, memorable regional souvenir.', NULL, 'Monaka wafers become crisper when kept dry, while humidity quickly softens them. Eating the confection soon after opening preserves the best shell-to-filling contrast.', ARRAY['{"01 Glutinous Rice Wafer
- Thin rice wafers form the crisp outer shell.
- 
-
- 02 Sweet Bean Paste
- Smooth or lightly textured anko provides the creamy filling.
- 
-
- 03 Sugar
- Sugar balances the filling and contributes to the traditional wagashi sweetness."}']::text[], 'fye-toh moh-nah-kah', NULL, ARRAY[]::text[], NULL),
-('kate-udon', 'Kate Udon', '糧うどん', 'kanto', 'tokyo', 'A traditional Musashino-style noodle meal in which thick wheat noodles are eaten with a warm dipping broth enriched by seasonal vegetables. Known as a filling rural food, Kate Udon reflects the old practice of pairing hand-made noodles with whatever vegetables and pantry ingredients were available.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, soy, fish (broth)', 800, 1500, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Kate Udon developed from the everyday food culture of the Musashino farming area, where wheat noodles were paired with vegetables to create a filling household meal. The name refers to food or provisions served with the noodles rather than to one single historical recipe.', NULL, 'Traditional versions use abundant vegetables because the noodles were designed to stretch a meal with farm produce. The contrast between firm noodles and hot dipping broth is central to the style.', ARRAY['{"01 Wheat Noodles
- Hand-made wheat noodles provide the firm, chewy base.
- 
-
- 02 Seasonal Vegetables
- Leafy greens and root vegetables add sweetness, texture, and nutrition.
- 
-
- 03 Soy-Based Dipping Broth
- Dashi, soy sauce, and cooking seasonings create the warm savory sauce."}']::text[], 'kah-teh oo-don', NULL, ARRAY[]::text[], NULL),
-('komae-honey', 'Komae Honey', '狛江はちみつ', 'kanto', 'tokyo', 'A locally harvested honey from urban hives in Komae, produced from nectar collected around the city''s gardens, farms, and streets. Its flavor varies with the flowering season and neighborhood forage, giving the honey a distinctly local character rather than a fixed single-flower profile.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegetarian, Gluten-free', 800, 2500, 'Published', ARRAY['{"Vegetarian","Halal"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Komae Honey emerged from local beekeeping and community efforts to connect urban agriculture with the city''s flowering landscape. It is a contemporary regional product rather than an old recipe, with character shaped by the plants visited by local bees.', NULL, 'Because bees forage across changing flowers, the flavor can shift from batch to batch and season to season. This is one reason locally harvested urban honey can taste different from supermarket blended honey.', ARRAY['{"01 Flower Nectar
- Nectar from local blossoms provides the sugars and aromatic compounds that define the honey.
- 
-
- 02 Honeycomb
- Bees naturally process stored nectar in the comb before it is harvested.
- 
-
- 03 Seasonal Floral Sources
- Cherry, acacia, fruit trees, garden flowers, and other blossoms can influence the final profile."}']::text[], 'koh-mah-eh hah-chee-mee-tsoo', NULL, ARRAY[]::text[], NULL),
-('sable-manju-komae', 'Sable Manju Komae', 'サブレー万頭こまえ', 'kanto', 'tokyo', 'A Komae souvenir confection that combines the buttery texture of a sablé-style cookie with the soft filled form of a manju. The hybrid design gives the sweet a crisp, rich exterior and a smooth center while serving as a compact edible symbol of the city.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, dairy, egg', 150, 400, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Sablé Manju Komae is a modern regional confection developed as part of Komae''s local gift program. It deliberately combines two familiar Japanese and Western-style confectionery ideas to create a product identified with the city.', NULL, 'The name describes the hybrid concept: sablé texture outside and manju-style filling inside. It is best eaten at room temperature so the aroma of the buttery shell can open fully.', ARRAY['{"01 Wheat Flour
- Flour forms the sablé-style outer shell.
- 
-
- 02 Butter
- Butter creates the rich aroma and crumbly cookie texture.
- 
-
- 03 Sweet Filling
- A smooth bean or confectionery filling supplies the soft center and sweetness."}']::text[], 'sah-boo-reh mahn-joo koh-mah-eh', NULL, ARRAY[]::text[], NULL),
-('komae-jomon-madeleine', 'Komae Jomon Madeleine', 'こまえ縄文マドレーヌ', 'kanto', 'tokyo', 'A Komae souvenir madeleine inspired by the city''s Jomon archaeological heritage, combining a familiar French-style baked cake with a local historical motif. The result is a moist, buttery sweet designed as a cultural gift linking modern baking with the city''s prehistoric identity.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, dairy, egg', 200, 500, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Jomon Madeleine was developed as a Komae regional souvenir that connects modern confectionery with the city''s archaeological identity. The concept is contemporary and commemorative rather than an ancient Jomon food recreation.', NULL, 'The product should not be confused with an archaeological reconstruction of Jomon cuisine. Its purpose is to use a familiar Western-style cake to tell a local historical story.', ARRAY['{"01 Wheat Flour
- Flour provides the basic cake structure.
- 
-
- 02 Egg
- Egg gives the madeleine its tender, rich crumb.
- 
-
- 03 Butter and Sugar
- Butter supplies aroma while sugar provides the characteristic sweetness and browning."}']::text[], 'koh-mah-eh joh-mon mah-doh-reh-noo', NULL, ARRAY[]::text[], NULL),
-('oden-croquette', 'Oden Croquette', 'おでんコロッケ', 'kanto', 'tokyo', 'A creative Shinagawa snack that folds familiar oden-style ingredients into a crisp croquette. The filling is soft and savory, echoing the broth-rich flavor of oden while the breadcrumb crust adds the crunch expected from a freshly fried korokke.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, egg, soy, fish', 150, 300, 'Published', ARRAY['{"Quick bite"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Oden croquette is a modern local-food idea associated with Shinagawa''s long history as a lodging and transport district. It adapts two familiar Japanese comfort foods into one portable snack rather than tracing to a single traditional inventor.', NULL, 'The most recognizable feature is the contrast between oden''s soft, broth-seasoned filling and the crisp croquette crust. It is a useful example of contemporary Tokyo fusion within everyday street food.', ARRAY['{"01 Potato or Croquette Base
- Mashed potato or another starchy base binds the filling.
- 
-
- 02 Oden Ingredients
- Daikon, fish cake, konnyaku, or similar cooked items carry the oden-inspired flavor.
- 
-
- 03 Panko Breadcrumbs
- Japanese breadcrumbs create the crisp fried shell."}']::text[], 'oh-den koh-rok-keh', NULL, ARRAY[]::text[], NULL),
-('edomae-anago', 'Edomae Anago', '江戸前穴子', 'kanto', 'tokyo', 'A Tokyo-style preparation of conger eel harvested from the bay and traditionally simmered, grilled, or served over rice. Edomae anago is prized for its tender flesh and clean marine sweetness, while careful simmering or glazing creates the soft, glossy texture associated with classic Tokyo sushi and tempura shops.', ARRAY['{"Summer"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish, soy, wheat', 1500, 4000, 'Published', ARRAY['{"Dine-in","Seasonal peak"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Edomae anago belongs to the broader Edo-period practice of using seafood caught in Tokyo Bay close to the capital. The tradition developed through Tokyo''s sushi, tempura, and eel shops rather than around one single named creator.', NULL, 'The term Edomae refers to seafood associated with the waters in front of old Edo. Anago is generally milder and less oily than unagi, which is why it works especially well with light simmering and sushi.', ARRAY['{"01 Conger Eel
- Edomae anago supplies tender, mildly sweet white flesh.
- 
-
- 02 Soy-Based Tare
- A sweet-savory sauce adds gloss and concentrated umami.
- 
-
- 03 Cooking Sake and Sugar
- These seasonings soften the flavor and build the classic glazed finish."}']::text[], 'eh-doh-mah-eh ah-nah-goh', NULL, ARRAY[]::text[], NULL),
-('harajuku-crepe', 'Harajuku Crepe', '原宿クレープ', 'kanto', 'tokyo', 'A thin, flexible French-style crepe transformed into a colorful Harajuku street sweet, commonly filled with whipped cream, fruit, ice cream, chocolate, or other toppings. Marion Crepes helped establish the wrapped, take-away format that became one of Harajuku''s most recognizable youth-culture foods.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains gluten, dairy, egg', 500, 1000, 'Published', ARRAY['{"Vegetarian","Quick bite"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Marion Crepes opened in Harajuku in 1976 and became an important part of the neighborhood''s crepe culture. The company developed its take-away presentation around Harajuku''s growing youth fashion and shopping scene.', NULL, 'The paper-wrapped cone is a key part of the experience because it turns a dessert into a portable street snack. Seasonal fruit and changing fashion trends have continually influenced the fillings sold in Harajuku.', ARRAY['{"01 Wheat-Flour Crepe
- A thin batter forms the flexible pancake wrapper.
- 
-
- 02 Whipped Cream
- Cream adds richness and a light texture to sweet versions.
- 
-
- 03 Fresh Fruit and Dessert Toppings
- Fruit, chocolate, custard, ice cream, or other toppings create the layered flavor and visual appeal."}']::text[], 'hah-rah-joo-koo koo-reh-poo', NULL, ARRAY[]::text[], NULL),
-('omoide-yokocho-yakitori', 'Omoide Yokocho Yakitori', '焼き鳥（思い出横丁）', 'kanto', 'tokyo', 'A quintessential grilled-chicken street food associated with Shinjuku''s compact Omoide Yokocho lanes, where small yakitori counters cook skewers over intense charcoal heat. The atmosphere is as important as the food, with smoke, red lanterns, and tiny seats reinforcing the district''s nostalgic postwar izakaya character.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains meat (chicken), soy (if tare glaze used)', 150, 500, 'Published', ARRAY['{"Quick bite","Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Omoide Yokocho developed in the postwar period as a compact drinking and food district near Shinjuku Station. Yakitori became a defining part of the lane''s everyday dining culture, with many small shops specializing in grilled skewers.', NULL, 'The lanes are famous for very small restaurants, many seating only a handful of customers. Ordering a few skewers with a cold drink is the classic way to experience the district''s food culture.', ARRAY['{"01 Chicken Cuts
- Thigh, skin, liver, heart, and other cuts provide different textures and levels of richness.
- 
-
- 02 Bamboo Skewers
- Skewers hold the pieces together for quick, high-heat grilling.
- 
-
- 03 Salt or Tare
- Seasoning highlights the char while adding either clean savoriness or sweet-salty depth."}']::text[], 'yah-kee-toh-ree', NULL, ARRAY[]::text[], NULL),
-('ogikubo-ramen', 'Ogikubo Ramen', '荻窪ラーメン', 'kanto', 'tokyo', 'A Tokyo ramen style from Ogikubo known for a dark, aromatic soy-based broth and straightforward noodle-and-topping presentation. The style grew around neighborhood Chinese restaurants and ramen shops, developing a reputation for a clean yet deeply savory soup rather than the heavier richness of later regional ramen forms.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains gluten, pork, fish, soy', 800, 1500, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Ogikubo ramen emerged in the early twentieth-century neighborhood restaurant culture of western Tokyo and became especially established after the war. It is associated with small local ramen shops and a soy-forward Tokyo style rather than a single inventor.', NULL, 'The style is often described as lighter and more soy-focused than creamy regional ramen. The flavor is especially apparent when the broth is served hot and the noodles are eaten immediately.', ARRAY['{"01 Wheat Ramen Noodles
- Wheat noodles provide the chewy base.
- 
-
- 02 Soy-Based Broth
- Chicken, fish, or other stock is seasoned with soy sauce for the signature savory depth.
- 
-
- 03 Pork and Aromatic Toppings
- Chashu, menma, scallions, and nori provide texture and fragrance."}']::text[], 'oh-gee-koo-boh rah-men', NULL, ARRAY[]::text[], NULL),
-('chanko-nabe', 'Chanko Nabe', 'ちゃんこ鍋', 'kanto', 'tokyo', 'A substantial hot pot associated with sumo wrestlers and the Ryogoku district, combining meat, seafood, tofu, and vegetables in a shared simmering broth. Rather than one fixed recipe, chanko is a flexible protein-rich meal whose exact ingredients and seasoning vary by stable and restaurant.', ARRAY['{"Winter"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains meat, fish (broth), soy, wheat', 2000, 6000, 'Published', ARRAY['{"Dine-in","Seasonal peak"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Chanko developed as the communal cooking of sumo stables, where wrestlers needed hearty, balanced meals in large quantities. As professional sumo became closely associated with Ryogoku, chanko restaurants brought the style to a wider public.', NULL, 'There is no single official chanko recipe: salt, soy, miso, and other broths are all used. Many restaurants finish the meal with rice or noodles after the main ingredients are eaten.', ARRAY['{"01 Chicken or Seafood
- Protein-rich meat and fish form the foundation of the hot pot.
- 
-
- 02 Seasonal Vegetables
- Cabbage, negi, mushrooms, carrots, and other vegetables add sweetness and texture.
- 
-
- 03 Dashi-Based Broth
- Dashi with salt, soy sauce, or miso creates the flavorful cooking medium."}']::text[], 'chahn-koh nah-beh', NULL, ARRAY[]::text[], NULL),
-('chomeiji-sakura-mochi', 'Chomeiji Sakura Mochi', '長命寺桜もち', 'kanto', 'tokyo', 'A delicate Tokyo-style sakura mochi consisting of sweet bean paste wrapped in a thin pink crepe-like rice layer and enclosed in a fragrant salted cherry leaf. Chomeiji''s version is especially famous for its thin wrapping, subtle saltiness, and long association with Mukojima''s cherry-blossom season.', ARRAY['{"Spring"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Contains wheat', 200, 500, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Dine-in","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Chomeiji Sakura Mochi is associated with Yamamoto Shinroku, who is traditionally credited with creating it at the Chomeiji temple area in the early Edo period. The confection was developed as a sweet accompaniment to the area''s famous cherry blossoms.', NULL, 'The salted leaf is edible and is traditionally eaten with the confection, although some diners prefer to remove it. Its gentle saltiness keeps the sweet bean filling from becoming overly rich.', ARRAY['{"01 Sweet Bean Paste
- Smooth anko provides the main sweetness and creamy center.
- 
-
- 02 Thin Rice Flour Wrapper
- The pale pink wrapper forms a delicate, crepe-like shell around the bean paste.
- 
-
- 03 Salted Sakura Leaf
- Pickled cherry leaves contribute aroma and a gentle salty accent."}']::text[], 'choh-may-jee sah-koo-rah moh-chee', NULL, ARRAY[]::text[], NULL),
-('daikan-mochi', 'Daikan Mochi', '代官餅', 'kanto', 'tokyo', 'A local mochi specialty associated with Setagaya''s Daikan tradition, made from soft pounded rice and typically finished with sweet or savory toppings. Its appeal lies in the fresh, stretchy texture of freshly made mochi and the contrast between the neutral rice base and rich toppings.', ARRAY['{"Only available Dec 15-16 and Jan 15-16"}']::text[], ARRAY['{"local specialty"}']::text[], 'Dairy-free. Contains soy. Anko and Kinako flavors are naturally gluten-free.', 700, 800, 'Published', ARRAY['{"Vegetarian","Quick bite","Seasonal peak"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Daikan Mochi is a neighborhood confection associated with Setagaya''s local food culture rather than a universally standardized historical recipe. The name and style reflect the area''s traditional sweet-making and festival food customs.', NULL, 'Fresh mochi becomes firmer as it cools, so the best texture is usually achieved soon after pounding and shaping. Kinako-coated pieces are especially aromatic while still warm.', ARRAY['{"01 Glutinous Rice
- Pounded sticky rice provides the soft, stretchy mochi base.
- 
-
- 02 Kinako or Red Bean
- Toppings supply roasted soybean aroma or sweet bean richness depending on the version.
- 
-
- 03 Sugar
- Sugar balances the topping and adds the characteristic sweetness of the confection."}']::text[], 'dye-kahn mo-chee', NULL, ARRAY[]::text[], NULL),
-('okura-daikon', 'Okura Daikon', '大蔵大根', 'kanto', 'tokyo', 'A heritage Japanese daikon associated with Setagaya''s Okura district, known for its unusually thick, long root and firm white flesh. The variety is valued for strong texture and clear flavor and can be used in simmered dishes, pickles, soups, and fresh preparations.', ARRAY['{"Winter (November to February)"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan and Gluten-free (as a base ingredient).', 300, 1200, 'Published', ARRAY['{"Vegetarian","Halal","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Okura Daikon is a traditional Setagaya vegetable associated with the old agricultural landscape around Okura. Modern local programs preserve the variety as a heritage crop despite the convenience of shorter commercial daikon.', NULL, 'Its long roots are well suited to traditional simmered dishes because the flesh keeps a pleasant structure while absorbing broth. The variety is also striking when displayed whole because of its size.', ARRAY['{"01 Okura Daikon
- The heritage root provides crisp texture and a clean radish aroma.
- 
-
- 02 Dashi
- Japanese stock carries the daikon''s flavor in simmered preparations.
- 
-
- 03 Soy Sauce or Miso
- Savory seasoning adds depth while allowing the root''s natural sweetness to remain clear."}']::text[], 'oh-koo-rah dye-kohn', NULL, ARRAY[]::text[], NULL),
-('ningyoyaki', 'Ningyoyaki', '人形焼', 'kanto', 'tokyo', 'A small Tokyo confection of sweet batter baked in decorative molds and traditionally filled with sweet red bean paste. Asakusa''s ningyoyaki are especially recognizable for their compact shapes and crisp-golden exterior, making them a classic street snack and souvenir around Sensoji.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, egg, dairy', 100, 1000, 'Published', ARRAY['{"Vegetarian","Quick bite"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Ningyoyaki developed in Tokyo as a molded confection during the Meiji-era growth of neighborhood sweets, with Asakusa becoming a famous center for the style. The shapes often reflect the area''s local imagery and festive character.', NULL, 'Fresh ningyoyaki are soft and fragrant, while cooled pieces become slightly firmer. The red bean filling is traditionally balanced so it does not overwhelm the delicate cake.', ARRAY['{"01 Wheat-Flour Batter
- A lightly sweetened wheat batter forms the browned shell.
- 
-
- 02 Eggs
- Eggs enrich the cake and help create its tender texture.
- 
-
- 03 Sweet Red Bean Paste
- Anko supplies the traditional filling and deep sweetness."}']::text[], 'neen-gyoh-yah-kee', NULL, ARRAY[]::text[], NULL),
-('dojo-nabe', 'Dojo Nabe', 'どぜう鍋', 'kanto', 'tokyo', 'A traditional Tokyo hot pot of dojo loach cooked until tender in a rich soy-based broth, often served with a large quantity of sliced negi. Asakusa is especially associated with dojo cuisine, where the dish reflects Edo''s old preference for hearty, affordable river-fish cooking.', ARRAY['{"Summer"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish, soy, wheat', 2000, 5000, 'Published', ARRAY['{"Dine-in","Seasonal peak"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Dojo hot pot is an Edo-period dish that became closely associated with the Asakusa area. Specialized shops such as Komagata Dojo are part of a long restaurant tradition built around this small freshwater fish and its slow cooking methods.', NULL, 'The name refers specifically to dojo loach, not eel. Large amounts of negi are traditionally added during the meal so the onion gradually wilts into the broth.', ARRAY['{"01 Dojo Loach
- Small loaches provide the central fish flavor and soft texture.
- 
-
- 02 Negi
- Large amounts of sliced green onion add sweetness and aroma.
- 
-
- 03 Soy-Based Broth
- Dashi, soy sauce, mirin, and other seasonings create the dark savory cooking liquid."}']::text[], 'doh-joh nah-beh', NULL, ARRAY[]::text[], NULL),
-('kaminari-okoshi', 'Kaminari Okoshi', '雷おこし', 'kanto', 'tokyo', 'A crisp rice-and-sugar confection strongly associated with Asakusa''s Kaminarimon area, where the name evokes thunder and the dramatic sound of lightning. Puffed grains are bound with a sweet syrup and molded into crunchy pieces that are easy to carry as a classic temple-town souvenir.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains peanuts', 300, 1000, 'Published', ARRAY['{"Vegetarian","Quick bite"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Kaminari Okoshi became established as a souvenir around Sensoji and Kaminarimon, where sweet makers sold the crunchy confection to temple visitors. Its name and popularity are closely tied to Asakusa''s long history as a pilgrimage and entertainment district.', NULL, 'The name combines thunder imagery with the Japanese word okoshi, creating a memorable local souvenir name. The crunchy texture also makes the sweet particularly durable for travel.', ARRAY['{"01 Puffed Rice or Grains
- Puffed grain provides the light, crisp structure.
- 
-
- 02 Sugar Syrup
- Cooked sugar binds the grains into cohesive clusters.
- 
-
- 03 Flavoring Ingredients
- Peanuts, sesame, or other additions may provide roasted aroma and extra crunch depending on the product."}']::text[], 'kah-mee-nah-ree oh-koh-she', NULL, ARRAY[]::text[], NULL),
-('edo-style-tendon', 'Edo-style Tendon', '江戸前天丼', 'kanto', 'tokyo', 'A classic Tokyo tempura rice bowl topped with crisp seafood and vegetables fried in a light batter, then seasoned with a sweet-savory tare. Edomae versions emphasize seafood historically associated with Tokyo Bay and the distinctive contrast between hot tempura, steamed rice, and dark sauce.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains gluten, soy, fish, crustacean (shrimp)', 1500, 4000, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Tendon developed in Tokyo''s Edo-period food culture as tempura vendors and restaurants paired fried seafood with rice. The Edomae designation connects the dish to seafood historically caught close to the old city in Tokyo Bay.', NULL, 'The deepest flavor often comes from the sauce that seeps into the rice beneath the tempura. Eating the crisp pieces first and then mixing a little tare into the rice gives two different textures in one bowl.', ARRAY['{"01 Shrimp and Seafood
- Edomae-style toppings commonly feature seafood suited to tempura.
- 
-
- 02 Tempura Batter
- Flour, egg, and cold water create the light, crisp coating.
- 
-
- 03 Sweet Soy Tare
- A reduced soy-based sauce balances sweetness, saltiness, and umami over the rice."}']::text[], 'eh-doh-mah-eh ten-don', NULL, ARRAY[]::text[], NULL),
-('udora-yaki-udo-manju', 'Udora-yaki & Udo Manju', 'ウドラ焼き・うどまんじゅう', 'kanto', 'tokyo', 'A pair of local Tachikawa sweets that turn the city''s mascot Udora and its agricultural identity into edible souvenirs. The baked and steamed formats use familiar Japanese confectionery techniques while giving the products a distinctly local shape and theme.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, egg, soy', 280, 400, 'Published', ARRAY['{"Vegetarian","Quick bite"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Udora-yaki and Udo Manju were developed as contemporary Tachikawa regional sweets around the city''s mascot and local image. They are souvenir products rather than old traditional dishes, using familiar wagashi formats to express a modern civic identity.', NULL, 'The name Udora combines the city mascot with familiar confectionery names. The products show how local makers adapt classic Japanese sweets for modern city branding.', ARRAY['{"01 Wheat-Flour Cake or Wrapper
- Flour forms the baked dora-yaki shell or steamed manju exterior.
- 
-
- 02 Sweet Filling
- Red bean or another confectionery filling supplies the main sweetness.
- 
-
- 03 Sugar
- Sugar enriches the batter or dough and balances the filling."}']::text[], 'oo-doh-rah-yah-kee / oo-doh-mahn-joo', NULL, ARRAY[]::text[], NULL),
-('tachikawa-yakiton', 'Tachikawa Yakiton', '立川やきとん', 'kanto', 'tokyo', 'A Tachikawa-style grilled pork-offal skewer dish served over charcoal and paired with a neighborhood drinking culture. The skewers are typically cooked quickly at high heat, producing smoky browned edges and tender or pleasantly chewy textures across different cuts.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains pork, soy', 150, 600, 'Published', ARRAY['{"Quick bite","Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Yakiton became widespread in Tokyo''s postwar drinking districts as an affordable counterpart to chicken yakitori. Tachikawa developed its own local shops and style through this broader urban street-and-izakaya food tradition.', NULL, 'The word yakiton specifically refers to pork rather than chicken. Ordering several different cuts is the best way to experience how dramatically texture changes from one skewer to another.', ARRAY['{"01 Pork Offal
- Liver, intestine, heart, cheek, and other cuts form the core of yakiton.
- 
-
- 02 Charcoal
- High heat creates the smoky, browned surface characteristic of grilled skewers.
- 
-
- 03 Salt or Tare
- Seasoning adds either clean savoriness or a deeper sweet-salty glaze."}']::text[], 'tah-chee-kah-wah yah-kee-ton', NULL, ARRAY[]::text[], NULL),
-('tachikawa-pudding', 'Tachikawa Pudding', '立川ぷりん', 'kanto', 'tokyo', 'A smooth custard pudding developed as a Tachikawa local sweet, emphasizing a rich eggy body and soft, creamy texture. The dessert is designed as an accessible souvenir or café treat, using the familiar Japanese pudding format while building a distinct local identity.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains egg, dairy', 680, 700, 'Published', ARRAY['{"Vegetarian","Quick bite"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Tachikawa Pudding is a contemporary local confection rather than a centuries-old dish. Its regional identity comes from modern local makers who adapt the familiar Japanese custard-pudding format into a city souvenir.', NULL, 'Japanese pudding is usually softer and smoother than traditional Western baked custards. Eating it chilled makes the caramel and creamy egg texture particularly distinct.', ARRAY['{"01 Eggs
- Eggs create the custard structure and rich flavor.
- 
-
- 02 Milk and Cream
- Dairy ingredients provide a smooth, creamy mouthfeel.
- 
-
- 03 Sugar and Caramel
- Sugar sweetens the custard while cooked caramel contributes a pleasant bitter edge."}']::text[], 'tah-chee-kah-wah poo-reen', NULL, ARRAY[]::text[], NULL),
-('sakura-polvoron', 'Sakura Polvoron', '桜ぽるぼろん', 'kanto', 'tokyo', 'A delicate baked sweet from Tama inspired by traditional Spanish polvoron and finished with salted cherry blossoms grown in Tama. Its dry, crumbly texture carries a distinctive sweet-salty balance, turning local cherry flavor into a modern tea-time souvenir.', ARRAY['{"Spring"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, dairy, egg', 500, 1000, 'Published', ARRAY['{"Vegetarian","Quick bite","Seasonal peak"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Sakura Polvoron was developed through the Tama City hand-gift project, a collaboration between local industry, government, and education. The product took inspiration from traditional Spanish polvoron and incorporated salted cherry blossoms produced in Tama.', NULL, 'Polvoron is deliberately crumbly and is meant to dissolve rather than chew like a cookie. The salt from the cherry blossom keeps the sweet dough from tasting flat.', ARRAY['{"01 Wheat Flour
- Flour forms the delicate crumbly structure.
- 
-
- 02 Salted Cherry Blossoms
- Local salted blossoms add floral aroma and a subtle salty accent.
- 
-
- 03 Sugar and Fat
- Sugar provides sweetness while butter or another baking fat creates the characteristic melt-in-the-mouth texture."}']::text[], 'sah-koo-rah poh-roo-boh-ron', NULL, ARRAY[]::text[], NULL),
-('tama-no-sanpomichi', 'Tama no Sanpomichi', '多摩の散歩道', 'kanto', 'tokyo', 'A baked karinto snack from Tama made from local wheat noodles and Tama miso, then finished with a sweet-savory coating rather than deep-frying. It comes in a sweet miso flavor and a chili-miso version, providing a crisp tea snack with clear local ingredients.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, soy', 300, 800, 'Published', ARRAY['{"Vegetarian","Quick bite"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Tama no Sanpomichi was developed as a baked karinto using noodles from the city''s Ponpoko Udon and Tama-grown miso. The product reflects a modern effort to create a shelf-stable souvenir from existing local agricultural products.', NULL, 'Unlike ordinary karinto, this product is baked rather than fried. The chili-miso version uses locally grown chili and sesame oil to add heat and extra savoriness.', ARRAY['{"01 Local Wheat Noodle
- Tama-produced wheat noodles form the crisp base.
- 
-
- 02 Tama Miso
- Local miso supplies the fermented savory depth.
- 
-
- 03 Sugar and Chili
- Sugar creates the sweet glaze, while chili provides heat in the spicy version."}']::text[], 'tah-mah no sahn-poh-mee-chee', NULL, ARRAY[]::text[], NULL),
-('ponpoko-udon', 'Ponpoko Udon', 'ぽんぽこうどん', 'kanto', 'tokyo', 'A local Tama noodle specialty made from regional wheat flour and served as a hearty Japanese udon. The noodles have a firm, satisfying bite and are used in both hot broth dishes and as a base for local products such as Tama no Sanpomichi baked karinto.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, soy, fish (in broth)', 500, 1200, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Ponpoko Udon belongs to Tama City''s local food development around locally grown wheat and the region''s agricultural identity. The same noodles were later used as an ingredient in the city''s baked karinto product, creating a linked local-food story.', NULL, 'Using local wheat changes the noodle''s texture and aroma compared with highly refined commercial flour. Serving the noodles freshly cooked best preserves their firm bite.', ARRAY['{"01 Tama Wheat Flour
- Local wheat provides the main starch base and grain aroma.
- 
-
- 02 Water
- Water hydrates the flour and develops the dough''s final texture.
- 
-
- 03 Salt
- Salt strengthens the dough and helps create the firm udon bite."}']::text[], 'pon-poh-koh oo-don', NULL, ARRAY[]::text[], NULL),
-('tsukishima-monjayaki', 'Tsukishima Monjayaki', '月島もんじゃ焼き', 'kanto', 'tokyo', 'Tokyo''s most famous monjayaki district centers on a thin, dashi-rich batter cooked with cabbage and toppings directly on a tabletop griddle. Tsukishima''s version is distinguished less by one fixed recipe than by its communal cooking style, tiny metal spatulas, and deep roster of neighborhood shops.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, soy, seafood, meat (varies)', 1000, 2500, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Monjayaki was already part of Tokyo''s working-class food culture before Tsukishima became its best-known modern center. From the postwar period onward, the neighborhood''s many small shops turned monja into a destination food and a defining part of local identity.', NULL, 'The tiny spatula is not just a serving utensil: diners use it to scrape up the crispest browned pieces directly from the hot plate. Different shops also develop their own signature combinations of toppings.', ARRAY['{"01 Dashi Batter
- Flour mixed with dashi provides the characteristic loose base.
- 
-
- 02 Cabbage
- Finely chopped cabbage adds sweetness and soft texture.
- 
-
- 03 Seafood, Meat, and Toppings
- Shrimp, squid, pork, cheese, mochi, and other toppings create each shop''s signature version."}']::text[], 'tsoo-kee-she-mah mon-jah-yah-kee', NULL, ARRAY[]::text[], NULL),
-('tsukiji-tamagoyaki', 'Tsukiji Tamagoyaki', '築地の玉子焼き', 'kanto', 'tokyo', 'A thick, softly layered Japanese omelet associated with the Tsukiji fish market, where tamagoyaki became a familiar accompaniment to sushi and seafood meals. The flavor can range from gently sweet to savory, but the hallmark is a smooth, moist texture built from repeatedly folded egg.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains egg, fish (dashi), soy', 100, 300, 'Published', ARRAY['{"Quick bite"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Tamagoyaki vendors became part of Tsukiji''s food-market ecosystem, supplying sushi shops, restaurants, and shoppers. The style reflects the market''s role as a center for seafood and prepared-food trade rather than a single documented invention.', NULL, 'A well-made tamagoyaki is softer than an ordinary omelet because the egg is cooked in many thin layers. The exact seasoning is a shop signature, so sweetness varies noticeably between vendors.', ARRAY['{"01 Eggs
- Fresh eggs create the layered structure and rich flavor.
- 
-
- 02 Dashi
- Japanese stock adds savory depth and moisture.
- 
-
- 03 Sugar and Soy Sauce
- Sugar and soy balance sweetness, salt, and umami according to the shop''s recipe."}']::text[], 'tsoo-kee-jee no tah-mah-goh-yah-kee', NULL, ARRAY[]::text[], NULL),
-('ginza-omurice', 'Ginza Omurice', '銀座のオムライス', 'kanto', 'tokyo', 'A refined Western-style rice omelet associated with Ginza''s long restaurant tradition, pairing seasoned chicken rice with a softly cooked egg layer and sauce. Unlike heavily decorated modern versions, classic Ginza examples emphasize clean technique, balanced seasoning, and polished presentation.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains egg, poultry, wheat, soy', 1500, 3000, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Omurice emerged in Japan in the early twentieth century as a Western-influenced restaurant dish. Ginza''s department stores, cafés, and yoshoku restaurants helped develop refined versions, but the dish is not tied to one universally accepted Ginza inventor.', NULL, 'The goal of a classic soft omurice is a barely set egg center that breaks open over the rice. Timing is crucial because the egg continues cooking from residual heat after leaving the pan.', ARRAY['{"01 Eggs
- Eggs create the soft outer layer and rich mouthfeel.
- 
-
- 02 Seasoned Rice
- Rice cooked with chicken, onion, and sauce provides the savory filling.
- 
-
- 03 Tomato or Demi-Glace Sauce
- Sauce adds acidity, umami, and color to the finished omelet."}']::text[], 'geen-zah no oh-moo-rye-soo', NULL, ARRAY[]::text[], NULL),
-('jindaiji-soba', 'Jindaiji Soba', '深大寺そば', 'kanto', 'tokyo', 'A historic soba tradition centered on Jindaiji Temple in Chofu, where buckwheat was cultivated and ground for temple hospitality. The noodles are appreciated for their clean buckwheat aroma and firm texture and are commonly served with a simple dipping sauce around the temple''s many long-established soba shops.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Contains buckwheat, soy', 800, 1500, 'Published', ARRAY['{"Vegetarian","Dine-in"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Jindaiji Soba is traditionally traced to the Edo period, when farmers in the fertile upland north of the temple grew buckwheat and supplied flour to Jindaiji. The temple prepared the noodles for visitors, and the style became famous after a high-ranking imperial prince praised the soba in the Genroku era.', NULL, 'The Chofu tourism association notes that around twenty soba shops now cluster near Jindaiji. Soba flour is also used locally in related sweets and other specialty dishes.', ARRAY['{"01 Buckwheat Flour
- Buckwheat gives the noodles their characteristic aroma and firm bite.
- 
-
- 02 Wheat Flour
- A small proportion helps bind the noodles during kneading.
- 
-
- 03 Dipping Tsuyu
- Dashi, soy sauce, and mirin create the savory sauce used with chilled noodles."}']::text[], 'jeen-dye-jee soh-bah', NULL, ARRAY[]::text[], NULL),
-('seiro-soba', 'Seiro Soba', 'せいろそば', 'kanto', 'tokyo', 'A classic presentation of chilled Japanese soba served on a slatted bamboo tray with a concentrated dipping sauce on the side. The format emphasizes the fragrance, firm bite, and clean finish of properly cooked buckwheat noodles rather than surrounding them with heavy toppings.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains buckwheat, soy', 700, 1500, 'Published', ARRAY['{"Vegetarian","Dine-in"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Seiro soba is a long-established presentation style within Japanese soba cuisine rather than a dish invented in modern Tokyo. Serving noodles on a bamboo tray became especially associated with refined soba shops and the custom of eating noodles with concentrated tsuyu.', NULL, 'The dipping sauce is intentionally stronger than a soup broth because only the end of the noodle is dipped. This keeps more of the buckwheat aroma on the first bite.', ARRAY['{"01 Buckwheat Noodles
- Buckwheat provides the main aroma and earthy flavor.
- 
-
- 02 Wheat Flour
- Wheat helps bind the noodle dough and improves elasticity.
- 
-
- 03 Concentrated Tsuyu
- Dashi, soy sauce, and mirin provide the dipping sauce''s intense savory character."}']::text[], 'say-roh soh-bah', NULL, ARRAY[]::text[], NULL),
-('mori-soba', 'Mori Soba', 'もりそば', 'kanto', 'tokyo', 'A simple serving of chilled soba noodles arranged on a tray and eaten with a separate dipping sauce. Mori soba highlights the noodles themselves, with no broth surrounding them, making it one of the clearest ways to judge buckwheat aroma, texture, and cooking quality.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains buckwheat, soy', 600, 1200, 'Published', ARRAY['{"Vegetarian","Dine-in"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Mori soba developed as a classic way of serving chilled buckwheat noodles in Japanese soba culture. The format is older than modern Tokyo and became standard in soba shops because it keeps the noodles at the center of the meal.', NULL, 'The name distinguishes noodles served on a tray from soba served in hot broth. A small amount of noodle is dipped rather than completely submerged to preserve aroma and prevent over-seasoning.', ARRAY['{"01 Buckwheat Flour
- Buckwheat supplies the characteristic earthy fragrance.
- 
-
- 02 Wheat Flour
- Wheat strengthens the dough and helps the noodles hold together.
- 
-
- 03 Tsuyu
- A concentrated dashi-soy dipping sauce provides the main seasoning."}']::text[], 'moh-ree soh-bah', NULL, ARRAY[]::text[], NULL),
-('shio-daifuku', 'Shio Daifuku', '塩大福', 'kanto', 'tokyo', 'A soft daifuku rice cake filled with sweet red bean paste and balanced by a noticeable touch of salt. The contrast between chewy mochi, creamy anko, and restrained salinity gives this Tokyo favorite a clean finish and keeps the filling from tasting overly sweet.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 150, 400, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Dine-in"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Shio daifuku belongs to the modern family of Japanese daifuku sweets and became especially popular in Tokyo confectionery shops during the twentieth century. The defining idea is the deliberate use of salt to sharpen the bean filling.', NULL, 'A small amount of salt can make a sweet filling taste fuller and more aromatic. This is why shio daifuku often tastes less sugary than its appearance suggests.', ARRAY['{"01 Glutinous Rice
- Sticky rice flour creates the soft, elastic mochi wrapper.
- 
-
- 02 Sweet Red Bean Paste
- Anko provides the creamy, sweet center.
- 
-
- 03 Salt
- A small amount balances the sugar and intensifies the bean flavor."}']::text[], 'shee-oh dye-foo-koo', NULL, ARRAY[]::text[], NULL),
-('otafuku-mame', 'Otafuku Mame', 'お多福豆', 'kanto', 'tokyo', 'Large fava beans slowly cooked in a sweet syrup to create a glossy, deeply seasoned Japanese confection, often associated with traditional sweets shops. The beans become tender while retaining their shape, producing a substantial bite and a gentle contrast between bean flavor and concentrated sweetness.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains soy', 500, 1200, 'Published', ARRAY['{"Vegetarian","Halal"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Otafuku bean sweets belong to the long Japanese tradition of simmering large beans in sugar syrup for preservation and confectionery use. Tokyo shops adapted the style as a tea sweet and gift item rather than treating it as a single regional recipe.', NULL, 'The word otafuku is a traditional expression associated with a cheerful, fortunate woman, giving the sweet a positive name. The beans are often served in small portions because the syrup is concentrated.', ARRAY['{"01 Fava Beans
- Large beans provide the substantial, creamy center.
- 
-
- 02 Sugar
- Sugar creates the glossy syrup and preserves the beans.
- 
-
- 03 Soy Sauce
- A small amount can deepen the syrup and provide savory balance in some traditional recipes."}']::text[], 'oh-tah-foo-koo mah-meh', NULL, ARRAY[]::text[], NULL),
-('tsubaki-oil', 'Tsubaki Oil', '椿油', 'kanto', 'tokyo', 'A clear, fragrant plant oil pressed from camellia seeds, with Toshima Island being a historic Tokyo source. Tsubaki oil has a mild flavor and excellent stability and is used both as a culinary oil and in traditional hair and skin care, reflecting the island''s close relationship with camellia trees.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 1000, 3000, 'Published', ARRAY['{"Vegetarian","Halal"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Camellia has long been cultivated on Toshima, and pressing its seeds into oil became an important island industry. Traditional production was closely tied to household use and local commerce and remains a characteristic Toshima product today.', NULL, 'Camellia oil is rich in oleic acid, which helps explain its stability and smooth mouthfeel. Its mild flavor makes it usable for cooking without dominating delicate ingredients.', ARRAY['{"01 Camellia Seeds
- Pressed camellia seeds provide the oil and its subtle nutty aroma.
- 
-
- 02 Mechanical Pressing
- Traditional pressing extracts the oil without adding a strong external flavor.
- 
-
- 03 Filtration
- Filtration removes seed particles and produces the clear finished oil."}']::text[], 'tsoo-bah-kee oy-roo', NULL, ARRAY[]::text[], NULL),
-('8-tier-soft-serve-daily-chico', '8-Tier Soft Serve - Daily Chico', '8段ソフトクリーム（デイリーチコ）', 'kanto', 'tokyo', 'A towering soft-serve creation from Daily Chico in Nakano''s Nakano Broadway, famous for stacking eight flavors into a single tall cone. The appeal is visual as much as edible, with contrasting colors, aromas, and flavors layered vertically into one oversized serving.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains dairy', 700, 900, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Daily Chico became known through Nakano Broadway for serving its multi-flavor soft-serve, with the eight-flavor tower becoming a signature attraction. The concept is a modern dessert spectacle rather than a traditional Japanese confection.', NULL, 'The serving is unusually tall, so eating it steadily from top to bottom helps prevent melting and collapse. Flavor combinations can change with the menu.', ARRAY['{"01 Milk-Based Soft Serve
- A creamy soft-serve base carries the individual flavor layers.
- 
-
- 02 Flavor Mixes
- Fruit, chocolate, coffee, or other flavorings create the contrasting tiers.
- 
-
- 03 Waffle Cone
- A crisp cone supports the tall soft-serve stack and adds a toasted wheat note."}']::text[], 'hah-chee-dahn so-foo-toh koo-ree-moo', NULL, ARRAY[]::text[], NULL),
-('oyaki-refu-tei', 'Oyaki - Refu-tei', 'おやき（おやき処 れふ亭）', 'kanto', 'tokyo', 'A stuffed Japanese griddle cake sold by Refutei in Nakano, with a soft, lightly browned outer dough surrounding a sweet or savory filling. The shop''s version presents the familiar oyaki format as a quick neighborhood snack, easy to eat warm and by hand.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, egg, dairy', 150, 300, 'Published', ARRAY['{"Vegetarian","Quick bite"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Oyaki itself originates in central Japan, especially Nagano, where filled flour cakes became a practical staple food. Refutei adapted the familiar style for Nakano as a convenient Tokyo snack rather than claiming to have invented oyaki.', NULL, 'Oyaki fillings vary widely, from sweet bean to vegetables and miso-seasoned ingredients. The same dough can therefore serve as either a snack or a light savory meal.', ARRAY['{"01 Flour Dough
- Wheat flour forms the soft, lightly crisp outer cake.
- 
-
- 02 Filling
- Vegetables, miso, sweet bean, or other fillings provide the main flavor depending on the variety.
- 
-
- 03 Seasoning
- Savory versions may use miso or soy while sweet versions rely on sugar and bean paste."}']::text[], 'oh-yah-kee reh-foo-tay', NULL, ARRAY[]::text[], NULL),
-('kusaya', 'Kusaya', 'くさや', 'kanto', 'tokyo', 'A strongly aromatic fermented fish specialty from the Izu Islands, made by salting and drying fish in a repeatedly used fermentation brine known as kusaya-jiru. The result has an intense smell but a surprisingly savory, concentrated flavor that is traditionally grilled and paired with rice or drinks.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish', 800, 2000, 'Published', ARRAY[]::text[], 'Not vegetarian', 'Not halal', TRUE, 'Kusaya developed on the Izu Islands as a preservation method for fish in an environment where salt was valuable. Reusing the fermentation brine created the distinctive flavor, and the technique was passed down through island households and producers.', NULL, 'The fermentation liquid, kusaya-jiru, is deliberately preserved and reused from batch to batch. This makes the smell powerful but also gives the fish a complex savory taste that regular dried fish does not have.', ARRAY['{"01 Horse Mackerel or Flying Fish
- Small oily fish are commonly used because they dry and ferment well.
- 
-
- 02 Kusaya-Jiru
- The traditional fermented brine gives the fish its signature aroma and umami.
- 
-
- 03 Salt
- Salt controls preservation and helps concentrate the fish during drying."}']::text[], 'koo-sah-yah', NULL, ARRAY[]::text[], NULL),
-('asahi-karinto', 'Asahi Karinto', 'かりんとう (旭製菓)', 'kanto', 'tokyo', 'A classic Japanese karinto produced by Asahi Seika in Nishitokyo, where fried wheat dough is coated with a crisp sugar glaze. The result is crunchy, fragrant, and lightly caramelized, with a long shelf life that has helped make karinto a familiar tea snack and gift.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, soy, sesame', 300, 1000, 'Published', ARRAY['{"Vegetarian","Quick bite"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Asahi Seika is a long-established confectionery maker in western Tokyo, producing karinto as part of the region''s traditional snack industry. Karinto itself is a much older Japanese sweet, while the company''s local identity comes from its continued production and product variations.', NULL, 'Karinto is fried rather than baked, which creates its characteristic blistered crunch. The sugar coating also acts as a protective layer, helping the snack stay crisp when kept dry.', ARRAY['{"01 Wheat Flour Dough
- Wheat flour forms the crisp fried core.
- 
-
- 02 Frying Oil
- Hot oil cooks the dough and develops its toasted aroma.
- 
-
- 03 Sugar Syrup
- Cooked sugar creates the hard, crunchy shell around the fried pieces."}']::text[], 'kah-reen-toh', NULL, ARRAY[]::text[], NULL),
-('nerima-daikon-takuan', 'Nerima Daikon Takuan', '練馬大根の沢庵漬け', 'kanto', 'tokyo', 'A traditional Japanese pickle made from Nerima daikon, the long white radish historically grown around Nerima Ward, and cured in salt and rice bran. The result is crisp, savory, mildly sweet, and strongly aromatic, representing one of Tokyo''s best-known heritage-vegetable preservation foods.', ARRAY['{"Winter"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains Rice Bran and Salt. Gluten-Free and Vegan.', 400, 800, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Nerima daikon was cultivated in the Edo period and became famous around the capital, while takuan preservation offered a practical way to keep the large roots through winter. The local pickle tradition later declined with urbanization but survives as a heritage food.', NULL, 'Takuan is traditionally cured in rice bran rather than simply soaked in vinegar. The crisp texture is strongest when the pickle is sliced thinly and served with plain rice.', ARRAY['{"01 Nerima Daikon
- The long heritage radish provides the firm vegetable base.
- 
-
- 02 Rice Bran
- Nuka controls fermentation and develops the characteristic pickle aroma.
- 
-
- 03 Salt
- Salt draws out moisture, seasons the radish, and supports the curing process."}']::text[], 'Neh-ree-mah Die-kon Tah-koo-ahn', NULL, ARRAY[]::text[], NULL),
-('nerima-daikon-manju', 'Nerima Daikon Manju', '練馬大根まんじゅう', 'kanto', 'tokyo', 'A clever and adorable sweet confection shaped exactly like a realistic miniature Nerima Daikon radish. Created by the 120-year-old historical shop Okashitsukasa Kimura-ya, this unique traditional treat wraps smooth sweet red bean paste inside a soft, steamed dough made from freshly grated yam and rice flour. It is celebrated as one of the ward''s most creative gourmet gifts.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains Wheat, Dairy, Soy, and Red Bean. Vegetarian-friendly.', 150, 300, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Invented in the year 2000 by the fourth-generation master chef of Okashitsukasa Kimura-ya. He wanted to design a fun, visual souvenir that younger travelers and children could easily enjoy while learning about the area''s agricultural history.', NULL, 'Wrapped in a soft, steamed dough made from freshly grated yam and rice flour, it yields gently to reveal a deeply satisfying, smooth red bean paste inside.', ARRAY['{"01 Soft Steamed Dough Base
-A tender, elegant exterior crafted from a traditional blend of grated yam and jōyoko (rice flour), yielding a soft, steamed texture rather than a hard snap.
-
-02 Smooth Red Bean Center
-Generously filled with homemade koshian (smooth, pureed sweet red bean paste) to provide a deep, earthy sweetness at its core.
-
-03 Hand-Crafted Finish
-Carefully shaped by hand, gently steamed, and meticulously finished with a delicate touch of green nerikiri to complete the radish illusion."}']::text[], 'Neh-ree-mah Die-kon Mahn-joo', NULL, ARRAY[]::text[], NULL),
-('nerima-daifuku', 'Nerima Daifuku', 'ねりま大福', 'kanto', 'tokyo', 'A soft daifuku associated with Nerima''s local confectionery culture, using chewy mochi around a sweet filling and often incorporating local themes into the product design. It follows the familiar Japanese balance of elastic rice cake and smooth bean paste while serving as an approachable district souvenir.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains Glutinous Rice, Red Bean, and Salted Radish Leaves. Gluten-Free and Vegan.', 160, 200, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Nerima Daifuku is a modern district-branded confection rather than a centuries-old standalone recipe. Its regional identity comes from incorporating Nerima''s local imagery and confectionery makers into the familiar daifuku format.', NULL, 'Fresh daifuku is highly sensitive to drying, so the softest texture is found soon after production. The rice cake is intentionally thin enough to let the filling dominate the bite.', ARRAY['{"01 Glutinous Rice
- Rice flour creates the chewy mochi wrapper.
- 
-
- 02 Sweet Red Bean Paste
- Anko provides the principal sweet filling.
- 
-
- 03 Sugar
- Sugar sweetens the filling and dough and helps balance the rice cake''s neutral flavor."}']::text[], 'Neh-ree-mah Die-foo-koo', NULL, ARRAY[]::text[], NULL),
-('nerima-sabl', 'Nerima Sablé', '練馬サブレ', 'kanto', 'tokyo', 'A crisp butter sablé created as a Nerima souvenir, using a simple European-style biscuit format to express local character through its name, shape, or packaging. The cookie is light, buttery, and crisp, making it a practical gift that pairs naturally with coffee or tea.', ARRAY['{"All year"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains Wheat, Butter, Eggs, and Sugar. Vegetarian-friendly.', 80, 120, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Nerima Sablé is a modern local confection sold as a regional gift by Chikushido. It uses the established French sablé technique and adds local identity through the product concept rather than recreating an old Japanese sweet.', NULL, 'Sablé means sandy in French, referring to the crumbly texture created by a rich, short dough. Keeping the cookie dry is essential because humidity quickly dulls the crisp texture.', ARRAY['{"01 Wheat Flour
- Flour provides the cookie''s crisp structure.
- 
-
- 02 Butter
- Butter creates the rich aroma and sandy crumb.
- 
-
- 03 Sugar
- Sugar provides sweetness and helps the edges brown during baking."}']::text[], 'Neh-ree-mah Sah-boo-reh', NULL, ARRAY[]::text[], NULL),
-('hachioji-ramen', 'Hachioji Ramen', '八王子ラーメン', 'kanto', 'tokyo', 'A Tokyo ramen style distinguished by a soy-based soup topped with finely chopped raw onion and fragrant oil. Hachioji ramen is known for its clean, dark broth and the sweet sharpness of onion, creating a straightforward bowl in which the garnish plays an essential role.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, soy, pork', 600, 1000, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Hachioji ramen developed in neighborhood ramen shops during the postwar period and became recognized for its distinctive onion topping. Unlike many regional ramen styles, it is defined by a small set of consistent elements rather than a single founding restaurant.', NULL, 'The chopped onion softens slightly in the hot broth while retaining a fresh bite. The aromatic oil helps spread its sweetness through the soup as you eat.', ARRAY['{"01 Wheat Ramen Noodles
- Medium-width noodles provide the chewy base.
- 
-
- 02 Soy-Seasoned Broth
- Chicken, fish, or other stock is seasoned with soy sauce for the dark savory soup.
- 
-
- 03 Chopped Onion and Aromatic Oil
- Fresh onion gives sweetness and crunch while aromatic oil rounds the broth."}']::text[], 'hah-chee-oh-jee rah-men', 'N/A', ARRAY[]::text[], NULL),
-('hachijo-shochu', 'Hachijo Shochu', '八丈焼酎', 'kanto', 'tokyo', 'A distinctive island shochu tradition from Hachijojima, where local producers make sweet-potato and barley styles using traditional koji fermentation. The spirits can be robust and aromatic, reflecting the island''s long history of household-scale brewing adapted into licensed local production.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 1500, 4000, 'Published', ARRAY['{"Vegetarian","Halal"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hachijo shochu developed from traditional island distilling practices and was later adapted into licensed commercial production. The style is associated with local households and producers rather than a single inventor, with sweet potato and barley forming the main raw materials.', NULL, 'Hachijojima is unusual in Tokyo for maintaining a recognizable island shochu tradition alongside distinctive agricultural ingredients. Water and koji choices can make producers'' spirits taste noticeably different.', ARRAY['{"01 Sweet Potatoes or Barley
- Producers use sweet potato, barley, or blends depending on the style.
- 
-
- 02 Koji
- Koji supplies the enzymes that convert starches into fermentable sugars.
- 
-
- 03 Island Water
- Local water supports fermentation and dilution of the finished spirit."}']::text[], 'hah-chee-joh shoh-choo', 'N/A', ARRAY[]::text[], NULL),
-('hachijo-fruit-lemon', 'Hachijo Fruit Lemon', '八丈フルーツレモン', 'kanto', 'tokyo', 'An unusually large island lemon from Hachijojima, prized for its fragrant peel, juicy flesh, and balanced acidity. The fruit is substantially larger than an ordinary lemon and is used not only for juice but also in sweets and drinks where its aromatic skin is especially valuable.', ARRAY['{"Winter"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 500, 1500, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hachijo fruit lemon is a regional citrus associated with Hachijojima''s subtropical climate and distinctive island agriculture. The local specialty is prized for its size and aroma and has become a recognized Tokyo island product.', NULL, 'The fruit can be used while still green, and its thick, aromatic peel is valuable in confectionery. The unusually large fruit also makes a striking visual centerpiece in gift boxes.', ARRAY['{"01 Hachijo Fruit Lemon
- The whole fruit supplies the characteristic juice and citrus aroma.
- 
-
- 02 Fragrant Peel
- Thick peel provides essential oils that intensify the scent.
- 
-
- 03 Natural Citrus Sugars and Acids
- Balanced sweetness and acidity create the fruit''s clean, lively flavor."}']::text[], 'hah-chee-joh foo-roo-tsoo reh-mon', 'N/A', ARRAY[]::text[], NULL),
-('karuta-senbei-hamurin-senbei', 'Karuta Senbei / Hamurin Senbei', 'かるたせんべい・はむりんせんべい', 'kanto', 'tokyo', 'Two Hamura souvenir crackers that turn local civic imagery into simple, crisp baked snacks. Karuta Senbei uses the idea of traditional Japanese picture-card culture, while Hamurin Senbei features the city''s mascot, giving visitors an edible keepsake with a light, dry crunch.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains soy', 300, 800, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'These senbei were developed as contemporary Hamura souvenirs rather than inherited recipes. The products use familiar Japanese cracker-making techniques and local imagery to create city-branded snacks.', NULL, 'Karuta-inspired packaging turns a plain cracker into a small cultural souvenir. The dry texture also makes senbei particularly suitable for carrying home without refrigeration.', ARRAY['{"01 Rice Flour
- Rice forms the crisp cracker base.
- 
-
- 02 Seasoning
- Sugar, soy, or other recipe-specific seasoning gives the cracker its flavor.
- 
-
- 03 Printed Decoration
- An edible printed or stamped image connects the cracker to Hamura''s local theme."}']::text[], 'kah-roo-tah sen-bay / hah-moo-reen sen-bay', 'N/A', ARRAY[]::text[], NULL),
-('hamura-no-seki', 'Hamura no Seki', '羽村の堰', 'kanto', 'tokyo', 'A historic Tamagawa water-control structure in Hamura rather than a dish or food product. The weir is included in the dataset as a local heritage landmark, so its accurate profile describes the waterworks themselves instead of inventing culinary characteristics.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'N/A', 0, 0, 'Published', ARRAY['{"Vegetarian"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'The Hamura Weir is part of the Tamagawa Josui system created in the Edo period to bring clean water toward Edo. It is a civil-engineering landmark, not a traditional food, and its importance lies in Tokyo''s water history.', NULL, 'Because this record is a landmark rather than a dish, there are no ingredients or eating rituals to describe accurately. It should be treated as a cultural heritage entry or removed from a culinary-only dataset.', ARRAY['{"01 Tama River
- The river supplies the water controlled by the weir.
- 
-
- 02 Weir Structure
- The barrier regulates and directs river flow.
- 
-
- 03 Tamagawa Josui
- The weir forms part of the historic water-supply infrastructure leading toward Tokyo."}']::text[], 'hah-moo-rah no seh-kee', 'N/A', ARRAY[]::text[], NULL),
-('sakura-sable-sazareishi', 'Sakura Sable / Sazareishi', '桜サブレー・さざれ石', 'kanto', 'tokyo', 'A pair of Hamura souvenir sweets pairing a buttery sakura-themed sablé with a separate confection named Sazareishi. The products use familiar baked-sweet techniques and local imagery to create compact gifts connected to Hamura''s cherry-blossom and civic landscape.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, dairy, egg', 400, 1000, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'These products are contemporary Hamura souvenirs created by local confectionery makers, not ancient local recipes. Their identity comes from cherry-blossom imagery and regional naming rather than a historical dish.', NULL, 'Sablé cookies are especially good with tea because their butter aroma and dry crumb do not overwhelm delicate drinks. The name Sazareishi evokes a small stone, giving the pair a local naming theme.', ARRAY['{"01 Wheat Flour
- Flour forms the crisp sablé structure.
- 
-
- 02 Butter and Sugar
- Butter supplies richness while sugar creates sweetness and browning.
- 
-
- 03 Sakura Flavor or Decoration
- Cherry blossom imagery or ingredients provide the local seasonal theme."}']::text[], 'sah-koo-rah sah-boo-reh / sah-zah-reh-ee-she', 'N/A', ARRAY[]::text[], NULL),
-('noka-no-nidango', 'Noka no Nidango', '農家の煮ぃだんご', 'kanto', 'tokyo', 'A rustic village-style dumpling dish from Higashikurume in which simple wheat dumplings are simmered with vegetables in a savory broth. The dish reflects the practical cooking of Tokyo''s former farm households, where flour and seasonal produce were combined into a filling one-pot meal.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains wheat, soy', 500, 1200, 'Published', ARRAY['{"Vegetarian","Dine-in"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Noka no Nidango belongs to the household food tradition of eastern Musashino farming communities. The dish grew from practical use of wheat and vegetables rather than being invented by a known chef or commercial shop.', NULL, 'The dumplings are intentionally irregular because they were shaped by hand rather than cut into uniform noodles. The texture becomes pleasantly chewy as the pieces simmer in the broth.', ARRAY['{"01 Wheat Dough Dumplings
- Simple flour-and-water dough forms the chewy dumpling pieces.
- 
-
- 02 Seasonal Vegetables
- Daikon, carrot, greens, or other local produce provide sweetness and color.
- 
-
- 03 Dashi or Soy Broth
- A savory broth carries the vegetable and wheat flavors through the dish."}']::text[], 'noh-kah no nee-dahn-goh', 'N/A', ARRAY[]::text[], NULL),
-('wasanbon-kogei-kashi', 'Wasanbon Kogei Kashi', '和三盆工芸菓子', 'kanto', 'tokyo', 'A delicate decorative confection shaped from wasanbon sugar into finely detailed forms, combining the clean sweetness of traditional Japanese sugar craft with the visual precision of miniature sculpture. These sweets are intended to be admired before dissolving gently on the tongue.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 800, 2000, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Wasanbon craft sweets belong to Japan''s traditional sugar-art culture and are made using techniques developed over generations. The Higashikurume local product presents that broader craftsmanship as a refined gift item rather than claiming a single local inventor.', NULL, 'Wasanbon sugar has a fine crystalline texture that dissolves quickly in the mouth. The confection is often appreciated as much for its carving and molding detail as for its flavor.', ARRAY['{"01 Wasanbon Sugar
- Fine-grained traditional sugar provides the clean sweetness and delicate texture.
- 
-
- 02 Food-Safe Molds
- Molds create the precise decorative shapes.
- 
-
- 03 Natural Flavoring
- Tea, seasonal color, or subtle flavoring may be used depending on the craft piece."}']::text[], 'wah-sahn-bon koh-gay kah-she', 'N/A', ARRAY[]::text[], NULL),
-('higashimurayama-black-yakisoba', 'Higashimurayama Black Yakisoba', '東村山黒焼きそば', 'kanto', 'tokyo', 'A distinctive yakisoba from Higashimurayama colored dark by a local sauce and cooked with noodles, meat, and vegetables on a hot griddle. Its savory, slightly sweet flavor comes from the sauce and caramelized noodles, giving the dish a darker appearance than ordinary Tokyo yakisoba.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, soy, squid', 600, 1200, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Higashimurayama Black Yakisoba is a modern local specialty developed to distinguish the city through its own sauce-forward noodle dish. Its identity centers on the dark color and rich sauce rather than an ancient regional recipe.', NULL, 'The dark appearance does not mean the noodles are burnt. The characteristic color comes mainly from the specially chosen sauce, while high-heat griddling adds the roasted aroma.', ARRAY['{"01 Wheat Yakisoba Noodles
- Wheat noodles provide the chewy base.
- 
-
- 02 Cabbage and Pork
- Vegetables and pork add sweetness, texture, and savory richness.
- 
-
- 03 Dark Yakisoba Sauce
- A concentrated local-style sauce creates the signature deep color and flavor."}']::text[], 'hee-gah-she-moo-rah-yah-mah koo-roh yah-kee-soh-bah', 'N/A', ARRAY[]::text[], NULL),
-('musashino-udon', 'Musashino Udon', '武蔵野うどん', 'kanto', 'tokyo', 'A rustic noodle tradition of the Musashino region, defined by thick, firm wheat noodles eaten with a hot meat-and-vegetable dipping broth. It reflects the area''s former wheat-growing farm culture, producing a hearty meal where chewy noodles and strongly flavored soup are deliberately kept separate.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, soy, fish (broth)', 700, 1500, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Musashino udon grew from the farming villages west of Edo, where wheat was an important local crop and noodles provided a filling household meal. The style continued through the modern Tokyo suburbs and became recognized as a regional food tradition.', NULL, 'The noodles are intentionally firmer than many mainstream udon styles because they are meant to be dipped into a hot broth. Pork and negi in the dipping soup are characteristic of many traditional versions.', ARRAY['{"01 Local Wheat Noodles
- Firm wheat noodles provide the substantial bite.
- 
-
- 02 Pork
- Pork adds richness to the dipping broth.
- 
-
- 03 Negi and Soy-Based Broth
- Green onion, dashi, soy sauce, and mirin create the savory dipping sauce."}']::text[], 'moo-sah-she-noh oo-don', 'N/A', ARRAY[]::text[], NULL),
-('higashiyamato-cha-udon', 'Higashiyamato Cha Udon', 'ひがしやまと茶うどん', 'kanto', 'tokyo', 'A green-tinted udon from Higashiyamato made by incorporating locally associated Sayama tea into wheat noodles. The tea adds a subtle grassy aroma and color while the noodle retains the firm, chewy structure expected from Japanese udon.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains wheat, soy', 700, 1500, 'Published', ARRAY['{"Vegetarian","Dine-in"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Higashiyamato Tea Udon was developed as a local product linking the city with Sayama tea culture. The recipe adapts familiar udon-making techniques by incorporating tea into the noodle dough rather than creating a separate soup or dessert.', NULL, 'The tea aroma is intentionally subtle because too much tea powder would make the noodles bitter. The green color is therefore a visual cue as much as a flavor signal.', ARRAY['{"01 Wheat Flour
- Wheat provides the gluten structure needed for chewy udon.
- 
-
- 02 Sayama Tea
- Tea contributes green color and a delicate grassy fragrance.
- 
-
- 03 Salt and Water
- Salt strengthens the dough while water develops the final noodle texture."}']::text[], 'hee-gah-she-yah-mah-toh chah oo-don', 'N/A', ARRAY[]::text[], NULL),
-('sayama-tea', 'Sayama Tea', '狭山茶', 'kanto', 'tokyo', 'A Japanese green tea grown in the western Tokyo region around Sayama, valued for its rich body, mellow sweetness, and distinctive steamed-leaf aroma. The tea is associated with cool-climate growing conditions and is traditionally enjoyed as a concentrated, full-flavored cup rather than a delicate light brew.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 1000, 3000, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Sayama tea has been cultivated in the western Tokyo and southern Saitama region for centuries, with production becoming established under the area''s cooler climate. The local tea tradition developed around careful cultivation and processing in this northern tea-growing area.', NULL, 'Sayama tea is associated with a famous saying that praises three qualities: flavor, color, and aroma. Its fuller body makes it well suited to a slightly stronger brew than many delicate sencha styles.', ARRAY['{"01 Tea Leaves
- Young leaves provide the aroma, bitterness, sweetness, and body of the infusion.
- 
-
- 02 Steam Processing
- Steaming prevents oxidation and preserves the green character of the leaves.
- 
-
- 03 Hot Water
- Water extracts soluble flavor compounds to form the finished tea infusion."}']::text[], 'sah-yah-mah chah', 'N/A', ARRAY[]::text[], NULL),
-('hino-pears', 'Hino Pears', '日野の梨', 'kanto', 'tokyo', 'Crisp Japanese pears grown in Hino, where local orchards produce sweet, juicy fruit for direct sales during late summer and autumn. Hino pears are eaten fresh for their clean aroma, abundant juice, and refreshing crunch rather than used primarily as a processed ingredient.', ARRAY['{"Fall"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 500, 2000, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Pear growing has a long history in the Tama region, including Hino, where local orchards survived alongside expanding residential areas. The local specialty today reflects small-scale orchard production and direct seasonal sales.', NULL, 'Japanese pears are harvested close to eating ripeness rather than left to soften dramatically off the tree. This helps explain their exceptionally crisp texture.', ARRAY['{"01 Japanese Pears
- Whole ripe nashi provide the signature sweetness and crisp juice.
- 
-
- 02 Orchard Soil and Water
- Growing conditions shape the fruit''s size and balance.
- 
-
- 03 Natural Fruit Sugars
- Natural sugars provide the clean sweetness enjoyed in fresh fruit."}']::text[], 'hee-noh no nah-she', 'N/A', ARRAY[]::text[], NULL),
-('hinode-tomato', 'Hinode Tomato', '日の出トマト', 'kanto', 'tokyo', 'A locally grown tomato specialty from Hinode, valued for ripe sweetness, fresh acidity, and the concentrated flavor that comes from careful local cultivation. The tomatoes are best treated simply, allowing the fruit''s natural juice and aroma to remain the center of the dish.', ARRAY['{"Summer"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 300, 1000, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hinode Tomato is a modern local agricultural specialty rather than an old named dish. It reflects the town''s horticulture and direct-sale culture, where ripe local tomatoes are promoted as seasonal produce.', NULL, 'Tomatoes taste sweeter and more aromatic when allowed to ripen fully before eating. A light pinch of salt can sharpen their natural sweetness without adding a heavy sauce.', ARRAY['{"01 Fresh Tomatoes
- Ripe locally grown tomatoes provide the main flavor, acidity, and color.
- 
-
- 02 Natural Tomato Juice
- Juice creates the refreshing texture and carries aroma through the fruit.
- 
-
- 03 Sea Salt
- A small amount of salt can enhance sweetness in simple tomato preparations."}']::text[], 'hee-noh-deh toh-mah-toh', 'N/A', ARRAY[]::text[], NULL),
-('yuzu-hinohara-black-tea', 'Yuzu / Hinohara Black Tea', 'ゆず・ひのはら紅茶', 'kanto', 'tokyo', 'A paired local specialty from Hinohara combining fragrant yuzu citrus with black tea produced in the village. The citrus adds bright peel aroma to the tea, creating a warm, rounded drink that links mountain agriculture with a modern Japanese tea style.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 600, 1500, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hinohara black tea and local yuzu products were developed as contemporary village specialties using the area''s mountain agriculture. The combination reflects modern value-added processing rather than a historic Edo beverage.', NULL, 'Yuzu peel can dominate the aroma even when only a small amount is used. Adding the peel after brewing preserves more of the volatile citrus oils.', ARRAY['{"01 Black Tea Leaves
- Fully oxidized tea leaves provide the amber liquor and malty base.
- 
-
- 02 Hinohara Yuzu
- Yuzu peel adds bright citrus aroma and gentle tartness.
- 
-
- 03 Hot Water
- Hot water extracts the tea compounds and carries the citrus oils into the cup."}']::text[], 'yoo-zoo / hee-noh-hah-rah koh-chah', 'N/A', ARRAY[]::text[], NULL),
-('hinohara-potatoes', 'Hinohara Potatoes', 'ひのはらじゃがいも', 'kanto', 'tokyo', 'A locally grown potato specialty from Hinohara, where cool mountain conditions support small-scale vegetable cultivation. The potatoes are valued for their clean earthy flavor and firm, creamy texture and can be roasted, boiled, or used in simple village dishes that showcase the crop.', ARRAY['{"Autumn"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 300, 800, 'Published', ARRAY['{"Vegetarian","Halal","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hinohara potatoes are part of the village''s traditional mountain agriculture and continue to be promoted as a local specialty. Their importance lies in seasonal cultivation and household cooking rather than a single historic recipe.', NULL, 'Mountain-grown potatoes often vary in size because they come from small diversified fields rather than uniform industrial production. This makes simple roasting or boiling especially attractive.', ARRAY['{"01 Hinohara Potatoes
- The local crop provides the starchy base and earthy flavor.
- 
-
- 02 Water
- Water is used for boiling and helps carry salt and seasoning through the flesh.
- 
-
- 03 Salt or Miso
- Simple Japanese seasoning highlights the potatoes without masking their natural flavor."}']::text[], 'hee-noh-hah-rah jah-gye-moh', 'N/A', ARRAY[]::text[], NULL),
-('apollo-pan', 'Apollo Pan', 'アポロパン', 'kanto', 'tokyo', 'A nostalgic local bread associated with Fuchu, sold as an everyday bakery item rather than a plated dish. The bread has a soft interior and lightly browned crust, reflecting the long tradition of neighborhood bakeries producing familiar Japanese-Western breads for school and home meals.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, dairy, egg', 150, 300, 'Published', ARRAY['{"Vegetarian","Quick bite"}']::text[], 'Verified vegetarian', 'Not halal', TRUE, 'Apollo Bread is a local bakery product associated with Fuchu''s neighborhood food culture. Its identity comes from local bakery tradition and a distinctive product name rather than a nationally standardized historical recipe.', NULL, 'The bread belongs to the Japanese bakery tradition that blends European-style doughs with local sweet and savory preferences. Its nostalgic appeal comes from being an everyday bakery item rather than a ceremonial food.', ARRAY['{"01 Wheat Flour
- Flour provides the main bread structure.
- 
-
- 02 Yeast
- Yeast leavens the dough and develops aroma.
- 
-
- 03 Milk, Sugar, and Fat
- These ingredients create the soft, lightly sweet character common in Japanese bakery bread."}']::text[], 'ah-poh-roh pahn', 'N/A', ARRAY[]::text[], NULL),
-('ogai-mochi', 'Ogai Mochi', '鴎外餅', 'kanto', 'tokyo', 'A literary-themed Japanese sweet associated with Bunkyo and the former residence of novelist Mori Ogai, shaped as a soft mochi confection with a sweet filling. Its identity is cultural as much as culinary, linking a simple traditional sweet with one of Tokyo''s best-known writers.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 200, 600, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Ogai Mochi was created as a Bunkyo confection connected with Mori Ogai and the former Kanchoro residence. It is a modern literary souvenir inspired by the neighborhood''s cultural history rather than a sweet known to have been invented by Ogai himself.', NULL, 'The name is a tribute to Mori Ogai, not proof that the novelist created or ate this exact confection. Its value lies in the connection between a familiar wagashi form and Bunkyo''s literary heritage.', ARRAY['{"01 Glutinous Rice
- Rice-based dough creates the soft, chewy outer layer.
- 
-
- 02 Sweet Bean Filling
- Anko provides the central sweetness.
- 
-
- 03 Sugar
- Sugar balances the rice cake and filling and supports the confection''s soft texture."}']::text[], 'oh-gye moh-chee', 'N/A', ARRAY[]::text[], NULL),
-('kanchorou-ginkgo-sable', 'Kanchorou Ginkgo Sable', '観潮楼のいちょうサブレ', 'kanto', 'tokyo', 'A crisp ginkgo-leaf-shaped sablé inspired by Kanchoro, Mori Ogai''s former residence in Bunkyo, where a famous ginkgo tree became part of the site''s literary landscape. The buttery cookie uses a simple European-style recipe to turn a local literary symbol into an elegant tea sweet.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, dairy, egg', 400, 1000, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Kanchoro Ginkgo Sablé was developed as a modern Bunkyo souvenir inspired by the ginkgo at Mori Ogai''s former residence. The product links a French-style butter cookie with the neighborhood''s literary and historic landscape.', NULL, 'A ginkgo-shaped cookie can be recognized even without its package, making the local story visible in the food itself. The flavor is intentionally restrained so the butter and toasted flour remain clear.', ARRAY['{"01 Wheat Flour
- Flour forms the sablé''s crisp structure.
- 
-
- 02 Butter
- Butter provides richness and the characteristic short, crumbly texture.
- 
-
- 03 Sugar
- Sugar adds sweetness and helps the cookie brown lightly during baking."}']::text[], 'kahn-choh-roh no ee-choh sah-boo-reh', 'N/A', ARRAY[]::text[], NULL),
-('machida-silk-melon', 'Machida Silk Melon', 'まちだシルクメロン', 'kanto', 'tokyo', 'A premium melon grown in Machida using a patented hydroponic cultivation method designed to produce many high-quality fruits from a single plant. The melon is marketed for its refined sweetness, fine texture, and controlled growing conditions, giving Machida a distinctive modern agricultural specialty.', ARRAY['{"Summer"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 3000, 10000, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Machida Silk Melon was developed through a patented Machida-style hydroponic farming method rather than traditional field cultivation. The system is designed to support controlled nutrient and water management and can produce many melons from a single plant.', NULL, 'The official producer describes a system capable of producing as many as sixty melons from one plant under controlled conditions. The key selling point is controlled cultivation designed to support consistent fruit quality.', ARRAY['{"01 Muskmelon
- The melon provides the fragrant sweetness and juicy flesh.
- 
-
- 02 Hydroponic Nutrient Solution
- Controlled nutrients support growth without ordinary field soil.
- 
-
- 03 Water
- Precise water management is central to the hydroponic growing system."}']::text[], 'mah-chee-dah shee-roo-koo meh-ron', 'N/A', ARRAY[]::text[], NULL),
-('hengo-dango', 'Hengo Dango', 'ヘンゴだんご', 'kanto', 'tokyo', 'A traditional Mikurajima island dumpling associated with the island''s distinctive plant-rich mountain environment. Hengo dango is made from locally familiar starchy ingredients and shaped into a simple rustic sweet, reflecting the self-sufficient cooking of this remote Izu island.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 150, 400, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hengo Dango belongs to Mikurajima''s traditional island food culture and was passed through household cooking rather than developed by a documented commercial chef. The recipe reflects the use of locally available plants and starches on a remote island.', NULL, 'Remote island foods often preserve ingredients and techniques that disappeared from urban cooking. Hengo dango is valuable because it records a local household food tradition rather than because of commercial branding.', ARRAY['{"01 Local Starchy Ingredient
- A locally gathered starch provides the dough''s body.
- 
-
- 02 Water
- Water hydrates the mixture and determines the dumpling''s final texture.
- 
-
- 03 Sweet Seasoning
- Sugar or another simple sweetener provides the dessert character."}']::text[], 'hen-goh dahn-goh', 'N/A', ARRAY[]::text[], NULL),
-('sakuyuri-no-kinton', 'Sakuyuri no Kinton', 'サクユリのきんとん', 'kanto', 'tokyo', 'A delicate wagashi inspired by Sakuyuri, the native lily associated with Mikurajima, using the soft, sculpted kinton style to evoke the flower''s natural forms. The confection is better understood as a botanical-themed sweet than as a dessert made from the lily itself.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan', 300, 800, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'The confection is a modern interpretation inspired by Mikurajima''s Sakuyuri, a locally important lily. It uses the flower as a cultural and visual motif rather than claiming Sakuyuri as an edible ingredient.', NULL, 'Sakuyuri is valued as part of Mikurajima''s native plant heritage. The kinton uses the flower as design inspiration, not as food material.', ARRAY['{"01 Sweet Bean Base
- Sweet bean paste provides the soft, moldable body of the kinton.
- 
-
- 02 Sugar
- Sugar supplies sweetness and helps create the fine, soft texture.
- 
-
- 03 Natural Coloring
- Subtle natural coloring can reinforce the flower motif without overpowering the confection."}']::text[], 'sah-koo-yoo-ree no keen-ton', 'N/A', ARRAY[]::text[], NULL),
-('hayaki', 'Hayaki', 'はやき', 'kanto', 'tokyo', 'A traditional Mikurajima island food made from a simple local grain-and-starch dough that is cooked into a compact, satisfying snack. The dish reflects the island''s history of making filling foods from ingredients that could be cultivated or transported to a remote community.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 200, 500, 'Published', ARRAY['{"Vegetarian","Halal"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hayaki is recorded as part of Mikurajima''s traditional household food culture rather than as a modern commercial invention. The recipe reflects practical island cooking and the need to make filling foods from limited supplies.', NULL, 'Traditional island recipes often survive through oral transmission and household practice, so exact ingredient ratios can vary. It is most accurately presented as a local heritage food rather than a standardized factory product.', ARRAY['{"01 Local Grain or Flour
- A staple grain or flour provides the main body of the food.
- 
-
- 02 Starchy Binder
- A starch helps hold the mixture together and gives the finished food its dense texture.
- 
-
- 03 Water
- Water hydrates the mixture and allows the ingredients to form a workable dough."}']::text[], 'hah-yah-kee', 'N/A', ARRAY[]::text[], NULL),
-('jinenjo-karukan-manju', 'Jinenjo Karukan Manju', '自然薯かるかん饅頭', 'kanto', 'tokyo', 'A soft steamed karukan manju from Mizuho made with Japanese yam, rice flour, and sweet filling. The yam gives the outer cake a springy, airy texture and subtle earthy aroma, while the bean center adds sweetness without making the confection heavy.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan', 200, 600, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Natural-yam karukan is based on the southern Japanese tradition of karukan, while Mizuho producers have adapted the format as a local Tokyo specialty using cultivated Japanese yam. The product is a modern regional confection built around a traditional steamed-cake technique.', NULL, 'Karukan is unusual among Japanese sweets because the yam is part of the cake structure rather than only the filling. The resulting crumb is softer and more elastic than an ordinary flour-based manju.', ARRAY['{"01 Japanese Yam
- Naturally sticky yam gives the steamed cake its spring and moisture.
- 
-
- 02 Rice Flour
- Rice flour provides the clean, light cake structure.
- 
-
- 03 Sweet Red Bean Paste
- Anko adds the principal sweetness and creates the dark center."}']::text[], 'jee-nen-joh kah-roo-kahn mahn-joo', 'N/A', ARRAY[]::text[], NULL),
-('kiwi-amazake', 'Kiwi Amazake', 'キウイ甘酒', 'kanto', 'tokyo', 'A modern Mitaka drink that blends locally grown kiwi with amazake, creating a naturally sweet, softly tart beverage with a creamy grain base. The product combines a traditional Japanese fermented rice drink with the fresh fruit character of Mitaka agriculture.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 400, 800, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Kiwi Amazake was developed as a Mitaka regional product by local makers using Mitaka-grown kiwi and amazake. The city promotes it as a modern example of local agricultural produce combined with a traditional fermented beverage.', NULL, 'Amazake can be made from rice koji without added distilled alcohol, so the finished drink can be non-alcoholic. Kiwi adds acidity that keeps the rice sweetness from becoming cloying.', ARRAY['{"01 Rice Koji Amazake
- Fermented rice and koji provide the naturally sweet, creamy base.
- 
-
- 02 Mitaka Kiwi
- Fresh kiwi supplies acidity, fruit aroma, and green color.
- 
-
- 03 Water
- Water balances the concentrated amazake and fruit into a drinkable consistency."}']::text[], 'kee-oo-ee ah-mah-zah-keh', 'N/A', ARRAY[]::text[], NULL),
-('azabu-juban-bean-snacks', 'Azabu Juban Bean Snacks', '麻布十番の豆菓子', 'kanto', 'tokyo', 'A traditional-style bean confection associated with Azabu-Juban''s long-running Mamegen shop, where roasted beans and other ingredients are coated, seasoned, or confectioned into crisp bite-sized snacks. The range balances roasted aroma, sweetness, saltiness, and texture and is strongly linked to the neighborhood''s historic shopping street.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, contains soy/peanuts', 400, 1500, 'Published', ARRAY['{"Vegetarian","Halal","Quick bite"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Mamegen has been a bean-confectionery shop in Azabu-Juban since the nineteenth century and is widely associated with the area''s bean-snack tradition. The shop developed a broad range of roasted and coated beans rather than a single recipe.', NULL, 'The shop''s long presence helped make bean snacks part of the Azabu-Juban souvenir identity. Many varieties are designed to be eaten with tea or an alcoholic drink.', ARRAY['{"01 Roasted Beans
- Soybeans, broad beans, peanuts, and other legumes provide the crunchy base.
- 
-
- 02 Sugar or Savory Coating
- Sweet, soy, miso, or spice coatings create the main flavor.
- 
-
- 03 Sesame or Aromatic Seasoning
- Sesame and other seasonings add fragrance and extra texture to selected varieties."}']::text[], 'ah-zah-boo joo-bahn no mah-meh-gah-she', 'N/A', ARRAY[]::text[], NULL),
-('akame-satoimo', 'Akame Satoimo', '赤芽さといも', 'kanto', 'tokyo', 'A traditional taro variety from Miyakejima distinguished by its reddish-purple shoots and firm, creamy corms. Akame satoimo is used in simmered dishes and other island cooking, where its dense texture and earthy sweetness complement soy-based seasonings.', ARRAY['{"Autumn"}']::text[], ARRAY['{"local specialty"}']::text[], 'Vegan, Gluten-free', 300, 800, 'Published', ARRAY['{"Vegetarian","Halal","Seasonal peak"}']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Akame satoimo is a traditional agricultural variety preserved on Miyakejima as part of the island''s distinctive crop heritage. Its cultivation reflects the island''s adaptation to subtropical conditions and its long reliance on hardy root crops.', NULL, 'The reddish color is most obvious in the young shoots, while the edible corm is much paler inside. Cooking softens the root into a creamy texture while leaving enough structure for simmered dishes.', ARRAY['{"01 Akame Taro
- The heritage root provides the starchy, creamy base.
- 
-
- 02 Dashi
- Japanese stock carries the root''s delicate earthy flavor.
- 
-
- 03 Soy Sauce and Mirin
- Savory-sweet seasoning enhances the natural sweetness of the taro."}']::text[], 'ah-kah-meh sah-toh-ee-moh', 'N/A', ARRAY[]::text[], NULL),
-('muroaji-ashitaba-smoked-fish', 'Muroaji Ashitaba Smoked Fish', 'むロアジあした葉燻製', 'kanto', 'tokyo', 'A smoked fish specialty from Miyakejima that pairs locally caught flying fish with the island''s distinctive ashitaba plant. The fish is cured and gently smoked to concentrate its savory flavor, while ashitaba adds a local botanical note to the product''s identity.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish', 800, 2000, 'Published', ARRAY[]::text[], 'Not vegetarian', 'Not halal', TRUE, 'The product was developed as a Miyakejima specialty combining the island''s flying-fish catch with ashitaba, a signature local plant. It represents modern local food processing rather than an ancient named dish.', NULL, 'Flying fish are naturally lean, so smoking concentrates their flavor without making the finished product as oily as richer fish. Ashitaba gives the item a distinctly island-specific identity.', ARRAY['{"01 Flying Fish
- Muroaji provides lean, savory fish flesh.
- 
-
- 02 Ashitaba
- The local leafy plant adds botanical character and regional identity.
- 
-
- 03 Smoking Salt
- Salt cures the fish while wood smoke creates aroma and the characteristic brown surface."}']::text[], 'moo-roh-ah-jee ah-she-tah-bah koon-say', 'N/A', ARRAY[]::text[], NULL),
-('musashino-jigona-udon', 'Musashino Jigona Udon', '武蔵野地粉うどん', 'kanto', 'tokyo', 'A handmade udon made with locally associated Musashino wheat flour, emphasizing firm noodles and a rustic grain aroma. The style reflects the area''s historic wheat-growing culture and is often served with a warm dipping soup rich in pork and green onion.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, soy', 700, 1500, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Musashino Jigona Udon was developed to promote locally milled wheat and the area''s traditional noodle culture. It draws on the older Musashino practice of growing wheat and making substantial udon rather than reproducing a single historic recipe.', NULL, 'The term jigona points to local flour, emphasizing the grain''s regional origin. Firm noodles are particularly good with the hot dipping broth used in Musashino-style udon.', ARRAY['{"01 Local Wheat Flour
- Regional wheat provides the principal grain aroma and noodle body.
- 
-
- 02 Water and Salt
- Water forms the dough while salt strengthens the gluten structure.
- 
-
- 03 Dipping Broth
- Pork, dashi, soy sauce, and negi create the traditional savory accompaniment."}']::text[], 'moo-sah-she-noh jee-goh-nah oo-don', 'N/A', ARRAY[]::text[], NULL),
-('murayama-kate-udon', 'Murayama Kate Udon', '村山かてうどん', 'kanto', 'tokyo', 'A hearty noodle tradition from Musashimurayama in which firm wheat udon is eaten with a rich dipping soup and abundant greens or other vegetables called kate. The dish developed from local farm households that paired homemade noodles with whatever vegetables were available.', ARRAY['{"N/A"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains wheat, soy', 800, 1500, 'Published', ARRAY['{"Dine-in"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'Murayama Kate Udon developed from the farming culture of the Musashino plain, where wheat was an important crop and vegetables were used to stretch a meal. The local tradition was preserved as a home-style dish and later promoted as a city specialty.', NULL, 'The word kate means food to eat with the noodles, especially vegetables. The dish therefore expresses the practical idea of making a filling meal from noodles plus available produce.', ARRAY['{"01 Wheat Udon
- Firm hand-made noodles provide the substantial base.
- 
-
- 02 Local Leafy Vegetables
- Greens and other seasonal vegetables provide the signature kate component.
- 
-
- 03 Pork and Soy Broth
- Pork, dashi, soy sauce, and negi make the hot dipping soup."}']::text[], 'moo-rah-yah-mah kah-teh oo-don', 'N/A', ARRAY[]::text[], NULL),
-('meguro-no-sanma', 'Meguro no Sanma', '目黒のさんま', 'kanto', 'tokyo', 'A Meguro civic food tradition centered on grilled Pacific saury, served as a tribute to a famous rakugo story in which the fish is celebrated as food that tastes best when cooked simply. The modern local event tradition uses charcoal-grilled sanma to connect literature, neighborhood identity, and autumn food culture.', ARRAY['{"Autumn"}']::text[], ARRAY['{"local specialty"}']::text[], 'Contains fish', 500, 1500, 'Published', ARRAY['{"Dine-in","Seasonal peak"}']::text[], 'Not vegetarian', 'Not halal', TRUE, 'The Meguro saury tradition is inspired by the rakugo story Meguro no Sanma, in which a lord discovers the appeal of simply prepared saury. The modern local festival tradition grew in the twentieth century as the ward turned that literary reference into a community food event.', NULL, 'The rakugo joke says the fish tastes best in Meguro even though the district is inland and not a fishing port. The story became so associated with the ward that saury now serves as a local cultural symbol.', ARRAY['{"01 Pacific Saury
- Fresh sanma provides the rich, oily fish flavor.
- 
-
- 02 Salt
- Simple salting seasons the fish and helps the skin brown over the grill.
- 
-
- 03 Grated Daikon and Citrus
- Grated daikon and a squeeze of citrus cut the fish''s richness and refresh the finish."}']::text[], 'meh-goo-roh no sahn-mah', 'N/A', ARRAY[]::text[], NULL)
-ON CONFLICT (dish_id) DO UPDATE SET dish_name = EXCLUDED.dish_name, japanese_name = EXCLUDED.japanese_name, summary = EXCLUDED.summary;
+('aochu', 'Aochu', '青酎', 'kanto', 'tokyo', 'A rare artisanal sweet potato shochu distilled exclusively on the isolated volcanic island of Aogashima. Crafted by local islanders using indigenous yeast strains and sweet potatoes, it delivers a robust earthy aroma with a complex, velvety finish.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains none. Vegan-friendly.', 2000, 5000, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Distilled since the Edo period by island women as a household drink, it evolved into a prized craft spirit shaped by the island''s fertile volcanic soil and subtropical climate.', NULL, 'Because production is strictly limited to Aogashima''s tiny population, it is nationally revered as the phantom shochu.', ARRAY['01 Local Sweet Potatoes
+Sun-ripened sweet potatoes harvested from the rich volcanic soil of Aogashima.', '02 Barley Koji
+Steamed barley inoculated with koji mold to initiate natural starch conversion.', '03 Volcanic Basalt Water
+Pure rainfall filtered through porous subterranean layers of volcanic basalt rock.']::text[], 'ah-oh-choo', NULL, ARRAY['Crystal Clear Spirit
+A pristine transparent liquid that presents clean clarity when poured into a glass.', 'Hand-Labeled Glass Bottle
+Enclosed in traditional heavy glass bottles featuring distinct island calligraphy seals.', 'Gentle Viscous Rim
+Forms slow-dripping legs along the inner rim of the tasting glass upon swirling.']::text[], 'Link'),
+('hingya-no-shio', 'Hingya no Shio', 'ひんぎゃの塩', 'kanto', 'tokyo', 'A mineral-rich gourmet sea salt crystallized using the natural geothermal steam of Aogashima volcano. Deep Kuroshio ocean water is slowly evaporated over gentle volcanic steam vents to yield crunchy, savory salt pyramids.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains none. Vegan-friendly.', 600, 1500, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'The name ''Hingya'' refers to the volcanic steam vents on the island. This salt-making method harnesses the island''s natural geothermal energy, a practice deeply tied to Aogashima''s volcanic landscape.', NULL, 'It takes weeks of slow evaporation over the volcanic vents to produce this salt, resulting in its signature large, crunchy crystals.', ARRAY['01 Kuroshio Pacific Water
+Pure deep ocean water drawn directly from the swift Pacific Kuroshio current.', '02 Natural Sea Minerals
+Naturally occurring calcium and magnesium retained during low-temperature evaporation.']::text[], 'heen-gyah no shee-oh', NULL, ARRAY['Coarse White Crystals
+Fluffy pyramid-shaped white salt crystals showcasing a soft translucent sheen.', 'Craft Paper Pouch
+Packaged in minimalist brown kraft pouches stamped with official island seals.', 'Uneven Flake Texture
+Distinctly varied crystal sizes that crumble effortlessly between fingertips.']::text[], 'Link'),
+('haijima-highball', 'Haijima Highball', '拝島ハイボール', 'kanto', 'tokyo', 'A signature local highball crafted in Akishima City using crisp underground spring water. Mixed with quality Japanese whisky and effervescent soda, it offers a clean, ultra-refreshing taste.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains none. Vegetarian-friendly.', 500, 900, 'Published', ARRAY['Vegetarian', 'Quick bite', 'Dine-in']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Created to celebrate the local drinking culture around Haijima Station, this highball has become a beloved staple in the area''s izakayas.', NULL, 'Akishima is famous for being the only municipality in Tokyo providing 100% pure underground water for tap supply.', ARRAY['01 Japanese Blended Whisky
+Smooth oak-aged Japanese malt whisky selected for clean aromatic balance.', '02 Akishima Spring Water Soda
+Highly carbonated sparkling water crafted from pure Akishima deep subterranean wells.', '03 Fresh Lemon Wedge
+Freshly sliced citrus wedge adding bright acidity and aromatic zest.']::text[], 'hah-ee-jee-mah hye-bohl', NULL, ARRAY['Effervescent Amber Liquid
+Golden amber whisky cocktail brimming with tight carbonation bubbles rising to the top.', 'Tall Chilled Glassware
+Served over crystalline ice blocks in a heavy-bottomed frosted highball glass.', 'Fresh Citrus Slice
+Garnished with a crisp wedge of fresh yellow lemon resting on the ice.']::text[], 'Link'),
+('haijima-negi-miso', 'Haijima Negi Miso', '拝島ねぎみそ', 'kanto', 'tokyo', 'A rich savory condiment prepared by sautéing locally grown green onions with aromatic fermented miso paste. It delivers an intense umami punch with sweet caramelized onion notes perfect over warm rice.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains Soy, Sesame. Vegan-friendly.', 450, 850, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Originating as a farmstead preserving method in western Tokyo to extend the shelf life of seasonal scallion harvests.', NULL, 'This versatile miso paste is commonly spread over rice balls before charcoal grilling to create fragrant yaki-onigiri.', ARRAY['01 Fresh Haijima Scallions
+Locally harvested sweet green onions chopped fine for tender texture.', '02 Fermented Rice Miso
+Aged red and white soy miso paste delivering deep savory depth.', '03 Toasted Sesame Oil
+Pure roasted sesame oil added during pan-sautéing for nutty fragrance.']::text[], 'hah-ee-jee-mah neh-gee mee-so', NULL, ARRAY['Deep Glossy Brown Paste
+A thick caramelized dark brown miso paste with visible specks of green scallions.', 'Traditional Glass Jar
+Sealed inside compact glass jars labeled with traditional Japanese brushed brushwork.', 'Chunky Onion Pieces
+Features tender translucent pieces of diced green onion folded throughout the paste.']::text[], 'Link'),
+('akigawa-sweet-corn', 'Akigawa Sweet Corn', '秋川とうもろこし', 'kanto', 'tokyo', 'Exceptionally sweet and juicy corn cultivated along the fertile riverbanks of the Akigawa Valley in Akiruno City. Plucked early in the morning, these golden kernels are so crisp and sweet they can even be enjoyed raw.', ARRAY['Summer']::text[], ARRAY['local specialty']::text[], 'Contains none. Vegan-friendly.', 250, 500, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'The pure waters of the Akigawa River and the valley''s distinct temperature differences create the perfect environment for cultivating this premium corn.', NULL, 'During the summer harvest season, you''ll find local farmers boiling or grilling these sweet cobs right by the roadside!', ARRAY['01 Fresh Sweet Corn Ears
+Morning-harvested sweet corn grown in river mineral soils.', '02 Sweet Butter Dip
+Creamy Hokkaido butter melted over grilled cob ears.', '03 Soy Sauce Drizzle
+Aged soy sauce brushed over open flame for savory glaze.']::text[], 'ah-kee-gah-wah toh-moh-roh-koh-she', NULL, ARRAY['Plump Golden Kernels
+Tightly packed rows of shiny bright yellow kernels glowing with fresh moisture.', 'Bright Green Husk
+Wrapped in crisp leafy green husks with dark brown corn silk at the tip.', 'Charred Butter Glaze
+When grilled, features attractive brown char marks coated in glistening melted butter.']::text[], 'Link'),
+('norabou-na', 'Norabou-na', 'のらぼう菜', 'kanto', 'tokyo', 'A tender local leafy green with crisp stems and a mild, sweet flavor, traditionally grown in western Tokyo. Norabou-na is valued for its edible stems and leaves and is commonly prepared simply by boiling, blanching, or stir-frying so its fresh green flavor remains clear.', ARRAY['Spring']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 150, 400, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Norabou-na is an old Tokyo-area vegetable associated with western suburban farming and has been cultivated in the Akiruno area for generations. Its continued use reflects traditional household vegetable growing and seasonal spring cooking rather than a single inventor.', NULL, 'The stalks and leaves can be eaten together, making it less wasteful than greens that require extensive trimming. Harvested stems are especially prized for their tender bite.', ARRAY['01 Norabou-na Leaves
+ Tender leaves provide a mild green flavor and soft texture.', '02 Norabou-na Stems
+ The thick stems add crispness and remain pleasantly firm after brief cooking.', '03 Light Seasoning
+ Soy sauce, sesame, or simple dashi-based seasoning lets the vegetable''s sweetness remain noticeable.']::text[], 'noh-rah-boh-nah', NULL, ARRAY['Long Tender Stems
+ Sturdy pale-green stems support clusters of soft leaves and are fully edible.', 'Fresh Leafy Green
+ The leaves range from medium to deep green and look succulent rather than fibrous.', 'Simple Cooked Presentation
+ A lightly cooked serving keeps the vegetable''s natural color and clean, mild appearance.']::text[], 'Link'),
+('bunka-fry', 'Bunka Fry', '文化フライ', 'kanto', 'tokyo', 'A distinctive Adachi street snack made from seasoned wheat dough shaped into a flat, sandal-like form, coated with breadcrumbs, and deep-fried. The finished fritter is lightly sweet, crisp outside, soft inside, and traditionally served hot with a generous amount of special sauce.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, soy', 100, 300, 'Published', ARRAY['Quick bite']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Bunka Fry was devised by Hasegawa Shoten in Umeda, Adachi Ward, and became a familiar festival-stall snack in the postwar period. It survived mainly through local memory after regular street-stall production declined around 2001.', NULL, 'Despite its name, Bunka Fry contains no meat or fish in the basic preparation. It is a flour-based snack whose character comes from the crisp coating, slight sweetness, and savory sauce.', ARRAY['01 Wheat Dough
+ A simple wheat-flour dough forms the soft, chewy center.', '02 Breadcrumbs
+ Breadcrumbs create the crisp fried shell and browned exterior.', '03 Special Sauce
+ The signature sauce adds sweetness, saltiness, and concentrated savory flavor.']::text[], 'boon-kah foo-rye', NULL, ARRAY['Flat Oval Fritter
+ A thin, elongated fried piece has the characteristic flattened shape.', 'Crisp Breadcrumb Crust
+ Fine breadcrumbs form a golden exterior around the soft flour-based center.', 'Sauce-Finished Surface
+ A dark, glossy sauce is brushed or poured over the freshly fried snack.']::text[], 'Link'),
+('senju-no-suzumeyaki', 'Senju no Suzumeyaki', '千住のすずめ焼き', 'kanto', 'tokyo', 'A traditional Senju-style small-fish dish in which whole small fish are skewered and grilled with a savory-sweet glaze. The name refers to their small, sparrow-like appearance, while the preparation belongs to the old river-and-market food culture of the Senju area.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains fish, soy', 500, 1200, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Suzumeyaki is associated with the historic food culture around Senju, where small freshwater fish were preserved and sold as a practical local food. The surviving style reflects Edo-period riverine cooking rather than a single documented inventor.', NULL, 'The name evokes grilled sparrows, but it describes the fish''s small appearance, not the bird itself. Eating it with the glaze highlights the contrast between crisp edges and tender fish.', ARRAY['01 Small Freshwater Fish
+ Small fish such as crucian carp or similar local species form the traditional base.', '02 Soy Sauce-Based Glaze
+ Soy sauce provides saltiness and umami while developing a dark finish during grilling.', '03 Sweet Cooking Seasoning
+ Sugar or mirin balances the glaze and helps it adhere to the fish.']::text[], 'sen-joo no soo-zoo-meh-yah-kee', NULL, ARRAY['Small Whole Fish
+ Tiny fish are arranged whole on narrow bamboo skewers.', 'Dark Soy Glaze
+ Repeated brushing gives the grilled fish a deep brown, glossy surface.', 'Compact Skewered Serve
+ The small format makes the dish visually similar to a row of roasted birds.']::text[], 'Link'),
+('yarikake-dango', 'Yarikake Dango', '槍かけだんご', 'kanto', 'tokyo', 'A traditional rice dumpling specialty associated with Senju, formed from chewy rice-flour dumplings on skewers and finished with a sweet or savory topping. The name is linked to a local story about resting a spear, while the dumplings are enjoyed as a simple old-fashioned snack.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 150, 500, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Yarikake Dango is tied to the old Senju travel and lodging area and its famous legend about a spear being rested nearby. The dumpling tradition belongs to the historic neighborhood food culture and is preserved through long-running local confectionery shops.', NULL, 'The name connects the confection to a travel-era story rather than to an ingredient. Freshly made dumplings are at their best while the surface is still soft and the glaze glossy.', ARRAY['01 Rice Flour Dumplings
+ Steamed and shaped rice dough provides the soft, chewy body.', '02 Sweet Bean or Soy-Based Topping
+ Depending on the style, the dumplings may be finished with sweet red bean paste or a savory-sweet glaze.', '03 Sugar
+ Sugar balances the toppings and gives the finished skewer its characteristic sweetness.']::text[], 'yah-ree-kah-keh dahn-goh', NULL, ARRAY['Three-Dumpling Skewer
+ Round dumplings are lined up closely on a bamboo stick for an immediately recognizable silhouette.', 'Glossy Sweet-Soy Finish
+ The savory version is coated in a dark, glossy sauce that clings to the rice cakes.', 'Soft White Rice Cakes
+ The dumplings retain a smooth, compact surface with a pleasantly chewy bite.']::text[], 'Link'),
+('yuyu-toden-wagashi', 'Yuyu Toden - Wagashi', 'ゆうゆう都電（和菓子）', 'kanto', 'tokyo', 'A traditional Japanese confection shaped like the tramcars of the Toden Arakawa Line, created as a playful local souvenir from Arakawa. Sold as a shop-exclusive wagashi in Machiya, it connects a familiar streetcar image with a soft, sweet confectionary format.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, contains wheat', 200, 600, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Yuyu Toden was developed as a confection associated with the Toden Arakawa Line and is sold exclusively at the Machiya shop of Chikuryuan Okano. Its design turns a well-known Arakawa transport symbol into a local sweet.', NULL, 'The confection is especially popular with children because the tram shape is easy to recognize. It is also a local souvenir tied directly to the neighborhood where the streetcar runs.', ARRAY['01 Sweet Bean Filling
+ Sweet bean paste provides the familiar wagashi center.', '02 Rice-Based Confectionery Dough
+ A soft Japanese confectionery exterior holds the molded tram shape.', '03 Sugar
+ Sugar provides the characteristic sweetness of the finished wagashi.']::text[], 'yoo-yoo toh-den wah-gah-she', NULL, ARRAY['Tram-Shaped Silhouette
+ Each confection uses a small streetcar form that is immediately recognizable.', 'Soft Wagashi Exterior
+ The surface is smooth and carefully molded to hold the vehicle shape.', 'Compact Souvenir Size
+ Individual pieces are sized for easy gifting and casual snacking.']::text[], 'Link'),
+('arakawa-monja', 'Arakawa Monja', 'あらかわもんじゃ', 'kanto', 'tokyo', 'A sizzling monjayaki style associated with Arakawa Ward, where a thin dashi-rich batter cooks into a loose, savory mixture on a hot griddle. Cabbage and other ingredients are cooked together, producing the soft texture and concentrated browned edges that define monjayaki.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, soy, various toppings', 800, 2000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Monjayaki became deeply established in Tokyo''s working-class neighborhoods, and Arakawa developed its own local eating culture around the dish. The ward''s style reflects the broader shitamachi tradition rather than a single inventor.', NULL, 'A tiny metal spatula is used both to cook and eat monjayaki. The most prized bites are often the small, crisp pieces that form against the griddle.', ARRAY['01 Dashi-Flavored Batter
+ A thin mixture of flour and dashi creates the characteristic loose texture.', '02 Cabbage
+ Finely chopped cabbage adds sweetness, moisture, and texture.', '03 Local Toppings
+ Seafood, meat, vegetables, cheese, or other additions create the chosen flavor profile.']::text[], 'ah-rah-kah-wah mon-jah', NULL, ARRAY['Hot Iron Griddle
+ The dish is cooked directly on a tabletop griddle and served bubbling hot.', 'Loose Savory Mixture
+ A thin batter surrounds finely cut cabbage and other chosen fillings.', 'Crisped Edges
+ Small browned patches form where the mixture contacts the hot plate.']::text[], 'Link'),
+('okara-soy-milk-karinto', 'Okara & Soy Milk Karinto', 'おからと豆乳のかりんとう', 'kanto', 'tokyo', 'A crunchy karinto made with okara and soy milk, turning familiar soybean by-products into a sweet, crisp snack. The version produced by Nakano Confectionery in Itabashi is recognized locally for its practical use of soy ingredients and its light, pleasantly crumbly bite.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, contains soy, wheat', 300, 700, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'The product is made by Nakano Confectionery and is listed among Itabashi''s recognized local specialty foods. Its concept combines traditional karinto-making with okara and soy milk, reflecting an effort to use more of the soybean after tofu production.', NULL, 'Okara is the soybean pulp left after making soy milk or tofu. Using it in confectionery gives the snack a distinctive crumb and turns a tofu-making by-product into part of the finished food.', ARRAY['01 Okara
+ Soybean pulp adds body and a slightly nutty, crumbly character.', '02 Soy Milk
+ Soy milk enriches the dough and reinforces the soybean flavor.', '03 Wheat Flour and Sugar
+ Flour provides structure while sugar supplies the characteristic sweetness of karinto.']::text[], 'oh-kah-rah to toh-nyoo no kah-reen-toh', NULL, ARRAY['Slim Fried Sticks
+ Short, narrow pieces show the irregular handmade character of the snack.', 'Light Golden Brown
+ The fried surface develops a warm golden color without a heavy coating.', 'Dry Crisp Texture
+ The pieces have a firm exterior that breaks cleanly when bitten.']::text[], 'Link'),
+('niku-no-marusan-homemade-ham-cutlet', 'Niku no Marusan Homemade Ham Cutlet', '肉のマルサン 自家製ハムカツ', 'kanto', 'tokyo', 'A thick, butcher-shop-style ham cutlet made from a substantial slice of ham, coated and fried until the outside is crisp and golden. Niku no Marusan in Kamitabashi sells this house-made version as one of the products recognized by the Itabashi local specialty program.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains meat, wheat, egg', 150, 400, 'Published', ARRAY['Quick bite']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Ham cutlets became a familiar Japanese butcher-shop food during the twentieth century, and Niku no Marusan developed its own house-made version for its Kamitabashi customers. The shop''s cutlet was later selected for Itabashi''s local specialty program.', NULL, 'Niku no Marusan is a neighborhood butcher that also prepares cooked foods in-house. The ham cutlet is designed as an everyday, ready-to-eat side rather than a formal restaurant dish.', ARRAY['01 Ham
+ A thick slice of cured ham supplies the savory center.', '02 Egg and Flour
+ The standard cutlet coating uses flour and egg to help the crumbs adhere.', '03 Panko Breadcrumbs
+ Japanese breadcrumbs create the crisp, light-textured crust after frying.']::text[], 'nee-koo no mah-roo-sahn hah-moo-kah-tsoo', NULL, ARRAY['Thick Ham Center
+ The cutlet shows a noticeably generous interior of sliced ham rather than a paper-thin filling.', 'Golden Panko Crust
+ A crisp breadcrumb coating forms an even fried shell around the ham.', 'Fresh Butcher-Shop Serve
+ The cutlet is best shown hot and freshly fried, when the crust is most delicate.']::text[], 'Link'),
+('inagi-pears', 'Inagi Pears', '稲城の梨', 'kanto', 'tokyo', 'Large, juicy Japanese pears grown in Inagi, a long-established pear-growing area in Tokyo. Local fruit is prized for abundant juice, pronounced sweetness, and a crisp texture, with farm stands becoming especially busy during the harvest period from late summer into autumn.', ARRAY['Fall']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 500, 3000, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Pear cultivation in Inagi is traced by the city to the Genroku era, when two local men are said to have brought back a pear cultivar from the Kyoto region. Commercial production became established later in the nineteenth century, leading to today''s regional brand.', NULL, 'The city says local pear stalls begin appearing prominently around mid-August. Inagi pears are also widely purchased as gifts and shipped outside Tokyo during the harvest season.', ARRAY['01 Japanese Pears
+ Crisp Japanese pears provide the signature juicy sweetness and clean aroma.', '02 Orchard Fruit
+ Fruit is harvested at orchard ripeness for direct sale and local distribution.', '03 Natural Fruit Juice
+ The pear''s high natural juice content creates the refreshing texture associated with the Inagi brand.']::text[], 'ee-nah-gee no nah-she', NULL, ARRAY['Large Round Fruit
+ Inagi pears are often notably large and round compared with many supermarket pears.', 'Pale Crisp Flesh
+ The cut surface is pale, firm, and visibly juicy.', 'Fresh Orchard Finish
+ Smooth skin and a clean stem end emphasize the freshness expected from direct farm sales.']::text[], 'Link'),
+('inagi-mukashibanashi-manju', 'Inagi Mukashibanashi Manju', '稲城の昔ばなしまんじゅう', 'kanto', 'tokyo', 'A soft Japanese steamed bun created as an Inagi souvenir around local folktales and storytelling. The confection pairs a tender outer cake with a sweet filling, turning the city''s traditional narratives into a compact gift suitable for visitors and everyday tea service.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, contains wheat', 150, 500, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'The confection was developed as a local Inagi souvenir inspired by the city''s traditional folktales. Its purpose is cultural as well as culinary, using wagashi to give local stories a portable form.', NULL, 'The phrase old folktales refers to traditional local stories passed between generations. The manju turns that cultural theme into a food souvenir rather than representing a single historic recipe.', ARRAY['01 Wheat Flour
+ Flour forms the soft steamed outer cake.', '02 Sweet Bean Filling
+ Sweet bean paste supplies the traditional wagashi-style filling.', '03 Sugar
+ Sugar balances the filling and dough and gives the manju its gentle sweetness.']::text[], 'ee-nah-gee moo-kah-she-bah-nah-she mahn-joo', NULL, ARRAY['Round Steamed Bun
+ The small, rounded form gives the confection the familiar silhouette of a manju.', 'Stamped Local Motif
+ A decorative mark or printed design connects the sweet with Inagi''s folktale theme.', 'Soft Filled Center
+ The cut surface reveals a smooth sweet filling inside the tender cake.']::text[], 'Link'),
+('komatsuna', 'Komatsuna', '小松菜', 'kanto', 'tokyo', 'A dark green leafy vegetable strongly associated with Edogawa, where the Komatsugawa area gave the crop its name. Komatsuna has crisp stems and a mild sweetness, and today it is grown year-round, although its original peak season is winter when cool weather intensifies its flavor.', ARRAY['Winter']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 100, 300, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Komatsuna''s name is traditionally linked to the eighth shogun Tokugawa Yoshimune, who is said to have eaten local winter greens during a hawking visit and named them after Komatsugawa. Historical texts later confirm the reputation of the vegetable in the area.', NULL, 'Komatsuna can be harvested several times a year in modern cultivation, but winter remains its traditional season. Frost is said to make the leaves sweeter and more flavorful.', ARRAY['01 Komatsuna Leaves
+ The dark leaves provide a mild mustardy note and high vegetable freshness.', '02 Komatsuna Stems
+ Crisp stems give the vegetable its characteristic crunch.', '03 Natural Vegetable Sugars
+ Cool-season growth concentrates sweetness, especially in traditional winter crops.']::text[], 'koh-mah-tsoo-nah', NULL, ARRAY['Deep Green Leaves
+ Broad, dark leaves create a fresh, substantial appearance.', 'Pale Crisp Stems
+ The thick stems remain crunchy and add contrast to the softer leaves.', 'Tightly Bunched Greens
+ Whole plants are commonly sold with stems intact to preserve freshness.']::text[], 'Link'),
+('salad-komatsuna', 'Salad Komatsuna', 'サラダ小松菜', 'kanto', 'tokyo', 'A tender, mild form of komatsuna developed specifically for comfortable raw eating, with less bitterness and more perceived sweetness than traditional mature greens. The product was developed through an Edogawa agricultural-academic-public partnership and is marketed for salads, juices, and other uncooked uses.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 150, 400, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Salad Komatsuna was developed through a joint Edogawa agricultural, academic, and public-sector project studying the safety and nutritional value of eating komatsuna raw. After two years of research, the product was commercialized as a milder salad-oriented form.', NULL, 'The project specifically tested raw-eating suitability, which is why this version is much less assertive in taste than mature cooking greens. It can also be blended directly into juice.', ARRAY['01 Salad Komatsuna
+ Tender leaves provide a mild flavor designed for raw eating.', '02 Crisp Stems
+ The young stems add fresh crunch without requiring boiling.', '03 Natural Vegetable Sugars
+ A sweeter taste helps the greens work in salads and fresh juices.']::text[], 'sah-rah-dah koh-mah-tsoo-nah', NULL, ARRAY['Tender Bright Leaves
+ Leaves appear softer and more delicate than mature cooking komatsuna.', 'Slim Pale Stems
+ The stems remain crisp but are fine enough to eat raw.', 'Fresh Salad Presentation
+ Whole leaves are easy to arrange in salads without lengthy trimming or cooking.']::text[], 'Link'),
+('ome-senbei', 'Ome Senbei', '青梅せんべい', 'kanto', 'tokyo', 'A traditional rice-cracker-style confection associated with Ome, known for its light sweetness and crisp, delicate bite. The local souvenir is shaped and baked into thin pieces that travel well, making it a familiar tea-time gift from western Tokyo.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, contains wheat', 300, 1000, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Ome Senbei is a long-standing local confection associated with the city''s souvenir culture rather than a single documented inventor. Its style reflects the broader Japanese tradition of crisp baked sweets made for tea and gifting.', NULL, 'The crackers are particularly suited to tea because their modest sweetness lets the roasted grain aroma remain noticeable. Their dry texture also makes them easy to carry as a travel souvenir.', ARRAY['01 Rice Flour
+ Rice provides the crisp, light structure associated with senbei.', '02 Wheat Flour
+ A small amount of wheat-based flour contributes structure in the local recipe.', '03 Sugar
+ Sugar gives the cracker its gently sweet finish.']::text[], 'oh-meh sen-bay', NULL, ARRAY['Thin Pale Cracker
+ The finished senbei is thin, light, and lightly browned.', 'Curved Crisp Profile
+ Many pieces have a gentle curve that makes them visually distinctive.', 'Simple Gift Packaging
+ The crackers are commonly presented as stackable souvenir pieces for tea service.']::text[], 'Link'),
+('noshikon', 'Noshikon', 'のしこん', 'kanto', 'tokyo', 'A locally made konnyaku specialty associated with Ome, produced in thin rolled sheets rather than the standard rectangular blocks. The translucent pieces have a springy, pleasantly firm texture and are typically served chilled with a savory sauce or alongside other simple Japanese foods.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 200, 500, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Noshikon is a specialized local konnyaku product whose name comes from its rolled form. It belongs to Ome''s regional food tradition of working with konnyaku as a practical, low-cost staple ingredient.', NULL, 'Konnyaku has almost no inherent flavor, so texture is the main attraction. Chilling the slices and adding a concentrated dipping sauce makes the springy bite more pronounced.', ARRAY['01 Konnyaku Flour
+ Konnyaku powder provides the gelatinous, elastic base.', '02 Water
+ Water hydrates the konnyaku flour and creates the final firm gel texture.', '03 Alkaline Setting Agent
+ A traditional alkaline ingredient helps the konnyaku mixture set into a stable gel.']::text[], 'noh-she-kon', NULL, ARRAY['Translucent Rolled Sheets
+ Thin sheets of konnyaku show a clear, slightly gray appearance.', 'Springy Surface
+ The pieces hold their shape while revealing the characteristic elastic bite of konnyaku.', 'Neat Chilled Slices
+ Sliced portions are easy to serve with dipping sauce or as a light side dish.']::text[], 'Link'),
+('bekko-sushi', 'Bekko Sushi', 'べっこう寿司', 'kanto', 'tokyo', 'A distinctive island sushi from Izu Oshima made by marinating slices of local fish in a sweet-savory soy sauce before placing them over vinegared rice. The marinade gives the fish a glossy amber-brown appearance, which explains the name referring to tortoiseshell.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains fish, soy', 1000, 2000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Bekko sushi developed as a practical island preparation for seasoning fish with soy sauce and keeping its flavor appealing. The style became characteristic of Oshima''s food culture and is now treated as one of the island''s representative dishes.', NULL, 'The name bekko refers to tortoiseshell, a reference to the amber-brown shine created by the soy marinade. In Oshima, mustard is traditionally preferred with the sushi instead of wasabi.', ARRAY['01 Local White Fish
+ Fish such as sawara is sliced thinly for marinating.', '02 Soy Sauce Marinade
+ Soy sauce provides saltiness, umami, and the characteristic amber color.', '03 Vinegared Sushi Rice
+ Lightly sweetened vinegared rice balances the savory fish and marinade.']::text[], 'bek-koh zoo-she', NULL, ARRAY['Amber-Marinated Fish
+ Thin fish slices develop a deep, translucent brown sheen from the marinade.', 'Compact Nigiri Form
+ Each slice sits neatly over a small mound of seasoned rice.', 'Clean Island Presentation
+ The restrained arrangement highlights the fish''s color and glossy surface.']::text[], 'Link'),
+('zako-teishoku', 'Zako Teishoku', 'ざこ定食', 'kanto', 'tokyo', 'A casual island set meal built around small local fish, often served grilled, fried, or simmered with rice and everyday side dishes. The concept reflects Oshima''s practical seafood cooking, where modest catches are turned into a satisfying complete meal rather than treated as luxury ingredients.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains fish, soy', 800, 1500, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Zako teishoku is best understood as a local set-meal style using small fish rather than as one fixed historical recipe. Its roots lie in Oshima''s fishing households and the practical use of readily available catches.', NULL, 'The word zako refers broadly to small fish rather than one exact species. Because the term is flexible, the fish and preparation can vary with the day''s catch and the restaurant.', ARRAY['01 Small Local Fish
+ The day''s small catch provides the central protein and can be grilled, fried, or simmered.', '02 Steamed Rice
+ Plain rice provides a neutral base for the strongly flavored fish.', '03 Miso Soup and Seasonal Sides
+ Soup and small vegetable dishes complete the balanced set-meal format.']::text[], 'zah-koh tay-shoh-koo', NULL, ARRAY['Local Fish Main
+ A plate of simply prepared small fish anchors the meal.', 'Rice and Side Dishes
+ Steamed rice, soup, and small seasonal sides create the visual structure of a Japanese set meal.', 'Home-Style Arrangement
+ Simple ceramics and separated portions emphasize the everyday island character.']::text[], 'Link'),
+('gyunu-senbei', 'Gyunu Senbei', '牛乳せんべい', 'kanto', 'tokyo', 'A crisp, lightly sweet milk biscuit from Izu Oshima, made into thin baked pieces that pair naturally with tea or coffee. The simple recipe reflects the island''s dairy connection and produces a dry, fragrant snack with a delicate snap.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains dairy, wheat, egg', 400, 1000, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Milk Senbei became established as an Oshima souvenir using the island''s dairy connection and the Japanese tradition of producing crisp baked gift sweets. The exact commercial origin is associated with local confectionery makers rather than a single national inventor.', NULL, 'Despite its name, milk senbei is closer to a thin sweet biscuit than a savory rice cracker. The milky aroma becomes more noticeable when the biscuit is eaten with a warm drink.', ARRAY['01 Wheat Flour
+ Wheat flour provides the biscuit''s structure.', '02 Milk
+ Milk gives the cracker its gentle dairy aroma and pale finish.', '03 Sugar
+ Sugar adds the restrained sweetness typical of the confection.']::text[], 'gyoo-nyoo sen-bay', NULL, ARRAY['Thin Baked Discs
+ Light-colored biscuits are baked into flat, crisp pieces.', 'Fine Porous Texture
+ The interior has a delicate, dry structure rather than a dense cookie crumb.', 'Simple Gift Presentation
+ The biscuits are easy to stack and pack, making them a classic island souvenir.']::text[], 'Link'),
+('omori-nori', 'Omori Nori', '大森の海苔', 'kanto', 'tokyo', 'A historic nori-producing tradition from Omori, where calm, nutrient-rich Tokyo Bay waters once supported one of Japan''s major seaweed-growing areas. Although cultivation ended in the 1960s, Omori remains a major center for nori wholesalers, grading, processing, and distribution.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 500, 3000, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Nori cultivation began along the Omori-to-Shinagawa coast about three centuries ago, and Omori became a leading production area from the Meiji era through the early Showa period. Cultivation ended in 1963 after fishing rights were relinquished amid coastal development, but the local trade continued.', NULL, 'Omori was once important enough to spread nori cultivation and processing techniques to other parts of Japan. Today the area''s nori wholesalers still judge and process seaweed from production regions around the country.', ARRAY['01 Edible Seaweed
+ Porphyra-type seaweed forms the raw material for dried nori sheets.', '02 Seawater Minerals
+ The sea environment influences the mineral content and flavor of the growing seaweed.', '03 Toasting
+ Gentle roasting develops the characteristic crisp texture and nutty aroma.']::text[], 'oh-moh-ree no-ree', NULL, ARRAY['Deep Green Sheets
+ Quality nori shows a dark green to nearly black surface with fine, even texture.', 'Light Crisp Break
+ Properly toasted sheets fracture cleanly and release a roasted seaweed aroma.', 'Flat Dried Form
+ Rectangular sheets are stacked for easy storage, serving, and inspection.']::text[], 'Link'),
+('shima-zushi', 'Shima-zushi', '島寿司', 'kanto', 'tokyo', 'A classic Ogasawara island sushi made with slices of local fish marinated in soy sauce and mirin before being placed over mildly sweet vinegared rice. Traditionally served with mustard instead of wasabi, the style is defined by its glossy fish, sweet-savory seasoning, and strong island identity.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains soy, gluten, fish', 1000, 2500, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Shima-zushi grew from the island food culture of the Ogasawara Islands, where fish was seasoned before serving to suit island conditions and local tastes. The technique is a part of the broader Japanese island sushi tradition rather than a recipe credited to one inventor.', NULL, 'Ogasawara''s official tourism association specifically notes mustard rather than wasabi as the traditional accompaniment. The sweet vinegared rice helps balance the soy-based fish marinade.', ARRAY['01 Local White Fish
+ Fish such as sawara is sliced for the soy-based marinade.', '02 Soy Sauce and Mirin
+ The marinade gives the fish its savory sweetness and characteristic glossy color.', '03 Vinegared Rice
+ Mildly sweetened sushi rice provides balance and structure.']::text[], 'shee-mah zoo-she', NULL, ARRAY['Soy-Marinated Fish
+ Fish slices carry a dark, glossy seasoning layer before serving.', 'Mustard Garnish
+ A small amount of mustard provides the characteristic sharp accent.', 'Compact Sushi Rice
+ Each piece balances a neatly formed mound of lightly sweetened rice with the marinated topping.']::text[], 'Link'),
+('kame-ni', 'Kame-ni', '亀煮', 'kanto', 'tokyo', 'A traditional Ogasawara preparation of sea turtle cooked slowly with a savory-sweet seasoning until the meat becomes tender. It reflects the islands'' historical use of marine resources and is now best understood as part of Ogasawara''s heritage cuisine rather than an everyday food.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains turtle meat', 800, 2000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Kame-ni belongs to the traditional food culture of Ogasawara, where sea turtle was historically harvested and cooked as a local resource. Modern discussion of the dish is closely linked to the islands'' cultural history and contemporary wildlife protections.', NULL, 'The name simply means turtle simmered or braised. Because sea turtles are protected wildlife, this dish should not be treated as an ordinary freely available menu item.', ARRAY['01 Sea Turtle
+ Historically harvested turtle provided the central meat, although present-day access is governed by conservation rules.', '02 Soy Sauce
+ Soy sauce supplies the deep savory base of the braising liquid.', '03 Sugar and Sake
+ Sweet and aromatic cooking seasonings balance the strong marine flavor.']::text[], 'kah-meh nee', NULL, ARRAY['Dark Braised Meat
+ Slow cooking produces a deep brown, glossy surface on the tenderized meat.', 'Chunked Portions
+ Pieces are served in compact chunks that hold the rich braising sauce.', 'Traditional Stew Presentation
+ The dish is typically presented as a small savory portion rather than a large main course.']::text[], 'Link'),
+('same-burger', 'Same Burger', 'サメバーガー', 'kanto', 'tokyo', 'A modern Ogasawara specialty that replaces ordinary burger meat with locally caught shark, creating a firm, lean seafood filling inside a soft bun. The format turns a traditional island catch into an approachable contemporary street-food style and highlights the archipelago''s strong connection with fishing.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains fish, gluten, egg', 600, 1200, 'Published', ARRAY['Quick bite', 'Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Shark burgers are a modern island-food development rather than an Edo-period traditional dish. The concept reflects Ogasawara''s contemporary effort to use local seafood in accessible dishes while giving visitors a distinctive taste of the islands.', NULL, 'Shark has a firmer texture than many mild white fish, which is why sauces and a soft bun work well with it. The burger format makes an unfamiliar island ingredient easier for visitors to try.', ARRAY['01 Local Shark
+ Lean shark meat provides the firm seafood center.', '02 Wheat Burger Bun
+ The soft bun balances the denser texture of the seafood.', '03 Sauce and Salad Vegetables
+ Sauce, lettuce, or other toppings add moisture and freshness to the sandwich.']::text[], 'sah-meh bah-gah', NULL, ARRAY['Golden Fried Shark Patty
+ A breaded or cooked shark portion forms the substantial center of the sandwich.', 'Soft Burger Bun
+ A light bun frames the seafood without overpowering its flavor.', 'Fresh Sauce and Greens
+ Lettuce and sauce add moisture, acidity, and visual contrast to the darker filling.']::text[], 'Link'),
+('shikaku-mame-tempura', 'Shikaku-mame Tempura', '四角豆の天ぷら', 'kanto', 'tokyo', 'A crisp vegetable tempura featuring winged bean, a warm-climate crop suited to the subtropical Ogasawara Islands. The beans are lightly battered and fried so their ridged, star-like cross-section stays visible, producing a delicate shell around a fresh, slightly grassy interior.', ARRAY['Summer']::text[], ARRAY['local specialty']::text[], 'Contains gluten, fried in oil', 500, 1000, 'Published', ARRAY['Vegetarian', 'Quick bite', 'Dine-in']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Winged bean is among the subtropical vegetables grown in Ogasawara, and tempura is a straightforward local way to showcase the crop. The dish reflects island adaptation to warm-climate agriculture rather than a single documented invention.', NULL, 'The winged ridges of the bean are edible, so the vegetable keeps an unusual sculptural appearance after frying. A light batter lets the fresh vegetable flavor remain noticeable.', ARRAY['01 Winged Beans
+ Young winged beans provide the crisp, fresh vegetable center.', '02 Tempura Batter
+ A light flour-and-water batter forms the delicate fried coating.', '03 Frying Oil
+ Hot oil quickly sets the batter while keeping the interior fresh and green.']::text[], 'she-kah-koo mah-meh ten-poo-rah', NULL, ARRAY['Winged Bean Ridges
+ The distinctive four-sided wings remain visible even after frying.', 'Pale Golden Batter
+ A thin, crisp coating develops around the green vegetable.', 'Star-Shaped Cross-Section
+ Cut pieces reveal the characteristic angular shape that identifies the bean.']::text[], 'Link'),
+('akaba-miso-soup', 'Akaba Miso Soup', 'アカバの味噌汁', 'kanto', 'tokyo', 'A deeply savory fish soup made with akabha, the local name for red-spotted grouper, a prized reef fish of the Ogasawara Islands. The fish is simmered with miso to create a rich broth that combines a clean marine sweetness with the fermented depth of Japanese miso.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains fish, soy', 600, 1500, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Akabha miso soup is a recognized Ogasawara island dish made from the fish locally called akabha, or red-spotted grouper. Its roots lie in island fishing cuisine and the practical use of prized reef fish in a nourishing soup.', NULL, 'The fish is considered a high-value local catch, so using it in miso soup turns bones and flavorful pieces into a particularly rich broth. The local name akabha refers to the red grouper family fish used in the dish.', ARRAY['01 Red-Spotted Grouper
+ Akabha provides the fish''s clean marine sweetness and gelatin-rich texture.', '02 Miso
+ Fermented soybean paste forms the salty, savory soup base.', '03 Dashi and Aromatics
+ Stock ingredients and simple aromatics deepen the broth without masking the fish.']::text[], 'ah-kah-bah mee-so soo-poo', NULL, ARRAY['Chunky Fish Pieces
+ Bone-in fish portions give the soup a substantial, rustic appearance.', 'Cloudy Miso Broth
+ Miso turns the broth opaque and adds a warm brown-golden tone.', 'Fresh Herb Finish
+ Scallion or similar garnish adds a bright green contrast to the rich soup.']::text[], 'Link'),
+('shima-lemon-jelly', 'Shima Lemon Jelly', '島レモンゼリー', 'kanto', 'tokyo', 'A bright jelly dessert made with Ogasawara''s distinctive island lemon, prized for its rounded shape, lively aroma, and relatively gentle acidity. The fruit is especially well suited to jelly because its juice and fragrant peel create a clean, refreshing citrus character.', ARRAY['Fall']::text[], ARRAY['local specialty']::text[], 'Vegan (if agar used)', 300, 600, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite', 'Dine-in']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Island lemon, also known as Kikuji lemon, was introduced to Ogasawara from Hachijojima after the islands returned to Japan. Local producers later developed products such as jelly and jam to showcase the fruit''s unusually mild acidity and fragrance.', NULL, 'Ogasawara island lemons are about one and a half times the size of ordinary lemons and can be eaten while still green. Their rounded shape and gentler acidity make them especially versatile for sweets.', ARRAY['01 Island Lemon Juice
+ Fresh lemon juice supplies the bright citrus aroma and balanced acidity.', '02 Lemon Zest
+ Finely grated peel intensifies the fragrance of the fruit.', '03 Gelatin or Jelly Setting Agent
+ The setting ingredient creates the clean, trembling texture of the dessert.']::text[], 'she-mah reh-mon zeh-ree', NULL, ARRAY['Clear Citrus Jelly
+ The translucent dessert catches light and reveals a soft golden or pale green tint.', 'Fine Citrus Aroma
+ Fresh lemon fragrance is visible in the presentation through zest or juice.', 'Smooth Spoon-Cut Texture
+ The jelly should quiver lightly while holding clean, neat cuts.']::text[], 'Link'),
+('okutama-yamame', 'Okutama Yamame', '奥多摩やまめ', 'kanto', 'tokyo', 'A farmed yamame trout specialty from the Okutama mountains, where clear, cold water supports the production of prized landlocked trout. The fish has a clean flavor and delicate flesh and is commonly served grilled, especially with salt, to preserve its subtle mountain-stream character.', ARRAY['Summer']::text[], ARRAY['local specialty']::text[], 'Contains fish', 1000, 3000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', TRUE, 'Okutama Yamame is a regional aquaculture product developed around the area''s cold, clean mountain water. Modern hatchery production allows the local specialty to be supplied consistently while retaining the characteristics associated with mountain trout.', NULL, 'Yamame is a landlocked salmonid related to other Japanese trout. It is especially good grilled over charcoal or wood, where the skin develops a crisp aromatic edge.', ARRAY['01 Yamame Trout
+ Freshwater trout supplies the delicate, clean-tasting flesh.', '02 Salt
+ Salt is the classic seasoning for highlighting the fish''s subtle flavor.', '03 Mountain Water
+ Cold, clean water is central to the character and production environment of the local fish.']::text[], 'oh-koo-tah-mah yah-mah-meh', NULL, ARRAY['Silver-Gold Trout
+ The slender fish has a silver body with a faint golden cast when grilled.', 'Charred Skin
+ Gentle grilling produces browned skin while keeping the flesh moist.', 'Whole-Fish Serve
+ The intact shape emphasizes the traditional river-fish presentation.']::text[], 'Link'),
+('okutama-wasabi', 'Okutama Wasabi', '奥多摩わさび', 'kanto', 'tokyo', 'A fragrant Japanese wasabi grown in the clean spring waters of Okutama, one of western Tokyo''s mountain food regions. The root has a fresh, green aroma and a brief, penetrating heat that is prized when freshly grated rather than stored for long periods.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 500, 2000, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite', 'Dine-in']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Wasabi has been cultivated in Okutama''s cool mountain streams and spring-water environments as part of the region''s long agricultural tradition. The specialty depends on clean flowing water and shaded growing conditions rather than ordinary field cultivation.', NULL, 'Freshly grated wasabi delivers a short, nasal heat that fades much faster than the burn of dried horseradish powder. The finest aroma is noticeable immediately after grating.', ARRAY['01 Wasabi Rhizome
+ The grated rhizome provides the signature green aroma and sharp heat.', '02 Clean Spring Water
+ Cold, clear flowing water creates the conditions needed for high-quality wasabi cultivation.', '03 Wasabi Leaves and Stems
+ The plant''s above-ground parts are also edible in local cooking and preserves.']::text[], 'oh-koo-tah-mah wah-sah-bee', NULL, ARRAY['Knobbly Green Rhizome
+ Fresh wasabi has a rough, irregular exterior with a greenish-gray surface.', 'Fresh Grated Pile
+ Grated wasabi becomes a moist, finely textured green mound.', 'Leaf and Stem Cluster
+ Fresh plants can be displayed with their green stems and broad leaves attached.']::text[], 'Link'),
+('sashimi-konnyaku', 'Sashimi Konnyaku', '刺身こんにゃく', 'kanto', 'tokyo', 'A chilled konnyaku preparation cut into thin slices and served like sashimi, prized more for its springy texture than for a strong flavor. The translucent pieces are usually paired with a savory dipping sauce, making the dish a light, refreshing counterpoint to richer mountain foods.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free (depending on sauce)', 400, 900, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite', 'Dine-in']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Sashimi konnyaku comes from Japan''s long tradition of using konnyaku as a preserved mountain food. The Okutama version fits the area''s broader konnyaku-making culture, where clean water and locally processed konnyaku are valued regional foods.', NULL, 'Because konnyaku is mild on its own, the dipping sauce determines much of the finished flavor. Chilling the slices makes their springy texture especially refreshing.', ARRAY['01 Konnyaku
+ Set konnyaku jelly provides the distinctive elastic texture.', '02 Clean Water
+ Water is essential to the hydration and setting of the konnyaku.', '03 Miso or Soy-Based Sauce
+ A savory dipping sauce supplies most of the dish''s salt, umami, and aroma.']::text[], 'sah-shee-mee kon-nyah-koo', NULL, ARRAY['Translucent Slices
+ Thin slices have a clear gray-white appearance that catches the light.', 'Smooth Wet Surface
+ Freshly rinsed konnyaku looks glossy and cool on the plate.', 'Dipping Sauce Accent
+ A small bowl of miso or soy-based sauce provides the main color contrast.']::text[], 'Link'),
+('kusa-dango', 'Kusa Dango', '草だんご', 'kanto', 'tokyo', 'A chewy rice dumpling flavored with aromatic yomogi leaves, traditionally served as a simple Japanese sweet with red bean paste. In Tokyo''s old neighborhood confectionery tradition, kusa dango is prized for its fresh green color, herbal fragrance, and pleasantly elastic bite.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free (typically)', 150, 600, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite', 'Dine-in']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Kusa dango is a long-established Japanese wagashi style, traditionally made by mixing yomogi with pounded rice dough. Tokyo examples became associated with temple districts and long-running confectionery shops rather than one single inventor.', NULL, 'Yomogi gives kusa dango a grassy, slightly bitter fragrance that balances sweet bean paste. The strongest aroma is usually noticeable when the dumplings are freshly made.', ARRAY['01 Glutinous Rice Flour
+ Rice flour creates the soft, chewy dumpling texture.', '02 Yomogi
+ Mugwort provides the herbal fragrance and natural green color.', '03 Sweet Red Bean Paste
+ Anko supplies the principal sweetness and creamy contrast.']::text[], 'koo-sah dahn-goh', NULL, ARRAY['Natural Green Dough
+ Yomogi gives the dumplings their characteristic deep green color.', 'Round Skewered Pieces
+ Small round dumplings form a compact, easily recognizable serving.', 'Red Bean Topping
+ Sweet bean paste adds a dark red-brown contrast over the green rice cakes.']::text[], 'Link'),
+('kawazakana-ryori', 'Kawazakana Ryori', '川魚料理', 'kanto', 'tokyo', 'A broad style of freshwater fish cooking associated with Tokyo''s river communities, especially the mountain and waterside districts. Dishes vary by the catch and season but often emphasize simple grilling, simmering, or frying so the clean flavor of river fish remains central.', ARRAY['Summer']::text[], ARRAY['local specialty']::text[], 'Contains fish, soy, wheat', 2500, 6000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', TRUE, 'River-fish cooking is much older than the modern municipality boundaries of Tokyo and grew from the practical use of local streams and rivers. The contemporary regional style preserves methods such as salt grilling, simmering, and frying rather than a single fixed recipe.', NULL, 'Freshwater fish are often best with restrained seasoning because their flavor is delicate. Eating the fish soon after cooking keeps the skin crisp and the flesh moist.', ARRAY['01 Freshwater Fish
+ Trout, sweetfish, carp, or other river fish provide the central protein depending on location and season.', '02 Salt
+ Salt grilling is one of the simplest traditional preparations.', '03 Soy or Miso Seasoning
+ Simmered versions use savory Japanese seasonings instead of heavy spices.']::text[], 'kah-wah-zah-kah-nah ryoh-ree', NULL, ARRAY['Whole Grilled Fish
+ Small freshwater fish are often presented whole with browned skin.', 'Rustic Earthenware
+ Simple plates and bowls suit the traditional mountain-food setting.', 'Seasonal River Catch
+ Different fish sizes and shapes reflect the local catch available at the time.']::text[], 'Link'),
+('motsuyaki', 'Motsuyaki', 'もつ焼き', 'kanto', 'tokyo', 'A classic Tokyo neighborhood dish of skewered pork offal grilled over high heat, especially associated with working-class drinking districts. The pieces are lightly charred and commonly seasoned with salt or a savory tare, giving them a smoky, intensely savory flavor.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains meat (pork/beef)', 100, 500, 'Published', ARRAY['Quick bite', 'Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Motsuyaki grew from the urban izakaya and street-food culture of twentieth-century Japan, where inexpensive offal was grilled quickly and served with drinks. Tokyo neighborhood shops developed their own sauces, cuts, and preferred grilling styles.', NULL, 'Different cuts have dramatically different textures, from tender liver to chewy intestine. Regular customers often have a favorite cut and seasoning, so mixed skewers are a useful introduction.', ARRAY['01 Pork Offal
+ Intestine, liver, stomach, and other edible cuts provide the distinctive range of textures.', '02 Salt
+ Salt highlights the natural savory flavor and grilled aroma.', '03 Sweet-Savory Tare
+ A soy-based tare adds sweetness, umami, and a glossy charred finish.']::text[], 'moh-tsoo-yah-kee', NULL, ARRAY['Charred Skewer Tips
+ High-heat grilling leaves crisp browned edges and a lightly smoky surface.', 'Mixed Offal Shapes
+ Liver, intestine, stomach, and other cuts create varied sizes and textures.', 'Glossy Tare Finish
+ Sauced skewers develop a dark sheen while salt-seasoned pieces remain clean and browned.']::text[], 'Link'),
+('takinogawa-gobo', 'Takinogawa Gobo', '滝野川ごぼう', 'kanto', 'tokyo', 'A historic long-rooted burdock associated with the Takinogawa area of northern Tokyo, known for its strong aroma and firm, flavorful flesh. The local variety became famous as a traditional vegetable and is valued in simmered dishes, kinpira, and other preparations that reward its distinctive bite.', ARRAY['Fall']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 500, 1500, 'Published', ARRAY['Vegetarian', 'Halal', 'Dine-in']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Takinogawa burdock was cultivated in Edo-period Tokyo and became a recognized local vegetable of the Takinogawa district. The variety is part of the city''s heritage vegetable tradition and later declined as modern compact varieties became more convenient for growers.', NULL, 'The long roots can be difficult to harvest without specialized soil preparation. Their firm texture makes them particularly good for simmering and kinpira-style cooking.', ARRAY['01 Takinogawa Burdock
+ The heritage root provides a firm bite and deep earthy aroma.', '02 Water
+ Soaking the cut root in water helps manage browning and prepares it for cooking.', '03 Soy-Based Seasoning
+ Soy sauce, sugar, or mirin brings out the burdock''s savory-sweet character.']::text[], 'tah-kee-noh-gah-wah goh-boh', NULL, ARRAY['Long Slender Roots
+ Traditional Takinogawa burdock develops unusually long, straight roots.', 'Pale Cream Interior
+ Freshly cut flesh is light in color with fine, dense fibers.', 'Earthy Market Display
+ Roots are often shown whole to emphasize their length and traditional variety.']::text[], 'Link'),
+('kiyose-bo', 'Kiyose Bo', 'きよせ棒', 'kanto', 'tokyo', 'A crunchy vegetable snack from Kiyose made with local carrot and burdock powders, created around the city''s strong root-vegetable production. The kinpira-burdock flavor combines savory seasoning with a light, crisp texture, making the snack suitable for casual eating, drinks, or souvenirs.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains soy, wheat', 410, 410, 'Published', ARRAY['Quick bite']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Kiyose Bo was launched to mark the centenary of Kiyose Station and uses powders made from locally associated carrots and burdock. The product was designed as a contemporary souvenir that turns local produce into a shelf-stable snack.', NULL, 'The original kinpira-burdock flavor uses both carrot and burdock powders, linking the snack to Kiyose''s vegetable-growing identity. A later corn-potage version was also introduced using local corn.', ARRAY['01 Burdock Powder
+ Burdock supplies the earthy, savory vegetable character.', '02 Carrot Powder
+ Carrot adds gentle sweetness and reinforces the local root-vegetable theme.', '03 Kinpira Seasoning
+ Soy-based savory seasoning gives the snack its familiar Japanese side-dish flavor.']::text[], 'kee-yoh-seh boh', NULL, ARRAY['Slim Crunchy Sticks
+ The snack is formed into narrow pieces designed for a clean, crisp bite.', 'Root-Vegetable Seasoning
+ Carrot and burdock powders give a warm beige-to-brown appearance.', 'Souvenir-Sized Pack
+ Compact packaging reflects its role as an easy local gift or snack.']::text[], 'Link'),
+('kiyose-man', 'Kiyose Man', '清瀬まん', 'kanto', 'tokyo', 'A chilled savory bun from Kiyose filled with spiced keema-style curry and local corn, with a later version adding Kiyose-grown carrots. The result combines warm curry spices with the natural sweetness of local vegetables in a convenient steamed-bun format.', ARRAY['Fall']::text[], ARRAY['local specialty']::text[], 'Contains wheat, meat, soy', 350, 350, 'Published', ARRAY['Quick bite']::text[], 'Not reviewed', 'Not reviewed', TRUE, 'Kiyose Man was launched by the Kiyose Tourism Association as a regional product using Kiyose-grown ingredients. The revived version added local carrots to the earlier corn-and-keema curry filling to soften the spice and increase vegetable depth.', NULL, 'The current version uses the sweet kernels of locally grown corn and carrot to mellow the curry''s spice. The product became popular enough in its first release to sell out quickly.', ARRAY['01 Keema Curry Filling
+ Spiced minced-meat curry provides the savory center.', '02 Kiyose Corn
+ Fresh local corn adds sweetness and texture.', '03 Kiyose Carrot
+ Carrot contributes sweetness, color, and a gentle finish that softens the spice.']::text[], 'kee-yoh-seh mahn', NULL, ARRAY['Soft Filled Bun
+ A pale, rounded wrapper encloses the strongly colored curry filling.', 'Visible Curry Center
+ The cut surface shows a rich orange-brown filling dotted with vegetables.', 'Frozen Souvenir Pack
+ The product is sold frozen for convenient storage and reheating at home.']::text[], 'Link'),
+('kunitachi-brewery-craft-beer', 'Kunitachi Brewery Craft Beer', 'くにぶる', 'kanto', 'tokyo', 'A craft beer brewed by KUNITACHI BREWERY, Kunitachi''s first craft brewery, established in 2020 by the long-running local sake retailer Sekiya. The brewery explores classic beer styles and experimental small-batch ideas, including beers inspired by Kunitachi''s history and urban identity.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan', 600, 1500, 'Published', ARRAY['Vegetarian', 'Quick bite', 'Dine-in']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'KUNITACHI BREWERY was established in 2020 by Sekiya, a sake retailer with more than a century of history. The brewery was created under the philosophy that old traditions can support new experiments in local brewing.', NULL, 'One of its beers, 1926, takes its name and design cues from Kunitachi Station''s historic station building. The brewery therefore uses local history as part of the beer''s identity.', ARRAY['01 Malted Barley
+ Malted grain provides fermentable sugars and the malt backbone of the beer.', '02 Hops
+ Hops contribute bitterness and aromatic character according to the style.', '03 Brewing Water
+ Water provides the base for fermentation and influences the beer''s final balance.']::text[], 'koo-nee-boo-roo', NULL, ARRAY['Bright Craft Beer
+ Freshly poured beer shows a clear style-dependent color ranging from pale gold to deep amber.', 'Stable Foam Head
+ A fresh pour develops a compact head that showcases carbonation and aroma.', 'Branded Local Glass
+ Serving in a brewery or tap-room glass reinforces the Kunitachi identity.']::text[], 'Link'),
+('kinmedai-no-nitsuke', 'Kinmedai no Nitsuke', '金目鯛の煮付け', 'kanto', 'tokyo', 'A classic island preparation of splendid alfonsino simmered slowly in a sweet-savory soy broth until the flesh becomes tender and aromatic. On the Izu Islands, the dish highlights a prized local catch with a gentle balance of soy, sugar, and cooking sake.', ARRAY['Winter']::text[], ARRAY['local specialty']::text[], 'Contains fish, soy, wheat', 2000, 5000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', TRUE, 'Simmered kinmedai is rooted in Izu island fishing cuisine, where the fish has long been treated as a valuable catch. The technique is a traditional Japanese method rather than a dish credited to a single inventor.', NULL, 'The dark red skin is one reason kinmedai is visually distinctive before cooking. Simmering with a sweet soy broth also helps keep the delicate flesh moist.', ARRAY['01 Splendid Alfonsino
+ Kinmedai provides tender, mildly sweet meat with a rich gelatinous skin.', '02 Soy Sauce
+ Soy sauce forms the savory base of the braising liquid.', '03 Sugar and Cooking Sake
+ Sweetness and sake balance the saltiness and round out the fish''s flavor.']::text[], 'keen-meh-dye no nee-tsoo-keh', NULL, ARRAY['Ruby-Skinned Fish
+ The bright red skin remains visible through the dark braising glaze.', 'Glossy Simmered Surface
+ The sauce clings to the fish in a rich brown sheen.', 'Bone-In Fillet
+ Large bone-in portions emphasize the fish''s firm flakes and natural shape.']::text[], 'Link'),
+('toyosu-market-kaisendon', 'Toyosu Market Kaisendon', '豊洲市場の海鮮丼', 'kanto', 'tokyo', 'A market-style seafood rice bowl built around fresh sashimi toppings served over seasoned rice at Toyosu Market. Menus vary by shop and catch, but the concept emphasizes abundant seafood, careful selection, and the energetic atmosphere of Tokyo''s wholesale market.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains fish, soy, wheat', 2000, 6000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Seafood rice bowls are a modern market dining tradition that developed around Tokyo''s wholesale seafood trade. At Toyosu, restaurants continue the tradition established at the former Tsukiji market, including shops with histories extending back more than a century.', NULL, 'Some Toyosu seafood bowl shops trace their business history to the old Nihonbashi and Tsukiji markets. The actual seafood selection changes with market supply, so there is no single fixed topping list.', ARRAY['01 Sushi Rice
+ Seasoned rice provides the neutral, lightly acidic base.', '02 Fresh Sashimi Seafood
+ Tuna and other market seafood provide the main flavor and visual variety.', '03 Soy Sauce
+ A small amount of soy sauce seasons the seafood and rice at the table.']::text[], 'toh-yoh-soo ee-chee-bah no kye-sen-don', NULL, ARRAY['Colorful Seafood Mosaic
+ Slices of tuna and other seafood create a dense, multicolored topping.', 'Vinegared Rice Base
+ Short-grain rice supports the raw seafood and keeps the bowl visually balanced.', 'Generous Market Portion
+ A wide bowl allows the seafood to be arranged prominently above the rice.']::text[], 'Link'),
+('koganei-sakura-junmai-ginjo', 'Koganei Sakura Junmai Ginjo', '小金井桜純米吟醸', 'kanto', 'tokyo', 'A junmai ginjo sake associated with Koganei''s celebrated cherry-blossom landscape, combining polished rice with the fragrant, clean style expected from ginjo brewing. The local branding connects the sake with Koganei''s historic cherry trees and the city''s broader cultural identity.', ARRAY['Spring']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 1500, 4000, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'The sake was developed as a local regional product linking Koganei with its famous cherry-tree heritage. Its identity is cultural and contemporary, drawing on the city''s historic cherry landscape rather than an ancient sake recipe.', NULL, 'Junmai ginjo is brewed from rice, koji, and water without added distilled alcohol, with rice polished to the ginjo range. Serving it slightly chilled generally makes its aroma easier to appreciate.', ARRAY['01 Polished Rice
+ Highly polished sake rice provides a clean fermentation base.', '02 Rice Koji
+ Koji converts rice starch into fermentable sugars during brewing.', '03 Brewing Water
+ Water shapes the fermentation and final texture of the sake.']::text[], 'koh-gah-nay sah-koo-rah joon-my geen-joh', NULL, ARRAY['Pale Clear Sake
+ The sake presents a clean, almost colorless appearance in a clear glass.', 'Delicate Ginjo Aroma
+ A fresh pour reveals a subtle fruity fragrance typical of carefully brewed ginjo sake.', 'Cherry-Themed Bottle
+ Bottle artwork or labels emphasize the Koganei cherry-blossom theme.']::text[], 'Link'),
+('fight-monaka', 'Fight Monaka', 'ファイトもなか', 'kanto', 'tokyo', 'A playful monaka confection from Kokubunji built around the city''s local identity and the idea of encouragement. Crisp wafer shells hold a sweet filling, creating the familiar contrast of delicate shell, smooth center, and a compact shape designed for gifting.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, contains wheat', 200, 500, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Fight Monaka is a locally branded Kokubunji confection rather than a historic Edo recipe. Its concept uses the familiar Japanese monaka format to create a positive, memorable regional souvenir.', NULL, 'Monaka wafers become crisper when kept dry, while humidity quickly softens them. Eating the confection soon after opening preserves the best shell-to-filling contrast.', ARRAY['01 Glutinous Rice Wafer
+ Thin rice wafers form the crisp outer shell.', '02 Sweet Bean Paste
+ Smooth or lightly textured anko provides the creamy filling.', '03 Sugar
+ Sugar balances the filling and contributes to the traditional wagashi sweetness.']::text[], 'fye-toh moh-nah-kah', NULL, ARRAY['Crisp Wafer Shell
+ Thin molded wafers create the light, geometric outer form.', 'Sweet Filled Center
+ A generous bean-based filling contrasts with the dry shell.', 'Branded Local Shape
+ The confection''s design or inscription gives it a distinct Kokubunji identity.']::text[], 'Link'),
+('kate-udon', 'Kate Udon', '糧うどん', 'kanto', 'tokyo', 'A traditional Musashino-style noodle meal in which thick wheat noodles are eaten with a warm dipping broth enriched by seasonal vegetables. Known as a filling rural food, Kate Udon reflects the old practice of pairing hand-made noodles with whatever vegetables and pantry ingredients were available.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, soy, fish (broth)', 800, 1500, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Kate Udon developed from the everyday food culture of the Musashino farming area, where wheat noodles were paired with vegetables to create a filling household meal. The name refers to food or provisions served with the noodles rather than to one single historical recipe.', NULL, 'Traditional versions use abundant vegetables because the noodles were designed to stretch a meal with farm produce. The contrast between firm noodles and hot dipping broth is central to the style.', ARRAY['01 Wheat Noodles
+ Hand-made wheat noodles provide the firm, chewy base.', '02 Seasonal Vegetables
+ Leafy greens and root vegetables add sweetness, texture, and nutrition.', '03 Soy-Based Dipping Broth
+ Dashi, soy sauce, and cooking seasonings create the warm savory sauce.']::text[], 'kah-teh oo-don', NULL, ARRAY['Thick Hand-Cut Noodles
+ Broad, firm noodles show the rustic irregularity of hand preparation.', 'Dark Dipping Broth
+ A savory soy-based broth is served separately so the noodles stay firm.', 'Seasonal Vegetable Garnish
+ Greens and root vegetables add color and reinforce the dish''s farm-food character.']::text[], 'Link'),
+('komae-honey', 'Komae Honey', '狛江はちみつ', 'kanto', 'tokyo', 'A locally harvested honey from urban hives in Komae, produced from nectar collected around the city''s gardens, farms, and streets. Its flavor varies with the flowering season and neighborhood forage, giving the honey a distinctly local character rather than a fixed single-flower profile.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegetarian, Gluten-free', 800, 2500, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Komae Honey emerged from local beekeeping and community efforts to connect urban agriculture with the city''s flowering landscape. It is a contemporary regional product rather than an old recipe, with character shaped by the plants visited by local bees.', NULL, 'Because bees forage across changing flowers, the flavor can shift from batch to batch and season to season. This is one reason locally harvested urban honey can taste different from supermarket blended honey.', ARRAY['01 Flower Nectar
+ Nectar from local blossoms provides the sugars and aromatic compounds that define the honey.', '02 Honeycomb
+ Bees naturally process stored nectar in the comb before it is harvested.', '03 Seasonal Floral Sources
+ Cherry, acacia, fruit trees, garden flowers, and other blossoms can influence the final profile.']::text[], 'koh-mah-eh hah-chee-mee-tsoo', NULL, ARRAY['Clear Golden Honey
+ Fresh honey ranges from pale gold to deeper amber depending on floral sources.', 'Slow Pour
+ A viscous stream forms naturally when honey is spooned or poured.', 'Local Jar Presentation
+ Small jars make the product easy to present as a compact city souvenir.']::text[], 'Link'),
+('sable-manju-komae', 'Sable Manju Komae', 'サブレー万頭こまえ', 'kanto', 'tokyo', 'A Komae souvenir confection that combines the buttery texture of a sablé-style cookie with the soft filled form of a manju. The hybrid design gives the sweet a crisp, rich exterior and a smooth center while serving as a compact edible symbol of the city.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, dairy, egg', 150, 400, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Sablé Manju Komae is a modern regional confection developed as part of Komae''s local gift program. It deliberately combines two familiar Japanese and Western-style confectionery ideas to create a product identified with the city.', NULL, 'The name describes the hybrid concept: sablé texture outside and manju-style filling inside. It is best eaten at room temperature so the aroma of the buttery shell can open fully.', ARRAY['01 Wheat Flour
+ Flour forms the sablé-style outer shell.', '02 Butter
+ Butter creates the rich aroma and crumbly cookie texture.', '03 Sweet Filling
+ A smooth bean or confectionery filling supplies the soft center and sweetness.']::text[], 'sah-boo-reh mahn-joo koh-mah-eh', NULL, ARRAY['Sablé-Like Exterior
+ The shell has a fine, biscuit-like surface with a light golden color.', 'Soft Sweet Center
+ A smooth filling contrasts with the firmer cookie-style shell.', 'Gift-Sized Shape
+ Small individual pieces are easy to arrange for tea service or souvenir boxes.']::text[], 'Link'),
+('komae-jomon-madeleine', 'Komae Jomon Madeleine', 'こまえ縄文マドレーヌ', 'kanto', 'tokyo', 'A Komae souvenir madeleine inspired by the city''s Jomon archaeological heritage, combining a familiar French-style baked cake with a local historical motif. The result is a moist, buttery sweet designed as a cultural gift linking modern baking with the city''s prehistoric identity.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, dairy, egg', 200, 500, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Jomon Madeleine was developed as a Komae regional souvenir that connects modern confectionery with the city''s archaeological identity. The concept is contemporary and commemorative rather than an ancient Jomon food recreation.', NULL, 'The product should not be confused with an archaeological reconstruction of Jomon cuisine. Its purpose is to use a familiar Western-style cake to tell a local historical story.', ARRAY['01 Wheat Flour
+ Flour provides the basic cake structure.', '02 Egg
+ Egg gives the madeleine its tender, rich crumb.', '03 Butter and Sugar
+ Butter supplies aroma while sugar provides the characteristic sweetness and browning.']::text[], 'koh-mah-eh joh-mon mah-doh-reh-noo', NULL, ARRAY['Shell-Shaped Cake
+ The madeleine uses the familiar small ridged shell profile.', 'Golden Baked Surface
+ A lightly browned edge contrasts with the pale, soft interior.', 'Jomon-Inspired Design
+ Packaging or decoration connects the confection visually to Komae''s archaeological history.']::text[], 'Link'),
+('oden-croquette', 'Oden Croquette', 'おでんコロッケ', 'kanto', 'tokyo', 'A creative Shinagawa snack that folds familiar oden-style ingredients into a crisp croquette. The filling is soft and savory, echoing the broth-rich flavor of oden while the breadcrumb crust adds the crunch expected from a freshly fried korokke.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, egg, soy, fish', 150, 300, 'Published', ARRAY['Quick bite']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Oden croquette is a modern local-food idea associated with Shinagawa''s long history as a lodging and transport district. It adapts two familiar Japanese comfort foods into one portable snack rather than tracing to a single traditional inventor.', NULL, 'The most recognizable feature is the contrast between oden''s soft, broth-seasoned filling and the crisp croquette crust. It is a useful example of contemporary Tokyo fusion within everyday street food.', ARRAY['01 Potato or Croquette Base
+ Mashed potato or another starchy base binds the filling.', '02 Oden Ingredients
+ Daikon, fish cake, konnyaku, or similar cooked items carry the oden-inspired flavor.', '03 Panko Breadcrumbs
+ Japanese breadcrumbs create the crisp fried shell.']::text[], 'oh-den koh-rok-keh', NULL, ARRAY['Golden Croquette
+ A rounded fried exterior develops an even golden-brown color.', 'Soft Mixed Filling
+ The cut interior shows a moist mashed filling with bits of oden ingredients.', 'Sauce-Ready Surface
+ A crisp crust provides an ideal base for a small amount of Japanese brown sauce.']::text[], 'Link'),
+('edomae-anago', 'Edomae Anago', '江戸前穴子', 'kanto', 'tokyo', 'A Tokyo-style preparation of conger eel harvested from the bay and traditionally simmered, grilled, or served over rice. Edomae anago is prized for its tender flesh and clean marine sweetness, while careful simmering or glazing creates the soft, glossy texture associated with classic Tokyo sushi and tempura shops.', ARRAY['Summer']::text[], ARRAY['local specialty']::text[], 'Contains fish, soy, wheat', 1500, 4000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', TRUE, 'Edomae anago belongs to the broader Edo-period practice of using seafood caught in Tokyo Bay close to the capital. The tradition developed through Tokyo''s sushi, tempura, and eel shops rather than around one single named creator.', NULL, 'The term Edomae refers to seafood associated with the waters in front of old Edo. Anago is generally milder and less oily than unagi, which is why it works especially well with light simmering and sushi.', ARRAY['01 Conger Eel
+ Edomae anago supplies tender, mildly sweet white flesh.', '02 Soy-Based Tare
+ A sweet-savory sauce adds gloss and concentrated umami.', '03 Cooking Sake and Sugar
+ These seasonings soften the flavor and build the classic glazed finish.']::text[], 'eh-doh-mah-eh ah-nah-goh', NULL, ARRAY['Long Pale Fillets
+ Cooked conger eel is presented in long, neatly trimmed portions.', 'Glossy Brown Glaze
+ A sweet-savory tare gives grilled or simmered anago a polished surface.', 'Tender Flake
+ The cooked flesh separates easily into soft flakes while retaining its shape.']::text[], 'Link'),
+('harajuku-crepe', 'Harajuku Crepe', '原宿クレープ', 'kanto', 'tokyo', 'A thin, flexible French-style crepe transformed into a colorful Harajuku street sweet, commonly filled with whipped cream, fruit, ice cream, chocolate, or other toppings. Marion Crepes helped establish the wrapped, take-away format that became one of Harajuku''s most recognizable youth-culture foods.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains gluten, dairy, egg', 500, 1000, 'Published', ARRAY['Vegetarian', 'Quick bite']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Marion Crepes opened in Harajuku in 1976 and became an important part of the neighborhood''s crepe culture. The company developed its take-away presentation around Harajuku''s growing youth fashion and shopping scene.', NULL, 'The paper-wrapped cone is a key part of the experience because it turns a dessert into a portable street snack. Seasonal fruit and changing fashion trends have continually influenced the fillings sold in Harajuku.', ARRAY['01 Wheat-Flour Crepe
+ A thin batter forms the flexible pancake wrapper.', '02 Whipped Cream
+ Cream adds richness and a light texture to sweet versions.', '03 Fresh Fruit and Dessert Toppings
+ Fruit, chocolate, custard, ice cream, or other toppings create the layered flavor and visual appeal.']::text[], 'hah-rah-joo-koo koo-reh-poo', NULL, ARRAY['Tall Wrapped Crepe
+ The crepe is folded into a cone-like paper wrapper for walking and eating.', 'Layered Fillings
+ Cream, fruit, sauces, and other toppings create a colorful vertical cross-section.', 'Freshly Rolled Finish
+ The thin pancake remains flexible enough to wrap around a generous filling.']::text[], 'Link'),
+('omoide-yokocho-yakitori', 'Omoide Yokocho Yakitori', '焼き鳥（思い出横丁）', 'kanto', 'tokyo', 'A quintessential grilled-chicken street food associated with Shinjuku''s compact Omoide Yokocho lanes, where small yakitori counters cook skewers over intense charcoal heat. The atmosphere is as important as the food, with smoke, red lanterns, and tiny seats reinforcing the district''s nostalgic postwar izakaya character.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains meat (chicken), soy (if tare glaze used)', 150, 500, 'Published', ARRAY['Quick bite', 'Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Omoide Yokocho developed in the postwar period as a compact drinking and food district near Shinjuku Station. Yakitori became a defining part of the lane''s everyday dining culture, with many small shops specializing in grilled skewers.', NULL, 'The lanes are famous for very small restaurants, many seating only a handful of customers. Ordering a few skewers with a cold drink is the classic way to experience the district''s food culture.', ARRAY['01 Chicken Cuts
+ Thigh, skin, liver, heart, and other cuts provide different textures and levels of richness.', '02 Bamboo Skewers
+ Skewers hold the pieces together for quick, high-heat grilling.', '03 Salt or Tare
+ Seasoning highlights the char while adding either clean savoriness or sweet-salty depth.']::text[], 'yah-kee-toh-ree', NULL, ARRAY['Charcoal-Grilled Skewers
+ Individual chicken cuts are threaded on bamboo skewers and browned over live heat.', 'Glossy Tare or Salt Finish
+ Skewers are seasoned either with a savory glaze or a clean dusting of salt.', 'Smoke and Lantern Setting
+ Visible grill smoke and compact counter seating are inseparable from the area''s visual identity.']::text[], 'Link'),
+('ogikubo-ramen', 'Ogikubo Ramen', '荻窪ラーメン', 'kanto', 'tokyo', 'A Tokyo ramen style from Ogikubo known for a dark, aromatic soy-based broth and straightforward noodle-and-topping presentation. The style grew around neighborhood Chinese restaurants and ramen shops, developing a reputation for a clean yet deeply savory soup rather than the heavier richness of later regional ramen forms.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains gluten, pork, fish, soy', 800, 1500, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Ogikubo ramen emerged in the early twentieth-century neighborhood restaurant culture of western Tokyo and became especially established after the war. It is associated with small local ramen shops and a soy-forward Tokyo style rather than a single inventor.', NULL, 'The style is often described as lighter and more soy-focused than creamy regional ramen. The flavor is especially apparent when the broth is served hot and the noodles are eaten immediately.', ARRAY['01 Wheat Ramen Noodles
+ Wheat noodles provide the chewy base.', '02 Soy-Based Broth
+ Chicken, fish, or other stock is seasoned with soy sauce for the signature savory depth.', '03 Pork and Aromatic Toppings
+ Chashu, menma, scallions, and nori provide texture and fragrance.']::text[], 'oh-gee-koo-boh rah-men', NULL, ARRAY['Dark Soy Broth
+ The soup has a clear to lightly oily brown appearance from soy seasoning.', 'Straight Wheat Noodles
+ Medium-width noodles sit clearly beneath the broth and toppings.', 'Simple Classic Garnishes
+ Chashu, menma, scallions, and nori create a restrained traditional bowl.']::text[], 'Link'),
+('chanko-nabe', 'Chanko Nabe', 'ちゃんこ鍋', 'kanto', 'tokyo', 'A substantial hot pot associated with sumo wrestlers and the Ryogoku district, combining meat, seafood, tofu, and vegetables in a shared simmering broth. Rather than one fixed recipe, chanko is a flexible protein-rich meal whose exact ingredients and seasoning vary by stable and restaurant.', ARRAY['Winter']::text[], ARRAY['local specialty']::text[], 'Contains meat, fish (broth), soy, wheat', 2000, 6000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', TRUE, 'Chanko developed as the communal cooking of sumo stables, where wrestlers needed hearty, balanced meals in large quantities. As professional sumo became closely associated with Ryogoku, chanko restaurants brought the style to a wider public.', NULL, 'There is no single official chanko recipe: salt, soy, miso, and other broths are all used. Many restaurants finish the meal with rice or noodles after the main ingredients are eaten.', ARRAY['01 Chicken or Seafood
+ Protein-rich meat and fish form the foundation of the hot pot.', '02 Seasonal Vegetables
+ Cabbage, negi, mushrooms, carrots, and other vegetables add sweetness and texture.', '03 Dashi-Based Broth
+ Dashi with salt, soy sauce, or miso creates the flavorful cooking medium.']::text[], 'chahn-koh nah-beh', NULL, ARRAY['Large Communal Pot
+ A broad pot sits at the center of the table for shared cooking and serving.', 'Colorful Ingredient Mix
+ Chicken, seafood, tofu, mushrooms, and vegetables create a dense mosaic of shapes.', 'Steaming Broth
+ The simmering surface visibly releases steam and keeps the meal warm throughout service.']::text[], 'Link'),
+('chomeiji-sakura-mochi', 'Chomeiji Sakura Mochi', '長命寺桜もち', 'kanto', 'tokyo', 'A delicate Tokyo-style sakura mochi consisting of sweet bean paste wrapped in a thin pink crepe-like rice layer and enclosed in a fragrant salted cherry leaf. Chomeiji''s version is especially famous for its thin wrapping, subtle saltiness, and long association with Mukojima''s cherry-blossom season.', ARRAY['Spring']::text[], ARRAY['local specialty']::text[], 'Vegan, Contains wheat', 200, 500, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite', 'Dine-in']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Chomeiji Sakura Mochi is associated with Yamamoto Shinroku, who is traditionally credited with creating it at the Chomeiji temple area in the early Edo period. The confection was developed as a sweet accompaniment to the area''s famous cherry blossoms.', NULL, 'The salted leaf is edible and is traditionally eaten with the confection, although some diners prefer to remove it. Its gentle saltiness keeps the sweet bean filling from becoming overly rich.', ARRAY['01 Sweet Bean Paste
+ Smooth anko provides the main sweetness and creamy center.', '02 Thin Rice Flour Wrapper
+ The pale pink wrapper forms a delicate, crepe-like shell around the bean paste.', '03 Salted Sakura Leaf
+ Pickled cherry leaves contribute aroma and a gentle salty accent.']::text[], 'choh-may-jee sah-koo-rah moh-chee', NULL, ARRAY['Soft Pink Wrapper
+ The thin outer layer has a pale pink color and smooth folded surface.', 'Salted Cherry Leaf
+ A whole pickled sakura leaf wraps the confection and adds a green aromatic accent.', 'Single Bean-Filled Center
+ The cut cross-section shows a neat layer of red bean paste inside the thin wrapper.']::text[], 'Link'),
+('daikan-mochi', 'Daikan Mochi', '代官餅', 'kanto', 'tokyo', 'A local mochi specialty associated with Setagaya''s Daikan tradition, made from soft pounded rice and typically finished with sweet or savory toppings. Its appeal lies in the fresh, stretchy texture of freshly made mochi and the contrast between the neutral rice base and rich toppings.', ARRAY['Only available Dec 15-16 and Jan 15-16']::text[], ARRAY['local specialty']::text[], 'Dairy-free. Contains soy. Anko and Kinako flavors are naturally gluten-free.', 700, 800, 'Published', ARRAY['Vegetarian', 'Quick bite']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Daikan Mochi is a neighborhood confection associated with Setagaya''s local food culture rather than a universally standardized historical recipe. The name and style reflect the area''s traditional sweet-making and festival food customs.', NULL, 'Fresh mochi becomes firmer as it cools, so the best texture is usually achieved soon after pounding and shaping. Kinako-coated pieces are especially aromatic while still warm.', ARRAY['01 Glutinous Rice
+ Pounded sticky rice provides the soft, stretchy mochi base.', '02 Kinako or Red Bean
+ Toppings supply roasted soybean aroma or sweet bean richness depending on the version.', '03 Sugar
+ Sugar balances the topping and adds the characteristic sweetness of the confection.']::text[], 'dye-kahn mo-chee', NULL, ARRAY['Fresh White Mochi
+ Soft pounded rice forms a smooth, elastic white mass.', 'Generous Topping
+ Kinako, red bean, or another sauce coats the surface and adds strong visual contrast.', 'Hand-Portioned Pieces
+ Mochi is commonly divided into compact pieces for easy serving and sharing.']::text[], 'Link'),
+('okura-daikon', 'Okura Daikon', '大蔵大根', 'kanto', 'tokyo', 'A heritage Japanese daikon associated with Setagaya''s Okura district, known for its unusually thick, long root and firm white flesh. The variety is valued for strong texture and clear flavor and can be used in simmered dishes, pickles, soups, and fresh preparations.', ARRAY['Winter (November to February)']::text[], ARRAY['local specialty']::text[], 'Vegan and Gluten-free (as a base ingredient).', 300, 1200, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Okura Daikon is a traditional Setagaya vegetable associated with the old agricultural landscape around Okura. Modern local programs preserve the variety as a heritage crop despite the convenience of shorter commercial daikon.', NULL, 'Its long roots are well suited to traditional simmered dishes because the flesh keeps a pleasant structure while absorbing broth. The variety is also striking when displayed whole because of its size.', ARRAY['01 Okura Daikon
+ The heritage root provides crisp texture and a clean radish aroma.', '02 Dashi
+ Japanese stock carries the daikon''s flavor in simmered preparations.', '03 Soy Sauce or Miso
+ Savory seasoning adds depth while allowing the root''s natural sweetness to remain clear.']::text[], 'oh-koo-rah dye-kohn', NULL, ARRAY['Long White Root
+ The traditional daikon develops a notably long, substantial cylindrical shape.', 'Dense White Flesh
+ The cut surface is crisp, juicy, and tightly grained.', 'Green-Crowned Top
+ Fresh roots retain green leaves or a leafy crown when sold directly from farms.']::text[], 'Link'),
+('ningyoyaki', 'Ningyoyaki', '人形焼', 'kanto', 'tokyo', 'A small Tokyo confection of sweet batter baked in decorative molds and traditionally filled with sweet red bean paste. Asakusa''s ningyoyaki are especially recognizable for their compact shapes and crisp-golden exterior, making them a classic street snack and souvenir around Sensoji.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, egg, dairy', 100, 1000, 'Published', ARRAY['Vegetarian', 'Quick bite']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Ningyoyaki developed in Tokyo as a molded confection during the Meiji-era growth of neighborhood sweets, with Asakusa becoming a famous center for the style. The shapes often reflect the area''s local imagery and festive character.', NULL, 'Fresh ningyoyaki are soft and fragrant, while cooled pieces become slightly firmer. The red bean filling is traditionally balanced so it does not overwhelm the delicate cake.', ARRAY['01 Wheat-Flour Batter
+ A lightly sweetened wheat batter forms the browned shell.', '02 Eggs
+ Eggs enrich the cake and help create its tender texture.', '03 Sweet Red Bean Paste
+ Anko supplies the traditional filling and deep sweetness.']::text[], 'neen-gyoh-yah-kee', NULL, ARRAY['Molded Character Shapes
+ Small cakes are baked into figures, lanterns, or other local motifs.', 'Golden Cake Exterior
+ The thin shell browns lightly while remaining soft inside.', 'Sweet Bean Center
+ A dark red bean filling creates a clean cross-section when the cake is opened.']::text[], 'Link'),
+('dojo-nabe', 'Dojo Nabe', 'どぜう鍋', 'kanto', 'tokyo', 'A traditional Tokyo hot pot of dojo loach cooked until tender in a rich soy-based broth, often served with a large quantity of sliced negi. Asakusa is especially associated with dojo cuisine, where the dish reflects Edo''s old preference for hearty, affordable river-fish cooking.', ARRAY['Summer']::text[], ARRAY['local specialty']::text[], 'Contains fish, soy, wheat', 2000, 5000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', TRUE, 'Dojo hot pot is an Edo-period dish that became closely associated with the Asakusa area. Specialized shops such as Komagata Dojo are part of a long restaurant tradition built around this small freshwater fish and its slow cooking methods.', NULL, 'The name refers specifically to dojo loach, not eel. Large amounts of negi are traditionally added during the meal so the onion gradually wilts into the broth.', ARRAY['01 Dojo Loach
+ Small loaches provide the central fish flavor and soft texture.', '02 Negi
+ Large amounts of sliced green onion add sweetness and aroma.', '03 Soy-Based Broth
+ Dashi, soy sauce, mirin, and other seasonings create the dark savory cooking liquid.']::text[], 'doh-joh nah-beh', NULL, ARRAY['Whole Small Loach
+ Prepared dojo are arranged closely in the shallow hot pot for communal cooking.', 'Mountain of Green Onion
+ Generous slices of negi cover the fish and soften as they cook.', 'Dark Savory Broth
+ Soy-rich broth surrounds the loach and develops a glossy brown surface.']::text[], 'Link'),
+('kaminari-okoshi', 'Kaminari Okoshi', '雷おこし', 'kanto', 'tokyo', 'A crisp rice-and-sugar confection strongly associated with Asakusa''s Kaminarimon area, where the name evokes thunder and the dramatic sound of lightning. Puffed grains are bound with a sweet syrup and molded into crunchy pieces that are easy to carry as a classic temple-town souvenir.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, contains peanuts', 300, 1000, 'Published', ARRAY['Vegetarian', 'Quick bite']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Kaminari Okoshi became established as a souvenir around Sensoji and Kaminarimon, where sweet makers sold the crunchy confection to temple visitors. Its name and popularity are closely tied to Asakusa''s long history as a pilgrimage and entertainment district.', NULL, 'The name combines thunder imagery with the Japanese word okoshi, creating a memorable local souvenir name. The crunchy texture also makes the sweet particularly durable for travel.', ARRAY['01 Puffed Rice or Grains
+ Puffed grain provides the light, crisp structure.', '02 Sugar Syrup
+ Cooked sugar binds the grains into cohesive clusters.', '03 Flavoring Ingredients
+ Peanuts, sesame, or other additions may provide roasted aroma and extra crunch depending on the product.']::text[], 'kah-mee-nah-ree oh-koh-she', NULL, ARRAY['Irregular Crunchy Pieces
+ Small blocks or clusters show the textured grains locked together.', 'Pale Caramel Sheen
+ Sweet syrup gives the pieces a light glossy finish.', 'Gift-Shop Stacks
+ Okoshi are traditionally arranged in compact boxes suited to temple-town souvenirs.']::text[], 'Link'),
+('edo-style-tendon', 'Edo-style Tendon', '江戸前天丼', 'kanto', 'tokyo', 'A classic Tokyo tempura rice bowl topped with crisp seafood and vegetables fried in a light batter, then seasoned with a sweet-savory tare. Edomae versions emphasize seafood historically associated with Tokyo Bay and the distinctive contrast between hot tempura, steamed rice, and dark sauce.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains gluten, soy, fish, crustacean (shrimp)', 1500, 4000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Tendon developed in Tokyo''s Edo-period food culture as tempura vendors and restaurants paired fried seafood with rice. The Edomae designation connects the dish to seafood historically caught close to the old city in Tokyo Bay.', NULL, 'The deepest flavor often comes from the sauce that seeps into the rice beneath the tempura. Eating the crisp pieces first and then mixing a little tare into the rice gives two different textures in one bowl.', ARRAY['01 Shrimp and Seafood
+ Edomae-style toppings commonly feature seafood suited to tempura.', '02 Tempura Batter
+ Flour, egg, and cold water create the light, crisp coating.', '03 Sweet Soy Tare
+ A reduced soy-based sauce balances sweetness, saltiness, and umami over the rice.']::text[], 'eh-doh-mah-eh ten-don', NULL, ARRAY['Towered Tempura
+ Shrimp, eel, squid, or vegetables rise above the rice in a generous arrangement.', 'Dark Tare Gloss
+ A concentrated sauce gives the tempura a polished brown sheen.', 'Steamed Rice Base
+ White rice fills the bowl and catches the flavorful drips of sauce.']::text[], 'Link'),
+('udora-yaki-udo-manju', 'Udora-yaki & Udo Manju', 'ウドラ焼き・うどまんじゅう', 'kanto', 'tokyo', 'A pair of local Tachikawa sweets that turn the city''s mascot Udora and its agricultural identity into edible souvenirs. The baked and steamed formats use familiar Japanese confectionery techniques while giving the products a distinctly local shape and theme.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, egg, soy', 280, 400, 'Published', ARRAY['Vegetarian', 'Quick bite']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Udora-yaki and Udo Manju were developed as contemporary Tachikawa regional sweets around the city''s mascot and local image. They are souvenir products rather than old traditional dishes, using familiar wagashi formats to express a modern civic identity.', NULL, 'The name Udora combines the city mascot with familiar confectionery names. The products show how local makers adapt classic Japanese sweets for modern city branding.', ARRAY['01 Wheat-Flour Cake or Wrapper
+ Flour forms the baked dora-yaki shell or steamed manju exterior.', '02 Sweet Filling
+ Red bean or another confectionery filling supplies the main sweetness.', '03 Sugar
+ Sugar enriches the batter or dough and balances the filling.']::text[], 'oo-doh-rah-yah-kee / oo-doh-mahn-joo', NULL, ARRAY['Mascot-Inspired Shape
+ The sweets use forms or markings that reference Tachikawa''s recognizable mascot character.', 'Soft Cake Exterior
+ Dora-yaki style cake is tender and lightly browned around the edges.', 'Steamed Manju Texture
+ The manju version has a soft, pale wrapper surrounding a sweet filling.']::text[], 'Link'),
+('tachikawa-yakiton', 'Tachikawa Yakiton', '立川やきとん', 'kanto', 'tokyo', 'A Tachikawa-style grilled pork-offal skewer dish served over charcoal and paired with a neighborhood drinking culture. The skewers are typically cooked quickly at high heat, producing smoky browned edges and tender or pleasantly chewy textures across different cuts.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains pork, soy', 150, 600, 'Published', ARRAY['Quick bite', 'Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Yakiton became widespread in Tokyo''s postwar drinking districts as an affordable counterpart to chicken yakitori. Tachikawa developed its own local shops and style through this broader urban street-and-izakaya food tradition.', NULL, 'The word yakiton specifically refers to pork rather than chicken. Ordering several different cuts is the best way to experience how dramatically texture changes from one skewer to another.', ARRAY['01 Pork Offal
+ Liver, intestine, heart, cheek, and other cuts form the core of yakiton.', '02 Charcoal
+ High heat creates the smoky, browned surface characteristic of grilled skewers.', '03 Salt or Tare
+ Seasoning adds either clean savoriness or a deeper sweet-salty glaze.']::text[], 'tah-chee-kah-wah yah-kee-ton', NULL, ARRAY['Charcoal-Marked Skewers
+ The meat carries dark grill marks and crisped edges.', 'Varied Offal Cuts
+ Different skewers show contrasting shapes from liver, intestine, cheek, and other cuts.', 'Salt or Tare Finish
+ Skewers may be seasoned simply with salt or glazed in a dark sauce.']::text[], 'Link'),
+('tachikawa-pudding', 'Tachikawa Pudding', '立川ぷりん', 'kanto', 'tokyo', 'A smooth custard pudding developed as a Tachikawa local sweet, emphasizing a rich eggy body and soft, creamy texture. The dessert is designed as an accessible souvenir or café treat, using the familiar Japanese pudding format while building a distinct local identity.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains egg, dairy', 680, 700, 'Published', ARRAY['Vegetarian', 'Quick bite']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Tachikawa Pudding is a contemporary local confection rather than a centuries-old dish. Its regional identity comes from modern local makers who adapt the familiar Japanese custard-pudding format into a city souvenir.', NULL, 'Japanese pudding is usually softer and smoother than traditional Western baked custards. Eating it chilled makes the caramel and creamy egg texture particularly distinct.', ARRAY['01 Eggs
+ Eggs create the custard structure and rich flavor.', '02 Milk and Cream
+ Dairy ingredients provide a smooth, creamy mouthfeel.', '03 Sugar and Caramel
+ Sugar sweetens the custard while cooked caramel contributes a pleasant bitter edge.']::text[], 'tah-chee-kah-wah poo-reen', NULL, ARRAY['Glossy Custard Surface
+ A smooth top reflects light without visible bubbles.', 'Soft Spoon-Cut Center
+ The pudding trembles gently and keeps a clean spoon mark.', 'Amber Caramel Layer
+ A thin caramel layer provides color and a lightly bitter counterpoint to the custard.']::text[], 'Link'),
+('sakura-polvoron', 'Sakura Polvoron', '桜ぽるぼろん', 'kanto', 'tokyo', 'A delicate baked sweet from Tama inspired by traditional Spanish polvoron and finished with salted cherry blossoms grown in Tama. Its dry, crumbly texture carries a distinctive sweet-salty balance, turning local cherry flavor into a modern tea-time souvenir.', ARRAY['Spring']::text[], ARRAY['local specialty']::text[], 'Contains wheat, dairy, egg', 500, 1000, 'Published', ARRAY['Vegetarian', 'Quick bite']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Sakura Polvoron was developed through the Tama City hand-gift project, a collaboration between local industry, government, and education. The product took inspiration from traditional Spanish polvoron and incorporated salted cherry blossoms produced in Tama.', NULL, 'Polvoron is deliberately crumbly and is meant to dissolve rather than chew like a cookie. The salt from the cherry blossom keeps the sweet dough from tasting flat.', ARRAY['01 Wheat Flour
+ Flour forms the delicate crumbly structure.', '02 Salted Cherry Blossoms
+ Local salted blossoms add floral aroma and a subtle salty accent.', '03 Sugar and Fat
+ Sugar provides sweetness while butter or another baking fat creates the characteristic melt-in-the-mouth texture.']::text[], 'sah-koo-rah poh-roo-boh-ron', NULL, ARRAY['Powdery Pale Crumb
+ The polvoron has a delicate, dry texture that breaks easily.', 'Cherry Blossom Accent
+ Small pieces of salted cherry add a subtle pink or brown floral detail.', 'Hand-Portioned Shape
+ Compact pieces are formed to crumble softly rather than slice cleanly.']::text[], 'Link'),
+('tama-no-sanpomichi', 'Tama no Sanpomichi', '多摩の散歩道', 'kanto', 'tokyo', 'A baked karinto snack from Tama made from local wheat noodles and Tama miso, then finished with a sweet-savory coating rather than deep-frying. It comes in a sweet miso flavor and a chili-miso version, providing a crisp tea snack with clear local ingredients.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, soy', 300, 800, 'Published', ARRAY['Vegetarian', 'Quick bite']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Tama no Sanpomichi was developed as a baked karinto using noodles from the city''s Ponpoko Udon and Tama-grown miso. The product reflects a modern effort to create a shelf-stable souvenir from existing local agricultural products.', NULL, 'Unlike ordinary karinto, this product is baked rather than fried. The chili-miso version uses locally grown chili and sesame oil to add heat and extra savoriness.', ARRAY['01 Local Wheat Noodle
+ Tama-produced wheat noodles form the crisp base.', '02 Tama Miso
+ Local miso supplies the fermented savory depth.', '03 Sugar and Chili
+ Sugar creates the sweet glaze, while chili provides heat in the spicy version.']::text[], 'tah-mah no sahn-poh-mee-chee', NULL, ARRAY['Twisted Noodle Sticks
+ The snack retains the visual character of thin noodle pieces after baking.', 'Glossy Miso Coating
+ A smooth brown coating clings to each piece.', 'Chili Miso Variation
+ The spicy version shows a deeper red-brown seasoning and a stronger visual contrast.']::text[], 'Link'),
+('ponpoko-udon', 'Ponpoko Udon', 'ぽんぽこうどん', 'kanto', 'tokyo', 'A local Tama noodle specialty made from regional wheat flour and served as a hearty Japanese udon. The noodles have a firm, satisfying bite and are used in both hot broth dishes and as a base for local products such as Tama no Sanpomichi baked karinto.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, soy, fish (in broth)', 500, 1200, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Ponpoko Udon belongs to Tama City''s local food development around locally grown wheat and the region''s agricultural identity. The same noodles were later used as an ingredient in the city''s baked karinto product, creating a linked local-food story.', NULL, 'Using local wheat changes the noodle''s texture and aroma compared with highly refined commercial flour. Serving the noodles freshly cooked best preserves their firm bite.', ARRAY['01 Tama Wheat Flour
+ Local wheat provides the main starch base and grain aroma.', '02 Water
+ Water hydrates the flour and develops the dough''s final texture.', '03 Salt
+ Salt strengthens the dough and helps create the firm udon bite.']::text[], 'pon-poh-koh oo-don', NULL, ARRAY['Broad White Noodles
+ Fresh noodles show a clean white surface and substantial thickness.', 'Firm Cut Ends
+ The noodle edges remain distinct rather than collapsing during cooking.', 'Broth or Dipping Serve
+ A bowl or dipping dish frames the noodles as the main visual focus.']::text[], 'Link'),
+('tsukishima-monjayaki', 'Tsukishima Monjayaki', '月島もんじゃ焼き', 'kanto', 'tokyo', 'Tokyo''s most famous monjayaki district centers on a thin, dashi-rich batter cooked with cabbage and toppings directly on a tabletop griddle. Tsukishima''s version is distinguished less by one fixed recipe than by its communal cooking style, tiny metal spatulas, and deep roster of neighborhood shops.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, soy, seafood, meat (varies)', 1000, 2500, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Monjayaki was already part of Tokyo''s working-class food culture before Tsukishima became its best-known modern center. From the postwar period onward, the neighborhood''s many small shops turned monja into a destination food and a defining part of local identity.', NULL, 'The tiny spatula is not just a serving utensil: diners use it to scrape up the crispest browned pieces directly from the hot plate. Different shops also develop their own signature combinations of toppings.', ARRAY['01 Dashi Batter
+ Flour mixed with dashi provides the characteristic loose base.', '02 Cabbage
+ Finely chopped cabbage adds sweetness and soft texture.', '03 Seafood, Meat, and Toppings
+ Shrimp, squid, pork, cheese, mochi, and other toppings create each shop''s signature version.']::text[], 'tsoo-kee-she-mah mon-jah-yah-kee', NULL, ARRAY['Tabletop Iron Plate
+ The hot griddle remains visible throughout cooking and serving.', 'Crisp Browned Bits
+ Small caramelized patches form where the thin batter contacts the plate.', 'Small Metal Spatula
+ Diners use a compact spatula to cook and eat the finished monja.']::text[], 'Link'),
+('tsukiji-tamagoyaki', 'Tsukiji Tamagoyaki', '築地の玉子焼き', 'kanto', 'tokyo', 'A thick, softly layered Japanese omelet associated with the Tsukiji fish market, where tamagoyaki became a familiar accompaniment to sushi and seafood meals. The flavor can range from gently sweet to savory, but the hallmark is a smooth, moist texture built from repeatedly folded egg.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains egg, fish (dashi), soy', 100, 300, 'Published', ARRAY['Quick bite']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Tamagoyaki vendors became part of Tsukiji''s food-market ecosystem, supplying sushi shops, restaurants, and shoppers. The style reflects the market''s role as a center for seafood and prepared-food trade rather than a single documented invention.', NULL, 'A well-made tamagoyaki is softer than an ordinary omelet because the egg is cooked in many thin layers. The exact seasoning is a shop signature, so sweetness varies noticeably between vendors.', ARRAY['01 Eggs
+ Fresh eggs create the layered structure and rich flavor.', '02 Dashi
+ Japanese stock adds savory depth and moisture.', '03 Sugar and Soy Sauce
+ Sugar and soy balance sweetness, salt, and umami according to the shop''s recipe.']::text[], 'tsoo-kee-jee no tah-mah-goh-yah-kee', NULL, ARRAY['Layered Golden Slab
+ Thin egg layers stack into a neat rectangular block.', 'Moist Glossy Surface
+ Fresh tamagoyaki has a soft sheen rather than a dry browned crust.', 'Even Sliced Portions
+ The omelet is commonly cut into clean bite-sized pieces for display and serving.']::text[], 'Link'),
+('ginza-omurice', 'Ginza Omurice', '銀座のオムライス', 'kanto', 'tokyo', 'A refined Western-style rice omelet associated with Ginza''s long restaurant tradition, pairing seasoned chicken rice with a softly cooked egg layer and sauce. Unlike heavily decorated modern versions, classic Ginza examples emphasize clean technique, balanced seasoning, and polished presentation.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains egg, poultry, wheat, soy', 1500, 3000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Omurice emerged in Japan in the early twentieth century as a Western-influenced restaurant dish. Ginza''s department stores, cafés, and yoshoku restaurants helped develop refined versions, but the dish is not tied to one universally accepted Ginza inventor.', NULL, 'The goal of a classic soft omurice is a barely set egg center that breaks open over the rice. Timing is crucial because the egg continues cooking from residual heat after leaving the pan.', ARRAY['01 Eggs
+ Eggs create the soft outer layer and rich mouthfeel.', '02 Seasoned Rice
+ Rice cooked with chicken, onion, and sauce provides the savory filling.', '03 Tomato or Demi-Glace Sauce
+ Sauce adds acidity, umami, and color to the finished omelet.']::text[], 'geen-zah no oh-moo-rye-soo', NULL, ARRAY['Smooth Egg Dome
+ Softly cooked egg forms a rounded golden cover over the rice.', 'Seasoned Rice Core
+ The cut surface reveals chicken or other seasoned rice inside.', 'Glossy Sauce Finish
+ Tomato, demi-glace, or another sauce provides the dark color contrast.']::text[], 'Link'),
+('jindaiji-soba', 'Jindaiji Soba', '深大寺そば', 'kanto', 'tokyo', 'A historic soba tradition centered on Jindaiji Temple in Chofu, where buckwheat was cultivated and ground for temple hospitality. The noodles are appreciated for their clean buckwheat aroma and firm texture and are commonly served with a simple dipping sauce around the temple''s many long-established soba shops.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, Contains buckwheat, soy', 800, 1500, 'Published', ARRAY['Vegetarian', 'Dine-in']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Jindaiji Soba is traditionally traced to the Edo period, when farmers in the fertile upland north of the temple grew buckwheat and supplied flour to Jindaiji. The temple prepared the noodles for visitors, and the style became famous after a high-ranking imperial prince praised the soba in the Genroku era.', NULL, 'The Chofu tourism association notes that around twenty soba shops now cluster near Jindaiji. Soba flour is also used locally in related sweets and other specialty dishes.', ARRAY['01 Buckwheat Flour
+ Buckwheat gives the noodles their characteristic aroma and firm bite.', '02 Wheat Flour
+ A small proportion helps bind the noodles during kneading.', '03 Dipping Tsuyu
+ Dashi, soy sauce, and mirin create the savory sauce used with chilled noodles.']::text[], 'jeen-dye-jee soh-bah', NULL, ARRAY['Fine Buckwheat Noodles
+ Hand-cut noodles show a matte brown-gray color and firm edges.', 'Clear Dipping Sauce
+ A small cup of dark tsuyu accompanies chilled noodles.', 'Bamboo Tray Presentation
+ Cold soba is often arranged in neat portions on a woven or wooden seiro.']::text[], 'Link'),
+('seiro-soba', 'Seiro Soba', 'せいろそば', 'kanto', 'tokyo', 'A classic presentation of chilled Japanese soba served on a slatted bamboo tray with a concentrated dipping sauce on the side. The format emphasizes the fragrance, firm bite, and clean finish of properly cooked buckwheat noodles rather than surrounding them with heavy toppings.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, contains buckwheat, soy', 700, 1500, 'Published', ARRAY['Vegetarian', 'Dine-in']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Seiro soba is a long-established presentation style within Japanese soba cuisine rather than a dish invented in modern Tokyo. Serving noodles on a bamboo tray became especially associated with refined soba shops and the custom of eating noodles with concentrated tsuyu.', NULL, 'The dipping sauce is intentionally stronger than a soup broth because only the end of the noodle is dipped. This keeps more of the buckwheat aroma on the first bite.', ARRAY['01 Buckwheat Noodles
+ Buckwheat provides the main aroma and earthy flavor.', '02 Wheat Flour
+ Wheat helps bind the noodle dough and improves elasticity.', '03 Concentrated Tsuyu
+ Dashi, soy sauce, and mirin provide the dipping sauce''s intense savory character.']::text[], 'say-roh soh-bah', NULL, ARRAY['Bamboo Seiro Tray
+ The noodles are spread lightly across a slatted tray so steam can escape.', 'Cool Brown Noodles
+ Fresh soba has a pale to deep buckwheat-brown tone.', 'Small Tsuyu Cup
+ A concentrated dark dipping sauce is served separately for controlled seasoning.']::text[], 'Link'),
+('mori-soba', 'Mori Soba', 'もりそば', 'kanto', 'tokyo', 'A simple serving of chilled soba noodles arranged on a tray and eaten with a separate dipping sauce. Mori soba highlights the noodles themselves, with no broth surrounding them, making it one of the clearest ways to judge buckwheat aroma, texture, and cooking quality.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, contains buckwheat, soy', 600, 1200, 'Published', ARRAY['Vegetarian', 'Dine-in']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Mori soba developed as a classic way of serving chilled buckwheat noodles in Japanese soba culture. The format is older than modern Tokyo and became standard in soba shops because it keeps the noodles at the center of the meal.', NULL, 'The name distinguishes noodles served on a tray from soba served in hot broth. A small amount of noodle is dipped rather than completely submerged to preserve aroma and prevent over-seasoning.', ARRAY['01 Buckwheat Flour
+ Buckwheat supplies the characteristic earthy fragrance.', '02 Wheat Flour
+ Wheat strengthens the dough and helps the noodles hold together.', '03 Tsuyu
+ A concentrated dashi-soy dipping sauce provides the main seasoning.']::text[], 'moh-ree soh-bah', NULL, ARRAY['Neat Noodle Mound
+ Chilled noodles form a compact pile on a bamboo or wooden tray.', 'Matte Buckwheat Color
+ The noodles range from pale gray to deeper brown depending on the flour blend.', 'Separate Dipping Sauce
+ A small dark bowl of concentrated tsuyu sits beside the noodles.']::text[], 'Link'),
+('shio-daifuku', 'Shio Daifuku', '塩大福', 'kanto', 'tokyo', 'A soft daifuku rice cake filled with sweet red bean paste and balanced by a noticeable touch of salt. The contrast between chewy mochi, creamy anko, and restrained salinity gives this Tokyo favorite a clean finish and keeps the filling from tasting overly sweet.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 150, 400, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite', 'Dine-in']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Shio daifuku belongs to the modern family of Japanese daifuku sweets and became especially popular in Tokyo confectionery shops during the twentieth century. The defining idea is the deliberate use of salt to sharpen the bean filling.', NULL, 'A small amount of salt can make a sweet filling taste fuller and more aromatic. This is why shio daifuku often tastes less sugary than its appearance suggests.', ARRAY['01 Glutinous Rice
+ Sticky rice flour creates the soft, elastic mochi wrapper.', '02 Sweet Red Bean Paste
+ Anko provides the creamy, sweet center.', '03 Salt
+ A small amount balances the sugar and intensifies the bean flavor.']::text[], 'shee-oh dye-foo-koo', NULL, ARRAY['White Powdered Mochi
+ The outer rice cake has a smooth white surface lightly dusted with starch.', 'Dark Bean Center
+ A cut piece reveals a generous red bean filling.', 'Compact Round Form
+ Individual daifuku are shaped into soft, rounded portions for easy serving.']::text[], 'Link'),
+('otafuku-mame', 'Otafuku Mame', 'お多福豆', 'kanto', 'tokyo', 'Large fava beans slowly cooked in a sweet syrup to create a glossy, deeply seasoned Japanese confection, often associated with traditional sweets shops. The beans become tender while retaining their shape, producing a substantial bite and a gentle contrast between bean flavor and concentrated sweetness.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, contains soy', 500, 1200, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Otafuku bean sweets belong to the long Japanese tradition of simmering large beans in sugar syrup for preservation and confectionery use. Tokyo shops adapted the style as a tea sweet and gift item rather than treating it as a single regional recipe.', NULL, 'The word otafuku is a traditional expression associated with a cheerful, fortunate woman, giving the sweet a positive name. The beans are often served in small portions because the syrup is concentrated.', ARRAY['01 Fava Beans
+ Large beans provide the substantial, creamy center.', '02 Sugar
+ Sugar creates the glossy syrup and preserves the beans.', '03 Soy Sauce
+ A small amount can deepen the syrup and provide savory balance in some traditional recipes.']::text[], 'oh-tah-foo-koo mah-meh', NULL, ARRAY['Large Glossy Beans
+ Individual beans remain visibly whole after slow simmering.', 'Deep Brown Syrup
+ A dark, shiny coating shows the prolonged sweet-simmering process.', 'Firm-Tender Center
+ The bean breaks softly while still retaining a substantial interior.']::text[], 'Link'),
+('tsubaki-oil', 'Tsubaki Oil', '椿油', 'kanto', 'tokyo', 'A clear, fragrant plant oil pressed from camellia seeds, with Toshima Island being a historic Tokyo source. Tsubaki oil has a mild flavor and excellent stability and is used both as a culinary oil and in traditional hair and skin care, reflecting the island''s close relationship with camellia trees.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 1000, 3000, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Camellia has long been cultivated on Toshima, and pressing its seeds into oil became an important island industry. Traditional production was closely tied to household use and local commerce and remains a characteristic Toshima product today.', NULL, 'Camellia oil is rich in oleic acid, which helps explain its stability and smooth mouthfeel. Its mild flavor makes it usable for cooking without dominating delicate ingredients.', ARRAY['01 Camellia Seeds
+ Pressed camellia seeds provide the oil and its subtle nutty aroma.', '02 Mechanical Pressing
+ Traditional pressing extracts the oil without adding a strong external flavor.', '03 Filtration
+ Filtration removes seed particles and produces the clear finished oil.']::text[], 'tsoo-bah-kee oy-roo', NULL, ARRAY['Clear Golden Oil
+ The finished oil ranges from pale straw to warm gold and remains transparent.', 'Smooth Viscous Pour
+ Oil forms a slow, glossy stream when poured.', 'Camellia Seed Presentation
+ Seeds or camellia imagery often appear beside bottles to emphasize the source crop.']::text[], 'Link'),
+('8-tier-soft-serve-daily-chico', '8-Tier Soft Serve - Daily Chico', '8段ソフトクリーム（デイリーチコ）', 'kanto', 'tokyo', 'A towering soft-serve creation from Daily Chico in Nakano''s Nakano Broadway, famous for stacking eight flavors into a single tall cone. The appeal is visual as much as edible, with contrasting colors, aromas, and flavors layered vertically into one oversized serving.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains dairy', 700, 900, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Daily Chico became known through Nakano Broadway for serving its multi-flavor soft-serve, with the eight-flavor tower becoming a signature attraction. The concept is a modern dessert spectacle rather than a traditional Japanese confection.', NULL, 'The serving is unusually tall, so eating it steadily from top to bottom helps prevent melting and collapse. Flavor combinations can change with the menu.', ARRAY['01 Milk-Based Soft Serve
+ A creamy soft-serve base carries the individual flavor layers.', '02 Flavor Mixes
+ Fruit, chocolate, coffee, or other flavorings create the contrasting tiers.', '03 Waffle Cone
+ A crisp cone supports the tall soft-serve stack and adds a toasted wheat note.']::text[], 'hah-chee-dahn so-foo-toh koo-ree-moo', NULL, ARRAY['Eight-Tier Spiral
+ Eight soft-serve flavors are stacked vertically, creating the signature tower.', 'Alternating Colors
+ Different flavors create visible stripes ranging from pale cream to bright fruit or chocolate tones.', 'Tall Cone Silhouette
+ The unusually high soft-serve rises dramatically above the hand-held cone.']::text[], 'Link'),
+('oyaki-refu-tei', 'Oyaki - Refu-tei', 'おやき（おやき処 れふ亭）', 'kanto', 'tokyo', 'A stuffed Japanese griddle cake sold by Refutei in Nakano, with a soft, lightly browned outer dough surrounding a sweet or savory filling. The shop''s version presents the familiar oyaki format as a quick neighborhood snack, easy to eat warm and by hand.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, egg, dairy', 150, 300, 'Published', ARRAY['Vegetarian', 'Quick bite']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Oyaki itself originates in central Japan, especially Nagano, where filled flour cakes became a practical staple food. Refutei adapted the familiar style for Nakano as a convenient Tokyo snack rather than claiming to have invented oyaki.', NULL, 'Oyaki fillings vary widely, from sweet bean to vegetables and miso-seasoned ingredients. The same dough can therefore serve as either a snack or a light savory meal.', ARRAY['01 Flour Dough
+ Wheat flour forms the soft, lightly crisp outer cake.', '02 Filling
+ Vegetables, miso, sweet bean, or other fillings provide the main flavor depending on the variety.', '03 Seasoning
+ Savory versions may use miso or soy while sweet versions rely on sugar and bean paste.']::text[], 'oh-yah-kee reh-foo-tay', NULL, ARRAY['Round Griddle Cake
+ The outer dough is round with a gently browned surface.', 'Visible Filling
+ A cut piece shows a compact center of red bean, vegetables, or another filling.', 'Fresh Warm Finish
+ Steam and softness are most apparent when the cake is served hot from the shop.']::text[], 'Link'),
+('kusaya', 'Kusaya', 'くさや', 'kanto', 'tokyo', 'A strongly aromatic fermented fish specialty from the Izu Islands, made by salting and drying fish in a repeatedly used fermentation brine known as kusaya-jiru. The result has an intense smell but a surprisingly savory, concentrated flavor that is traditionally grilled and paired with rice or drinks.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains fish', 800, 2000, 'Published', ARRAY[]::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Kusaya developed on the Izu Islands as a preservation method for fish in an environment where salt was valuable. Reusing the fermentation brine created the distinctive flavor, and the technique was passed down through island households and producers.', NULL, 'The fermentation liquid, kusaya-jiru, is deliberately preserved and reused from batch to batch. This makes the smell powerful but also gives the fish a complex savory taste that regular dried fish does not have.', ARRAY['01 Horse Mackerel or Flying Fish
+ Small oily fish are commonly used because they dry and ferment well.', '02 Kusaya-Jiru
+ The traditional fermented brine gives the fish its signature aroma and umami.', '03 Salt
+ Salt controls preservation and helps concentrate the fish during drying.']::text[], 'koo-sah-yah', NULL, ARRAY['Thin Dried Fish
+ Flattened fish show a dark golden surface after fermentation and drying.', 'Charred Grill Marks
+ Grilling gives the fish browned edges and intensifies its aroma.', 'Compact Whole-Fish Serve
+ Small fish are commonly presented whole or in halves for sharing.']::text[], 'Link'),
+('asahi-karinto', 'Asahi Karinto', 'かりんとう (旭製菓)', 'kanto', 'tokyo', 'A classic Japanese karinto produced by Asahi Seika in Nishitokyo, where fried wheat dough is coated with a crisp sugar glaze. The result is crunchy, fragrant, and lightly caramelized, with a long shelf life that has helped make karinto a familiar tea snack and gift.', ARRAY['All year']::text[], ARRAY['local specialty']::text[], 'Contains wheat, soy, sesame', 300, 1000, 'Published', ARRAY['Vegetarian', 'Quick bite']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Asahi Seika is a long-established confectionery maker in western Tokyo, producing karinto as part of the region''s traditional snack industry. Karinto itself is a much older Japanese sweet, while the company''s local identity comes from its continued production and product variations.', NULL, 'Karinto is fried rather than baked, which creates its characteristic blistered crunch. The sugar coating also acts as a protective layer, helping the snack stay crisp when kept dry.', ARRAY['01 Wheat Flour Dough
+ Wheat flour forms the crisp fried core.', '02 Frying Oil
+ Hot oil cooks the dough and develops its toasted aroma.', '03 Sugar Syrup
+ Cooked sugar creates the hard, crunchy shell around the fried pieces.']::text[], 'kah-reen-toh', NULL, ARRAY['Thin Fried Sticks
+ Small irregular sticks show the crisp fried dough at the center of each piece.', 'Glossy Sugar Coating
+ A hard sugar shell gives the surface a light sheen.', 'Golden-Brown Color
+ Frying produces a warm toasted tone with a roasted wheat aroma.']::text[], 'Link'),
+('nerima-daikon-takuan', 'Nerima Daikon Takuan', '練馬大根の沢庵漬け', 'kanto', 'tokyo', 'A traditional Japanese pickle made from Nerima daikon, the long white radish historically grown around Nerima Ward, and cured in salt and rice bran. The result is crisp, savory, mildly sweet, and strongly aromatic, representing one of Tokyo''s best-known heritage-vegetable preservation foods.', ARRAY['Winter']::text[], ARRAY['local specialty']::text[], 'Contains Rice Bran and Salt. Gluten-Free and Vegan.', 400, 800, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Nerima daikon was cultivated in the Edo period and became famous around the capital, while takuan preservation offered a practical way to keep the large roots through winter. The local pickle tradition later declined with urbanization but survives as a heritage food.', NULL, 'Takuan is traditionally cured in rice bran rather than simply soaked in vinegar. The crisp texture is strongest when the pickle is sliced thinly and served with plain rice.', ARRAY['01 Nerima Daikon
+ The long heritage radish provides the firm vegetable base.', '02 Rice Bran
+ Nuka controls fermentation and develops the characteristic pickle aroma.', '03 Salt
+ Salt draws out moisture, seasons the radish, and supports the curing process.']::text[], 'Neh-ree-mah Die-kon Tah-koo-ahn', NULL, ARRAY['Long Radish Batons
+ The original daikon is long and slender, while finished takuan appears as pale yellow slices or sticks.', 'Golden Pickle Color
+ Rice-bran curing gives the radish a warm yellow to amber tone.', 'Crisp Cut Surface
+ Properly cured takuan remains firm and snaps cleanly when sliced.']::text[], 'link'),
+('nerima-daikon-manju', 'Nerima Daikon Manju', '練馬大根まんじゅう', 'kanto', 'tokyo', 'A clever and adorable sweet confection shaped exactly like a realistic miniature Nerima Daikon radish. Created by the 120-year-old historical shop Okashitsukasa Kimura-ya, this unique traditional treat wraps smooth sweet red bean paste inside a soft, steamed dough made from freshly grated yam and rice flour. It is celebrated as one of the ward''s most creative gourmet gifts.', ARRAY['-']::text[], ARRAY['local specialty']::text[], 'Contains Wheat, Dairy, Soy, and Red Bean. Vegetarian-friendly.', 150, 300, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Invented in the year 2000 by the fourth-generation master chef of Okashitsukasa Kimura-ya. He wanted to design a fun, visual souvenir that younger travelers and children could easily enjoy while learning about the area''s agricultural history.', NULL, 'Wrapped in a soft, steamed dough made from freshly grated yam and rice flour, it yields gently to reveal a deeply satisfying, smooth red bean paste inside.', ARRAY['01 Soft Steamed Dough Base
+A tender, elegant exterior crafted from a traditional blend of grated yam and jōyoko (rice flour), yielding a soft, steamed texture rather than a hard snap.', '02 Smooth Red Bean Center
+Generously filled with homemade koshian (smooth, pureed sweet red bean paste) to provide a deep, earthy sweetness at its core.', '03 Hand-Crafted Finish
+Carefully shaped by hand, gently steamed, and meticulously finished with a delicate touch of green nerikiri to complete the radish illusion.']::text[], 'Neh-ree-mah Die-kon Mahn-joo', NULL, ARRAY['Miniature Radish Shape
+Look for small confections uniquely molded to elegantly resemble the elongated, tapered form of a local Nerima daikon.', 'Smooth Yam-Dough Outer Skin
+Wrapped in a seamless, soft white dough made from grated yam and rice flour to mimic the root vegetable''s smooth skin.', 'Tiny Green Nerikiri Accent
+Decorated at the top tip with a small green detail crafted from sweetened bean paste representing the sprouting radish leaves.']::text[], 'https://maps.app.goo.gl/Cz7gPwGBHVdyc65b6'),
+('nerima-daifuku', 'Nerima Daifuku', 'ねりま大福', 'kanto', 'tokyo', 'A soft daifuku associated with Nerima''s local confectionery culture, using chewy mochi around a sweet filling and often incorporating local themes into the product design. It follows the familiar Japanese balance of elastic rice cake and smooth bean paste while serving as an approachable district souvenir.', ARRAY['-']::text[], ARRAY['local specialty']::text[], 'Contains Glutinous Rice, Red Bean, and Salted Radish Leaves. Gluten-Free and Vegan.', 160, 200, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Nerima Daifuku is a modern district-branded confection rather than a centuries-old standalone recipe. Its regional identity comes from incorporating Nerima''s local imagery and confectionery makers into the familiar daifuku format.', NULL, 'Fresh daifuku is highly sensitive to drying, so the softest texture is found soon after production. The rice cake is intentionally thin enough to let the filling dominate the bite.', ARRAY['01 Glutinous Rice
+ Rice flour creates the chewy mochi wrapper.', '02 Sweet Red Bean Paste
+ Anko provides the principal sweet filling.', '03 Sugar
+ Sugar sweetens the filling and dough and helps balance the rice cake''s neutral flavor.']::text[], 'Neh-ree-mah Die-foo-koo', NULL, ARRAY['Powder-Dusted Mochi
+ The white outer layer is lightly dusted with starch to prevent sticking.', 'Generous Filling Core
+ A cut piece reveals a smooth, rounded center.', 'Compact Gift Form
+ Individual daifuku are small enough for tea service and souvenir packaging.']::text[], 'link'),
+('nerima-sabl', 'Nerima Sablé', '練馬サブレ', 'kanto', 'tokyo', 'A crisp butter sablé created as a Nerima souvenir, using a simple European-style biscuit format to express local character through its name, shape, or packaging. The cookie is light, buttery, and crisp, making it a practical gift that pairs naturally with coffee or tea.', ARRAY['-']::text[], ARRAY['local specialty']::text[], 'Contains Wheat, Butter, Eggs, and Sugar. Vegetarian-friendly.', 80, 120, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Nerima Sablé is a modern local confection sold as a regional gift by Chikushido. It uses the established French sablé technique and adds local identity through the product concept rather than recreating an old Japanese sweet.', NULL, 'Sablé means sandy in French, referring to the crumbly texture created by a rich, short dough. Keeping the cookie dry is essential because humidity quickly dulls the crisp texture.', ARRAY['01 Wheat Flour
+ Flour provides the cookie''s crisp structure.', '02 Butter
+ Butter creates the rich aroma and sandy crumb.', '03 Sugar
+ Sugar provides sweetness and helps the edges brown during baking.']::text[], 'Neh-ree-mah Sah-boo-reh', NULL, ARRAY['Fine Biscuit Edge
+ The cookie has a clean, lightly browned rim from careful baking.', 'Buttery Golden Surface
+ A warm golden tone indicates the butter-rich dough has been baked gently.', 'Local Imprint
+ A Nerima-related mark or design reinforces the souvenir identity.']::text[], 'link'),
+('hachioji-ramen', 'Hachioji Ramen', '八王子ラーメン', 'kanto', 'tokyo', 'A Tokyo ramen style distinguished by a soy-based soup topped with finely chopped raw onion and fragrant oil. Hachioji ramen is known for its clean, dark broth and the sweet sharpness of onion, creating a straightforward bowl in which the garnish plays an essential role.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Contains wheat, soy, pork', 600, 1000, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Hachioji ramen developed in neighborhood ramen shops during the postwar period and became recognized for its distinctive onion topping. Unlike many regional ramen styles, it is defined by a small set of consistent elements rather than a single founding restaurant.', NULL, 'The chopped onion softens slightly in the hot broth while retaining a fresh bite. The aromatic oil helps spread its sweetness through the soup as you eat.', ARRAY['01 Wheat Ramen Noodles
+ Medium-width noodles provide the chewy base.', '02 Soy-Seasoned Broth
+ Chicken, fish, or other stock is seasoned with soy sauce for the dark savory soup.', '03 Chopped Onion and Aromatic Oil
+ Fresh onion gives sweetness and crunch while aromatic oil rounds the broth.']::text[], 'hah-chee-oh-jee rah-men', 'N/A', ARRAY['Dark Clear Broth
+ The soup has a transparent brown tone with a light sheen of aromatic oil.', 'Raw Onion Topping
+ Finely chopped white onion forms the signature garnish.', 'Straight Medium Noodles
+ Wheat noodles sit neatly under the onion and classic ramen toppings.']::text[], 'Link'),
+('hachijo-shochu', 'Hachijo Shochu', '八丈焼酎', 'kanto', 'tokyo', 'A distinctive island shochu tradition from Hachijojima, where local producers make sweet-potato and barley styles using traditional koji fermentation. The spirits can be robust and aromatic, reflecting the island''s long history of household-scale brewing adapted into licensed local production.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 1500, 4000, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hachijo shochu developed from traditional island distilling practices and was later adapted into licensed commercial production. The style is associated with local households and producers rather than a single inventor, with sweet potato and barley forming the main raw materials.', NULL, 'Hachijojima is unusual in Tokyo for maintaining a recognizable island shochu tradition alongside distinctive agricultural ingredients. Water and koji choices can make producers'' spirits taste noticeably different.', ARRAY['01 Sweet Potatoes or Barley
+ Producers use sweet potato, barley, or blends depending on the style.', '02 Koji
+ Koji supplies the enzymes that convert starches into fermentable sugars.', '03 Island Water
+ Local water supports fermentation and dilution of the finished spirit.']::text[], 'hah-chee-joh shoh-choo', 'N/A', ARRAY['Clear Island Spirit
+ The spirit is typically clear, allowing the clean body of the shochu to show.', 'Traditional Bottle Form
+ Compact glass bottles emphasize the island-produced character.', 'Strong Aromatic Pour
+ The aroma opens quickly when served in a small glass, especially at room temperature.']::text[], 'Link'),
+('hachijo-fruit-lemon', 'Hachijo Fruit Lemon', '八丈フルーツレモン', 'kanto', 'tokyo', 'An unusually large island lemon from Hachijojima, prized for its fragrant peel, juicy flesh, and balanced acidity. The fruit is substantially larger than an ordinary lemon and is used not only for juice but also in sweets and drinks where its aromatic skin is especially valuable.', ARRAY['Winter']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 500, 1500, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hachijo fruit lemon is a regional citrus associated with Hachijojima''s subtropical climate and distinctive island agriculture. The local specialty is prized for its size and aroma and has become a recognized Tokyo island product.', NULL, 'The fruit can be used while still green, and its thick, aromatic peel is valuable in confectionery. The unusually large fruit also makes a striking visual centerpiece in gift boxes.', ARRAY['01 Hachijo Fruit Lemon
+ The whole fruit supplies the characteristic juice and citrus aroma.', '02 Fragrant Peel
+ Thick peel provides essential oils that intensify the scent.', '03 Natural Citrus Sugars and Acids
+ Balanced sweetness and acidity create the fruit''s clean, lively flavor.']::text[], 'hah-chee-joh foo-roo-tsoo reh-mon', 'N/A', ARRAY['Large Rounded Lemon
+ The fruit is notably bigger and rounder than standard supermarket lemons.', 'Thick Fragrant Peel
+ A substantial peel releases a fresh citrus aroma when rubbed.', 'Bright Pale Flesh
+ The interior appears juicy and lightly yellow when cut open.']::text[], 'Link'),
+('karuta-senbei-hamurin-senbei', 'Karuta Senbei / Hamurin Senbei', 'かるたせんべい・はむりんせんべい', 'kanto', 'tokyo', 'Two Hamura souvenir crackers that turn local civic imagery into simple, crisp baked snacks. Karuta Senbei uses the idea of traditional Japanese picture-card culture, while Hamurin Senbei features the city''s mascot, giving visitors an edible keepsake with a light, dry crunch.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan, contains soy', 300, 800, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'These senbei were developed as contemporary Hamura souvenirs rather than inherited recipes. The products use familiar Japanese cracker-making techniques and local imagery to create city-branded snacks.', NULL, 'Karuta-inspired packaging turns a plain cracker into a small cultural souvenir. The dry texture also makes senbei particularly suitable for carrying home without refrigeration.', ARRAY['01 Rice Flour
+ Rice forms the crisp cracker base.', '02 Seasoning
+ Sugar, soy, or other recipe-specific seasoning gives the cracker its flavor.', '03 Printed Decoration
+ An edible printed or stamped image connects the cracker to Hamura''s local theme.']::text[], 'kah-roo-tah sen-bay / hah-moo-reen sen-bay', 'N/A', ARRAY['Printed Motif Surface
+ Each cracker carries a printed or stamped local design.', 'Thin Crisp Sheet
+ The pieces are flat and brittle, breaking with a clean snap.', 'Souvenir Pack
+ Compact packaging emphasizes the Hamura identity for gifts and travel.']::text[], 'Link'),
+('hamura-no-seki', 'Hamura no Seki', '羽村の堰', 'kanto', 'tokyo', 'A historic Tamagawa water-control structure in Hamura rather than a dish or food product. The weir is included in the dataset as a local heritage landmark, so its accurate profile describes the waterworks themselves instead of inventing culinary characteristics.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'N/A', 0, 0, 'Published', ARRAY['Vegetarian']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'The Hamura Weir is part of the Tamagawa Josui system created in the Edo period to bring clean water toward Edo. It is a civil-engineering landmark, not a traditional food, and its importance lies in Tokyo''s water history.', NULL, 'Because this record is a landmark rather than a dish, there are no ingredients or eating rituals to describe accurately. It should be treated as a cultural heritage entry or removed from a culinary-only dataset.', ARRAY['01 Tama River
+ The river supplies the water controlled by the weir.', '02 Weir Structure
+ The barrier regulates and directs river flow.', '03 Tamagawa Josui
+ The weir forms part of the historic water-supply infrastructure leading toward Tokyo.']::text[], 'hah-moo-rah no seh-kee', 'N/A', ARRAY['Stone and Concrete Waterworks
+ The structure channels and controls the Tama River for water management.', 'Flowing River Surface
+ Moving water and spillway channels dominate the visual setting.', 'Green Riverside Landscape
+ Trees and riverside vegetation frame the historic structure.']::text[], 'Link'),
+('sakura-sable-sazareishi', 'Sakura Sable / Sazareishi', '桜サブレー・さざれ石', 'kanto', 'tokyo', 'A pair of Hamura souvenir sweets pairing a buttery sakura-themed sablé with a separate confection named Sazareishi. The products use familiar baked-sweet techniques and local imagery to create compact gifts connected to Hamura''s cherry-blossom and civic landscape.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Contains wheat, dairy, egg', 400, 1000, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'These products are contemporary Hamura souvenirs created by local confectionery makers, not ancient local recipes. Their identity comes from cherry-blossom imagery and regional naming rather than a historical dish.', NULL, 'Sablé cookies are especially good with tea because their butter aroma and dry crumb do not overwhelm delicate drinks. The name Sazareishi evokes a small stone, giving the pair a local naming theme.', ARRAY['01 Wheat Flour
+ Flour forms the crisp sablé structure.', '02 Butter and Sugar
+ Butter supplies richness while sugar creates sweetness and browning.', '03 Sakura Flavor or Decoration
+ Cherry blossom imagery or ingredients provide the local seasonal theme.']::text[], 'sah-koo-rah sah-boo-reh / sah-zah-reh-ee-she', 'N/A', ARRAY['Butter Sablé
+ A pale golden biscuit has a crisp, crumbly surface.', 'Cherry Motif
+ Sakura imagery or flavoring provides the seasonal visual identity.', 'Gift-Sized Pairing
+ The products are packaged as compact souvenirs suitable for tea service and gifting.']::text[], 'Link'),
+('noka-no-nidango', 'Noka no Nidango', '農家の煮ぃだんご', 'kanto', 'tokyo', 'A rustic village-style dumpling dish from Higashikurume in which simple wheat dumplings are simmered with vegetables in a savory broth. The dish reflects the practical cooking of Tokyo''s former farm households, where flour and seasonal produce were combined into a filling one-pot meal.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan, contains wheat, soy', 500, 1200, 'Published', ARRAY['Vegetarian', 'Dine-in']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Noka no Nidango belongs to the household food tradition of eastern Musashino farming communities. The dish grew from practical use of wheat and vegetables rather than being invented by a known chef or commercial shop.', NULL, 'The dumplings are intentionally irregular because they were shaped by hand rather than cut into uniform noodles. The texture becomes pleasantly chewy as the pieces simmer in the broth.', ARRAY['01 Wheat Dough Dumplings
+ Simple flour-and-water dough forms the chewy dumpling pieces.', '02 Seasonal Vegetables
+ Daikon, carrot, greens, or other local produce provide sweetness and color.', '03 Dashi or Soy Broth
+ A savory broth carries the vegetable and wheat flavors through the dish.']::text[], 'noh-kah no nee-dahn-goh', 'N/A', ARRAY['Hand-Shaped Dumplings
+ Irregular dumplings show the handmade texture of a traditional household dish.', 'Vegetable-Rich Broth
+ Root vegetables and greens create a warm, colorful soup.', 'Rustic Bowl Serve
+ A deep bowl emphasizes the hearty, home-style nature of the meal.']::text[], 'Link'),
+('wasanbon-kogei-kashi', 'Wasanbon Kogei Kashi', '和三盆工芸菓子', 'kanto', 'tokyo', 'A delicate decorative confection shaped from wasanbon sugar into finely detailed forms, combining the clean sweetness of traditional Japanese sugar craft with the visual precision of miniature sculpture. These sweets are intended to be admired before dissolving gently on the tongue.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 800, 2000, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Wasanbon craft sweets belong to Japan''s traditional sugar-art culture and are made using techniques developed over generations. The Higashikurume local product presents that broader craftsmanship as a refined gift item rather than claiming a single local inventor.', NULL, 'Wasanbon sugar has a fine crystalline texture that dissolves quickly in the mouth. The confection is often appreciated as much for its carving and molding detail as for its flavor.', ARRAY['01 Wasanbon Sugar
+ Fine-grained traditional sugar provides the clean sweetness and delicate texture.', '02 Food-Safe Molds
+ Molds create the precise decorative shapes.', '03 Natural Flavoring
+ Tea, seasonal color, or subtle flavoring may be used depending on the craft piece.']::text[], 'wah-sahn-bon koh-gay kah-she', 'N/A', ARRAY['Intricate Relief Shapes
+ Fine molded details create flowers, animals, or seasonal motifs.', 'Powder-Matte Surface
+ Wasanbon has a soft, pale appearance rather than a glossy candy shell.', 'Miniature Craft Scale
+ Individual pieces are small enough to handle like tiny works of art.']::text[], 'Link'),
+('higashimurayama-black-yakisoba', 'Higashimurayama Black Yakisoba', '東村山黒焼きそば', 'kanto', 'tokyo', 'A distinctive yakisoba from Higashimurayama colored dark by a local sauce and cooked with noodles, meat, and vegetables on a hot griddle. Its savory, slightly sweet flavor comes from the sauce and caramelized noodles, giving the dish a darker appearance than ordinary Tokyo yakisoba.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Contains wheat, soy, squid', 600, 1200, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Higashimurayama Black Yakisoba is a modern local specialty developed to distinguish the city through its own sauce-forward noodle dish. Its identity centers on the dark color and rich sauce rather than an ancient regional recipe.', NULL, 'The dark appearance does not mean the noodles are burnt. The characteristic color comes mainly from the specially chosen sauce, while high-heat griddling adds the roasted aroma.', ARRAY['01 Wheat Yakisoba Noodles
+ Wheat noodles provide the chewy base.', '02 Cabbage and Pork
+ Vegetables and pork add sweetness, texture, and savory richness.', '03 Dark Yakisoba Sauce
+ A concentrated local-style sauce creates the signature deep color and flavor.']::text[], 'hee-gah-she-moo-rah-yah-mah koo-roh yah-kee-soh-bah', 'N/A', ARRAY['Dark Sauced Noodles
+ Cooked noodles take on a deep brown to near-black glaze.', 'Crisp Griddle Edges
+ High heat browns the noodles and vegetables in small caramelized patches.', 'Mixed Street-Food Toppings
+ Pork, cabbage, and other ingredients create a varied surface texture.']::text[], 'Link'),
+('musashino-udon', 'Musashino Udon', '武蔵野うどん', 'kanto', 'tokyo', 'A rustic noodle tradition of the Musashino region, defined by thick, firm wheat noodles eaten with a hot meat-and-vegetable dipping broth. It reflects the area''s former wheat-growing farm culture, producing a hearty meal where chewy noodles and strongly flavored soup are deliberately kept separate.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Contains wheat, soy, fish (broth)', 700, 1500, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Musashino udon grew from the farming villages west of Edo, where wheat was an important local crop and noodles provided a filling household meal. The style continued through the modern Tokyo suburbs and became recognized as a regional food tradition.', NULL, 'The noodles are intentionally firmer than many mainstream udon styles because they are meant to be dipped into a hot broth. Pork and negi in the dipping soup are characteristic of many traditional versions.', ARRAY['01 Local Wheat Noodles
+ Firm wheat noodles provide the substantial bite.', '02 Pork
+ Pork adds richness to the dipping broth.', '03 Negi and Soy-Based Broth
+ Green onion, dashi, soy sauce, and mirin create the savory dipping sauce.']::text[], 'moo-sah-she-noh oo-don', 'N/A', ARRAY['Broad Firm Noodles
+ Thick noodles have a rough, substantial surface designed for dipping.', 'Dark Meat Broth
+ Pork, scallion, and soy create a deep, warming dipping soup.', 'Handmade Irregularity
+ Traditional noodles often vary slightly in width and thickness, emphasizing their handmade character.']::text[], 'Link'),
+('higashiyamato-cha-udon', 'Higashiyamato Cha Udon', 'ひがしやまと茶うどん', 'kanto', 'tokyo', 'A green-tinted udon from Higashiyamato made by incorporating locally associated Sayama tea into wheat noodles. The tea adds a subtle grassy aroma and color while the noodle retains the firm, chewy structure expected from Japanese udon.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan, contains wheat, soy', 700, 1500, 'Published', ARRAY['Vegetarian', 'Dine-in']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Higashiyamato Tea Udon was developed as a local product linking the city with Sayama tea culture. The recipe adapts familiar udon-making techniques by incorporating tea into the noodle dough rather than creating a separate soup or dessert.', NULL, 'The tea aroma is intentionally subtle because too much tea powder would make the noodles bitter. The green color is therefore a visual cue as much as a flavor signal.', ARRAY['01 Wheat Flour
+ Wheat provides the gluten structure needed for chewy udon.', '02 Sayama Tea
+ Tea contributes green color and a delicate grassy fragrance.', '03 Salt and Water
+ Salt strengthens the dough while water develops the final noodle texture.']::text[], 'hee-gah-she-yah-mah-toh chah oo-don', 'N/A', ARRAY['Tea-Green Noodles
+ Fine tea powder gives the noodles a natural green hue.', 'Smooth Thick Strands
+ The cooked noodles remain substantial and glossy.', 'Simple Bowl or Dipping Serve
+ A restrained presentation keeps the unusual color and tea aroma visible.']::text[], 'Link'),
+('sayama-tea', 'Sayama Tea', '狭山茶', 'kanto', 'tokyo', 'A Japanese green tea grown in the western Tokyo region around Sayama, valued for its rich body, mellow sweetness, and distinctive steamed-leaf aroma. The tea is associated with cool-climate growing conditions and is traditionally enjoyed as a concentrated, full-flavored cup rather than a delicate light brew.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 1000, 3000, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Sayama tea has been cultivated in the western Tokyo and southern Saitama region for centuries, with production becoming established under the area''s cooler climate. The local tea tradition developed around careful cultivation and processing in this northern tea-growing area.', NULL, 'Sayama tea is associated with a famous saying that praises three qualities: flavor, color, and aroma. Its fuller body makes it well suited to a slightly stronger brew than many delicate sencha styles.', ARRAY['01 Tea Leaves
+ Young leaves provide the aroma, bitterness, sweetness, and body of the infusion.', '02 Steam Processing
+ Steaming prevents oxidation and preserves the green character of the leaves.', '03 Hot Water
+ Water extracts soluble flavor compounds to form the finished tea infusion.']::text[], 'sah-yah-mah chah', 'N/A', ARRAY['Deep Green Dry Leaf
+ Processed tea leaves have a dark green appearance.', 'Clear Green-Gold Infusion
+ The brewed liquor ranges from yellow-green to deeper green depending on style and steeping.', 'Fine Leaf Shape
+ Needle-like or fine rolled leaves open as they hydrate in hot water.']::text[], 'Link'),
+('hino-pears', 'Hino Pears', '日野の梨', 'kanto', 'tokyo', 'Crisp Japanese pears grown in Hino, where local orchards produce sweet, juicy fruit for direct sales during late summer and autumn. Hino pears are eaten fresh for their clean aroma, abundant juice, and refreshing crunch rather than used primarily as a processed ingredient.', ARRAY['Fall']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 500, 2000, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Pear growing has a long history in the Tama region, including Hino, where local orchards survived alongside expanding residential areas. The local specialty today reflects small-scale orchard production and direct seasonal sales.', NULL, 'Japanese pears are harvested close to eating ripeness rather than left to soften dramatically off the tree. This helps explain their exceptionally crisp texture.', ARRAY['01 Japanese Pears
+ Whole ripe nashi provide the signature sweetness and crisp juice.', '02 Orchard Soil and Water
+ Growing conditions shape the fruit''s size and balance.', '03 Natural Fruit Sugars
+ Natural sugars provide the clean sweetness enjoyed in fresh fruit.']::text[], 'hee-noh no nah-she', 'N/A', ARRAY['Round Pale Fruit
+ Fresh pears have smooth pale skin with a light green or yellow-brown tone.', 'Juicy White Flesh
+ The interior is crisp, translucent, and full of juice.', 'Orchard-Fresh Stem
+ A fresh stem and intact skin signal recently harvested fruit.']::text[], 'Link'),
+('hinode-tomato', 'Hinode Tomato', '日の出トマト', 'kanto', 'tokyo', 'A locally grown tomato specialty from Hinode, valued for ripe sweetness, fresh acidity, and the concentrated flavor that comes from careful local cultivation. The tomatoes are best treated simply, allowing the fruit''s natural juice and aroma to remain the center of the dish.', ARRAY['Summer']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 300, 1000, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hinode Tomato is a modern local agricultural specialty rather than an old named dish. It reflects the town''s horticulture and direct-sale culture, where ripe local tomatoes are promoted as seasonal produce.', NULL, 'Tomatoes taste sweeter and more aromatic when allowed to ripen fully before eating. A light pinch of salt can sharpen their natural sweetness without adding a heavy sauce.', ARRAY['01 Fresh Tomatoes
+ Ripe locally grown tomatoes provide the main flavor, acidity, and color.', '02 Natural Tomato Juice
+ Juice creates the refreshing texture and carries aroma through the fruit.', '03 Sea Salt
+ A small amount of salt can enhance sweetness in simple tomato preparations.']::text[], 'hee-noh-deh toh-mah-toh', 'N/A', ARRAY['Glossy Red Skin
+ Ripe tomatoes show a bright red, smooth exterior.', 'Firm Juicy Flesh
+ A cut tomato reveals dense flesh and visible juice around the seeds.', 'Green Stem Contrast
+ Freshly sold fruit often retains a green calyx that emphasizes freshness.']::text[], 'Link'),
+('yuzu-hinohara-black-tea', 'Yuzu / Hinohara Black Tea', 'ゆず・ひのはら紅茶', 'kanto', 'tokyo', 'A paired local specialty from Hinohara combining fragrant yuzu citrus with black tea produced in the village. The citrus adds bright peel aroma to the tea, creating a warm, rounded drink that links mountain agriculture with a modern Japanese tea style.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 600, 1500, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hinohara black tea and local yuzu products were developed as contemporary village specialties using the area''s mountain agriculture. The combination reflects modern value-added processing rather than a historic Edo beverage.', NULL, 'Yuzu peel can dominate the aroma even when only a small amount is used. Adding the peel after brewing preserves more of the volatile citrus oils.', ARRAY['01 Black Tea Leaves
+ Fully oxidized tea leaves provide the amber liquor and malty base.', '02 Hinohara Yuzu
+ Yuzu peel adds bright citrus aroma and gentle tartness.', '03 Hot Water
+ Hot water extracts the tea compounds and carries the citrus oils into the cup.']::text[], 'yoo-zoo / hee-noh-hah-rah koh-chah', 'N/A', ARRAY['Amber Tea Liquor
+ The black-tea base produces a clear amber to copper-colored infusion.', 'Yuzu Peel Accent
+ Fine citrus peel adds a bright yellow-green visual detail.', 'Natural Leaf Aroma
+ The tea and citrus aromas rise strongly from a freshly poured cup.']::text[], 'Link'),
+('hinohara-potatoes', 'Hinohara Potatoes', 'ひのはらじゃがいも', 'kanto', 'tokyo', 'A locally grown potato specialty from Hinohara, where cool mountain conditions support small-scale vegetable cultivation. The potatoes are valued for their clean earthy flavor and firm, creamy texture and can be roasted, boiled, or used in simple village dishes that showcase the crop.', ARRAY['Autumn']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 300, 800, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hinohara potatoes are part of the village''s traditional mountain agriculture and continue to be promoted as a local specialty. Their importance lies in seasonal cultivation and household cooking rather than a single historic recipe.', NULL, 'Mountain-grown potatoes often vary in size because they come from small diversified fields rather than uniform industrial production. This makes simple roasting or boiling especially attractive.', ARRAY['01 Hinohara Potatoes
+ The local crop provides the starchy base and earthy flavor.', '02 Water
+ Water is used for boiling and helps carry salt and seasoning through the flesh.', '03 Salt or Miso
+ Simple Japanese seasoning highlights the potatoes without masking their natural flavor.']::text[], 'hee-noh-hah-rah jah-gye-moh', 'N/A', ARRAY['Earthy Brown Skin
+ Fresh potatoes retain a thin brown skin with a natural soil-toned appearance.', 'Creamy White Flesh
+ Cut potatoes show pale, dense flesh with a fine texture.', 'Small Irregular Tubers
+ Local field-grown potatoes vary naturally in size and shape.']::text[], 'Link'),
+('apollo-pan', 'Apollo Pan', 'アポロパン', 'kanto', 'tokyo', 'A nostalgic local bread associated with Fuchu, sold as an everyday bakery item rather than a plated dish. The bread has a soft interior and lightly browned crust, reflecting the long tradition of neighborhood bakeries producing familiar Japanese-Western breads for school and home meals.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Contains wheat, dairy, egg', 150, 300, 'Published', ARRAY['Vegetarian', 'Quick bite']::text[], 'Verified vegetarian', 'Not reviewed', TRUE, 'Apollo Bread is a local bakery product associated with Fuchu''s neighborhood food culture. Its identity comes from local bakery tradition and a distinctive product name rather than a nationally standardized historical recipe.', NULL, 'The bread belongs to the Japanese bakery tradition that blends European-style doughs with local sweet and savory preferences. Its nostalgic appeal comes from being an everyday bakery item rather than a ceremonial food.', ARRAY['01 Wheat Flour
+ Flour provides the main bread structure.', '02 Yeast
+ Yeast leavens the dough and develops aroma.', '03 Milk, Sugar, and Fat
+ These ingredients create the soft, lightly sweet character common in Japanese bakery bread.']::text[], 'ah-poh-roh pahn', 'N/A', ARRAY['Soft Bread Loaf
+ The loaf has a light, tender crumb beneath a browned baked surface.', 'Decorative Top
+ A patterned or shaped upper surface gives Apollo Bread its recognizable appearance.', 'Sliceable Everyday Form
+ The bread is sized for simple slicing and serving rather than individual plating.']::text[], 'Link'),
+('ogai-mochi', 'Ogai Mochi', '鴎外餅', 'kanto', 'tokyo', 'A literary-themed Japanese sweet associated with Bunkyo and the former residence of novelist Mori Ogai, shaped as a soft mochi confection with a sweet filling. Its identity is cultural as much as culinary, linking a simple traditional sweet with one of Tokyo''s best-known writers.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 200, 600, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Ogai Mochi was created as a Bunkyo confection connected with Mori Ogai and the former Kanchoro residence. It is a modern literary souvenir inspired by the neighborhood''s cultural history rather than a sweet known to have been invented by Ogai himself.', NULL, 'The name is a tribute to Mori Ogai, not proof that the novelist created or ate this exact confection. Its value lies in the connection between a familiar wagashi form and Bunkyo''s literary heritage.', ARRAY['01 Glutinous Rice
+ Rice-based dough creates the soft, chewy outer layer.', '02 Sweet Bean Filling
+ Anko provides the central sweetness.', '03 Sugar
+ Sugar balances the rice cake and filling and supports the confection''s soft texture.']::text[], 'oh-gye moh-chee', 'N/A', ARRAY['Soft Mochi Form
+ A compact pale rice cake provides the outer shell.', 'Sweet Filled Center
+ A smooth bean-based filling appears when the confection is cut.', 'Literary Souvenir Design
+ Packaging or markings connect the sweet with Mori Ogai and the former Kanchoro site.']::text[], 'Link'),
+('kanchorou-ginkgo-sable', 'Kanchorou Ginkgo Sable', '観潮楼のいちょうサブレ', 'kanto', 'tokyo', 'A crisp ginkgo-leaf-shaped sablé inspired by Kanchoro, Mori Ogai''s former residence in Bunkyo, where a famous ginkgo tree became part of the site''s literary landscape. The buttery cookie uses a simple European-style recipe to turn a local literary symbol into an elegant tea sweet.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Contains wheat, dairy, egg', 400, 1000, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Kanchoro Ginkgo Sablé was developed as a modern Bunkyo souvenir inspired by the ginkgo at Mori Ogai''s former residence. The product links a French-style butter cookie with the neighborhood''s literary and historic landscape.', NULL, 'A ginkgo-shaped cookie can be recognized even without its package, making the local story visible in the food itself. The flavor is intentionally restrained so the butter and toasted flour remain clear.', ARRAY['01 Wheat Flour
+ Flour forms the sablé''s crisp structure.', '02 Butter
+ Butter provides richness and the characteristic short, crumbly texture.', '03 Sugar
+ Sugar adds sweetness and helps the cookie brown lightly during baking.']::text[], 'kahn-choh-roh no ee-choh sah-boo-reh', 'N/A', ARRAY['Ginkgo Leaf Shape
+ The cookie is molded into the recognizable fan shape of a ginkgo leaf.', 'Buttery Golden Edge
+ Gentle baking produces a light golden rim and crisp crumb.', 'Local Literary Motif
+ Packaging and form reference the ginkgo associated with Kanchoro.']::text[], 'Link'),
+('machida-silk-melon', 'Machida Silk Melon', 'まちだシルクメロン', 'kanto', 'tokyo', 'A premium melon grown in Machida using a patented hydroponic cultivation method designed to produce many high-quality fruits from a single plant. The melon is marketed for its refined sweetness, fine texture, and controlled growing conditions, giving Machida a distinctive modern agricultural specialty.', ARRAY['Summer']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 3000, 10000, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Machida Silk Melon was developed through a patented Machida-style hydroponic farming method rather than traditional field cultivation. The system is designed to support controlled nutrient and water management and can produce many melons from a single plant.', NULL, 'The official producer describes a system capable of producing as many as sixty melons from one plant under controlled conditions. The key selling point is controlled cultivation designed to support consistent fruit quality.', ARRAY['01 Muskmelon
+ The melon provides the fragrant sweetness and juicy flesh.', '02 Hydroponic Nutrient Solution
+ Controlled nutrients support growth without ordinary field soil.', '03 Water
+ Precise water management is central to the hydroponic growing system.']::text[], 'mah-chee-dah shee-roo-koo meh-ron', 'N/A', ARRAY['Netted Melon Skin
+ The fruit develops a regular raised net pattern over a pale green or beige skin.', 'Juicy Flesh
+ The cut melon reveals fragrant, juicy flesh around a central seed cavity.', 'Large Premium Fruit
+ Carefully selected melons are presented whole to emphasize symmetry and finish.']::text[], 'Link'),
+('hengo-dango', 'Hengo Dango', 'ヘンゴだんご', 'kanto', 'tokyo', 'A traditional Mikurajima island dumpling associated with the island''s distinctive plant-rich mountain environment. Hengo dango is made from locally familiar starchy ingredients and shaped into a simple rustic sweet, reflecting the self-sufficient cooking of this remote Izu island.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 150, 400, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hengo Dango belongs to Mikurajima''s traditional island food culture and was passed through household cooking rather than developed by a documented commercial chef. The recipe reflects the use of locally available plants and starches on a remote island.', NULL, 'Remote island foods often preserve ingredients and techniques that disappeared from urban cooking. Hengo dango is valuable because it records a local household food tradition rather than because of commercial branding.', ARRAY['01 Local Starchy Ingredient
+ A locally gathered starch provides the dough''s body.', '02 Water
+ Water hydrates the mixture and determines the dumpling''s final texture.', '03 Sweet Seasoning
+ Sugar or another simple sweetener provides the dessert character.']::text[], 'hen-goh dahn-goh', 'N/A', ARRAY['Rustic Round Dumplings
+ Small hand-formed pieces retain an irregular homemade shape.', 'Natural Earthy Tone
+ Local plant ingredients give the dumplings a muted natural color.', 'Simple Plate Presentation
+ The sweets are served plainly to emphasize their traditional island character.']::text[], 'Link'),
+('sakuyuri-no-kinton', 'Sakuyuri no Kinton', 'サクユリのきんとん', 'kanto', 'tokyo', 'A delicate wagashi inspired by Sakuyuri, the native lily associated with Mikurajima, using the soft, sculpted kinton style to evoke the flower''s natural forms. The confection is better understood as a botanical-themed sweet than as a dessert made from the lily itself.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan', 300, 800, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'The confection is a modern interpretation inspired by Mikurajima''s Sakuyuri, a locally important lily. It uses the flower as a cultural and visual motif rather than claiming Sakuyuri as an edible ingredient.', NULL, 'Sakuyuri is valued as part of Mikurajima''s native plant heritage. The kinton uses the flower as design inspiration, not as food material.', ARRAY['01 Sweet Bean Base
+ Sweet bean paste provides the soft, moldable body of the kinton.', '02 Sugar
+ Sugar supplies sweetness and helps create the fine, soft texture.', '03 Natural Coloring
+ Subtle natural coloring can reinforce the flower motif without overpowering the confection.']::text[], 'sah-koo-yoo-ree no keen-ton', 'N/A', ARRAY['Petal-Like Texture
+ Fine strands or soft crumbs create a flower-inspired, cloudlike surface.', 'Pale Natural Color
+ The confection remains light so the botanical theme is visually clear.', 'Small Sculpted Form
+ Each portion is shaped delicately like a traditional seasonal wagashi.']::text[], 'Link'),
+('hayaki', 'Hayaki', 'はやき', 'kanto', 'tokyo', 'A traditional Mikurajima island food made from a simple local grain-and-starch dough that is cooked into a compact, satisfying snack. The dish reflects the island''s history of making filling foods from ingredients that could be cultivated or transported to a remote community.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 200, 500, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Hayaki is recorded as part of Mikurajima''s traditional household food culture rather than as a modern commercial invention. The recipe reflects practical island cooking and the need to make filling foods from limited supplies.', NULL, 'Traditional island recipes often survive through oral transmission and household practice, so exact ingredient ratios can vary. It is most accurately presented as a local heritage food rather than a standardized factory product.', ARRAY['01 Local Grain or Flour
+ A staple grain or flour provides the main body of the food.', '02 Starchy Binder
+ A starch helps hold the mixture together and gives the finished food its dense texture.', '03 Water
+ Water hydrates the mixture and allows the ingredients to form a workable dough.']::text[], 'hah-yah-kee', 'N/A', ARRAY['Compact Hand-Formed Piece
+ The food is shaped simply rather than using elaborate molds.', 'Rustic Surface
+ Hand preparation leaves a slightly uneven traditional texture.', 'Warm Neutral Color
+ The finished piece shows the natural tones of its grain and starch ingredients.']::text[], 'Link'),
+('jinenjo-karukan-manju', 'Jinenjo Karukan Manju', '自然薯かるかん饅頭', 'kanto', 'tokyo', 'A soft steamed karukan manju from Mizuho made with Japanese yam, rice flour, and sweet filling. The yam gives the outer cake a springy, airy texture and subtle earthy aroma, while the bean center adds sweetness without making the confection heavy.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan', 200, 600, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Natural-yam karukan is based on the southern Japanese tradition of karukan, while Mizuho producers have adapted the format as a local Tokyo specialty using cultivated Japanese yam. The product is a modern regional confection built around a traditional steamed-cake technique.', NULL, 'Karukan is unusual among Japanese sweets because the yam is part of the cake structure rather than only the filling. The resulting crumb is softer and more elastic than an ordinary flour-based manju.', ARRAY['01 Japanese Yam
+ Naturally sticky yam gives the steamed cake its spring and moisture.', '02 Rice Flour
+ Rice flour provides the clean, light cake structure.', '03 Sweet Red Bean Paste
+ Anko adds the principal sweetness and creates the dark center.']::text[], 'jee-nen-joh kah-roo-kahn mahn-joo', 'N/A', ARRAY['Pale Steamed Cake
+ The outer cake is white to cream and lightly porous from steaming.', 'Soft Elastic Crumb
+ Japanese yam gives the cake a moist, springy bite.', 'Sweet Bean Center
+ A dark filling contrasts strongly with the pale steamed exterior.']::text[], 'Link'),
+('kiwi-amazake', 'Kiwi Amazake', 'キウイ甘酒', 'kanto', 'tokyo', 'A modern Mitaka drink that blends locally grown kiwi with amazake, creating a naturally sweet, softly tart beverage with a creamy grain base. The product combines a traditional Japanese fermented rice drink with the fresh fruit character of Mitaka agriculture.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 400, 800, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Kiwi Amazake was developed as a Mitaka regional product by local makers using Mitaka-grown kiwi and amazake. The city promotes it as a modern example of local agricultural produce combined with a traditional fermented beverage.', NULL, 'Amazake can be made from rice koji without added distilled alcohol, so the finished drink can be non-alcoholic. Kiwi adds acidity that keeps the rice sweetness from becoming cloying.', ARRAY['01 Rice Koji Amazake
+ Fermented rice and koji provide the naturally sweet, creamy base.', '02 Mitaka Kiwi
+ Fresh kiwi supplies acidity, fruit aroma, and green color.', '03 Water
+ Water balances the concentrated amazake and fruit into a drinkable consistency.']::text[], 'kee-oo-ee ah-mah-zah-keh', 'N/A', ARRAY['Pale Fruit Drink
+ The finished drink ranges from pale cream to light green depending on fruit concentration.', 'Fine Kiwi Specks
+ Fruit pulp may remain visible as tiny green and black flecks.', 'Cloudy Amazake Body
+ The drink is thicker and cloudier than ordinary fruit juice because of the rice base.']::text[], 'Link'),
+('azabu-juban-bean-snacks', 'Azabu Juban Bean Snacks', '麻布十番の豆菓子', 'kanto', 'tokyo', 'A traditional-style bean confection associated with Azabu-Juban''s long-running Mamegen shop, where roasted beans and other ingredients are coated, seasoned, or confectioned into crisp bite-sized snacks. The range balances roasted aroma, sweetness, saltiness, and texture and is strongly linked to the neighborhood''s historic shopping street.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Vegan, contains soy/peanuts', 400, 1500, 'Published', ARRAY['Vegetarian', 'Halal', 'Quick bite']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Mamegen has been a bean-confectionery shop in Azabu-Juban since the nineteenth century and is widely associated with the area''s bean-snack tradition. The shop developed a broad range of roasted and coated beans rather than a single recipe.', NULL, 'The shop''s long presence helped make bean snacks part of the Azabu-Juban souvenir identity. Many varieties are designed to be eaten with tea or an alcoholic drink.', ARRAY['01 Roasted Beans
+ Soybeans, broad beans, peanuts, and other legumes provide the crunchy base.', '02 Sugar or Savory Coating
+ Sweet, soy, miso, or spice coatings create the main flavor.', '03 Sesame or Aromatic Seasoning
+ Sesame and other seasonings add fragrance and extra texture to selected varieties.']::text[], 'ah-zah-boo joo-bahn no mah-meh-gah-she', 'N/A', ARRAY['Glossy Coated Beans
+ Roasted beans carry colorful or glossy seasonings depending on the variety.', 'Varied Crunch
+ Different beans and coatings create a range of hard, crisp, and brittle textures.', 'Traditional Gift Packaging
+ Small boxes and bags present the snacks as refined Tokyo souvenirs.']::text[], 'Link'),
+('akame-satoimo', 'Akame Satoimo', '赤芽さといも', 'kanto', 'tokyo', 'A traditional taro variety from Miyakejima distinguished by its reddish-purple shoots and firm, creamy corms. Akame satoimo is used in simmered dishes and other island cooking, where its dense texture and earthy sweetness complement soy-based seasonings.', ARRAY['Autumn']::text[], ARRAY['local specialty']::text[], 'Vegan, Gluten-free', 300, 800, 'Published', ARRAY['Vegetarian', 'Halal']::text[], 'Verified vegetarian', 'Verified halal', TRUE, 'Akame satoimo is a traditional agricultural variety preserved on Miyakejima as part of the island''s distinctive crop heritage. Its cultivation reflects the island''s adaptation to subtropical conditions and its long reliance on hardy root crops.', NULL, 'The reddish color is most obvious in the young shoots, while the edible corm is much paler inside. Cooking softens the root into a creamy texture while leaving enough structure for simmered dishes.', ARRAY['01 Akame Taro
+ The heritage root provides the starchy, creamy base.', '02 Dashi
+ Japanese stock carries the root''s delicate earthy flavor.', '03 Soy Sauce and Mirin
+ Savory-sweet seasoning enhances the natural sweetness of the taro.']::text[], 'ah-kah-meh sah-toh-ee-moh', 'N/A', ARRAY['Red-Tinged Shoots
+ The young stems and upper portions show the reddish coloration that gives the variety its name.', 'Creamy White Interior
+ The cooked corm has pale flesh and a smooth, starchy texture.', 'Rustic Whole Taro
+ Small whole roots are often presented in simple simmered preparations.']::text[], 'Link'),
+('muroaji-ashitaba-smoked-fish', 'Muroaji Ashitaba Smoked Fish', 'むロアジあした葉燻製', 'kanto', 'tokyo', 'A smoked fish specialty from Miyakejima that pairs locally caught flying fish with the island''s distinctive ashitaba plant. The fish is cured and gently smoked to concentrate its savory flavor, while ashitaba adds a local botanical note to the product''s identity.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Contains fish', 800, 2000, 'Published', ARRAY[]::text[], 'Not reviewed', 'Not reviewed', FALSE, 'The product was developed as a Miyakejima specialty combining the island''s flying-fish catch with ashitaba, a signature local plant. It represents modern local food processing rather than an ancient named dish.', NULL, 'Flying fish are naturally lean, so smoking concentrates their flavor without making the finished product as oily as richer fish. Ashitaba gives the item a distinctly island-specific identity.', ARRAY['01 Flying Fish
+ Muroaji provides lean, savory fish flesh.', '02 Ashitaba
+ The local leafy plant adds botanical character and regional identity.', '03 Smoking Salt
+ Salt cures the fish while wood smoke creates aroma and the characteristic brown surface.']::text[], 'moo-roh-ah-jee ah-she-tah-bah koon-say', 'N/A', ARRAY['Golden Smoked Fish
+ The fillet develops a warm amber-brown color from the smoking process.', 'Firm Cured Flesh
+ Curing gives the fish a denser texture than fresh seafood.', 'Ashitaba Green Accent
+ Ashitaba imagery or seasoning highlights the Miyakejima connection.']::text[], 'Link'),
+('musashino-jigona-udon', 'Musashino Jigona Udon', '武蔵野地粉うどん', 'kanto', 'tokyo', 'A handmade udon made with locally associated Musashino wheat flour, emphasizing firm noodles and a rustic grain aroma. The style reflects the area''s historic wheat-growing culture and is often served with a warm dipping soup rich in pork and green onion.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Contains wheat, soy', 700, 1500, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Musashino Jigona Udon was developed to promote locally milled wheat and the area''s traditional noodle culture. It draws on the older Musashino practice of growing wheat and making substantial udon rather than reproducing a single historic recipe.', NULL, 'The term jigona points to local flour, emphasizing the grain''s regional origin. Firm noodles are particularly good with the hot dipping broth used in Musashino-style udon.', ARRAY['01 Local Wheat Flour
+ Regional wheat provides the principal grain aroma and noodle body.', '02 Water and Salt
+ Water forms the dough while salt strengthens the gluten structure.', '03 Dipping Broth
+ Pork, dashi, soy sauce, and negi create the traditional savory accompaniment.']::text[], 'moo-sah-she-noh jee-goh-nah oo-don', 'N/A', ARRAY['Hand-Cut Thick Noodles
+ The noodles are broad, firm, and slightly irregular from handmade preparation.', 'Opaque Wheat Color
+ Local flour gives the cooked noodles a warm white to pale beige appearance.', 'Separate Dipping Bowl
+ A strong savory broth is served apart so the noodles stay firm.']::text[], 'Link'),
+('murayama-kate-udon', 'Murayama Kate Udon', '村山かてうどん', 'kanto', 'tokyo', 'A hearty noodle tradition from Musashimurayama in which firm wheat udon is eaten with a rich dipping soup and abundant greens or other vegetables called kate. The dish developed from local farm households that paired homemade noodles with whatever vegetables were available.', ARRAY['N/A']::text[], ARRAY['local specialty']::text[], 'Contains wheat, soy', 800, 1500, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', FALSE, 'Murayama Kate Udon developed from the farming culture of the Musashino plain, where wheat was an important crop and vegetables were used to stretch a meal. The local tradition was preserved as a home-style dish and later promoted as a city specialty.', NULL, 'The word kate means food to eat with the noodles, especially vegetables. The dish therefore expresses the practical idea of making a filling meal from noodles plus available produce.', ARRAY['01 Wheat Udon
+ Firm hand-made noodles provide the substantial base.', '02 Local Leafy Vegetables
+ Greens and other seasonal vegetables provide the signature kate component.', '03 Pork and Soy Broth
+ Pork, dashi, soy sauce, and negi make the hot dipping soup.']::text[], 'moo-rah-yah-mah kah-teh oo-don', 'N/A', ARRAY['Broad Firm Noodles
+ Thick noodles show the substantial bite of handmade wheat pasta.', 'Green Vegetable Addition
+ Leafy vegetables provide a vivid contrast to the pale noodles.', 'Dark Dipping Soup
+ Pork and soy create a rich broth served separately from the noodles.']::text[], 'Link'),
+('meguro-no-sanma', 'Meguro no Sanma', '目黒のさんま', 'kanto', 'tokyo', 'A Meguro civic food tradition centered on grilled Pacific saury, served as a tribute to a famous rakugo story in which the fish is celebrated as food that tastes best when cooked simply. The modern local event tradition uses charcoal-grilled sanma to connect literature, neighborhood identity, and autumn food culture.', ARRAY['Autumn']::text[], ARRAY['local specialty']::text[], 'Contains fish', 500, 1500, 'Published', ARRAY['Dine-in']::text[], 'Not reviewed', 'Not reviewed', TRUE, 'The Meguro saury tradition is inspired by the rakugo story Meguro no Sanma, in which a lord discovers the appeal of simply prepared saury. The modern local festival tradition grew in the twentieth century as the ward turned that literary reference into a community food event.', NULL, 'The rakugo joke says the fish tastes best in Meguro even though the district is inland and not a fishing port. The story became so associated with the ward that saury now serves as a local cultural symbol.', ARRAY['01 Pacific Saury
+ Fresh sanma provides the rich, oily fish flavor.', '02 Salt
+ Simple salting seasons the fish and helps the skin brown over the grill.', '03 Grated Daikon and Citrus
+ Grated daikon and a squeeze of citrus cut the fish''s richness and refresh the finish.']::text[], 'meh-goo-roh no sahn-mah', 'N/A', ARRAY['Charcoal-Grilled Saury
+ Whole fish develop deeply browned skin and crisp edges over live charcoal.', 'Silver Skin and Char Marks
+ Natural metallic skin contrasts with dark grill marks.', 'Simple Citrus and Daikon
+ Plain accompaniments keep the visual focus on the fish and its autumn character.']::text[], 'Link')
+ON CONFLICT (dish_id) DO UPDATE SET dish_name = EXCLUDED.dish_name, japanese_name = EXCLUDED.japanese_name, summary = EXCLUDED.summary, home_filter_tags = EXCLUDED.home_filter_tags, visual_cues = EXCLUDED.visual_cues, key_ingredients = EXCLUDED.key_ingredients;
 
 -- 5. DISH_LOCATIONS
 INSERT INTO dish_locations (dish_id, location_id, relationship, display_priority, editorial_note, link_status) VALUES
