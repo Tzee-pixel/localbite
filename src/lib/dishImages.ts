@@ -29,9 +29,9 @@ export const LOCAL_DISH_ASSETS: Record<string, ImageSourcePropType[]> = {
     require('../../assets/dish-details/nerima-sable-3.jpg'),
   ],
   'aochu': [
-    require('../../assets/dish-details/青酎_1.webp'),
-    require('../../assets/dish-details/青酎_2.webp'),
-    require('../../assets/dish-details/青酎_3.webp'),
+    require('../../assets/dish-details/aochu_1.webp'),
+    require('../../assets/dish-details/aochu_2.webp'),
+    require('../../assets/dish-details/aochu_3.webp'),
   ],
   'hingya-no-shio': [
     require('../../assets/dish-details/hingya-1.jpg'),
