@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer, LinkingOptions } from '@react-navigation/native';
@@ -24,34 +24,42 @@ import { RootTabParamList } from './src/navigation/types';
 
 const prefix = Linking.createURL('/');
 
-const isWeb = Platform.OS === 'web';
-const basePath = isWeb ? 'localbite/' : '';
-
 const linking: LinkingOptions<RootTabParamList> = {
-  prefixes: [prefix, 'localbite://', 'https://localbite.app'],
+  prefixes: [
+    prefix,
+    'localbite://',
+    'https://tzee-pixel.github.io/localbite',
+    'https://tzee-pixel.github.io/localbite/',
+    'https://tzee-pixel.github.io',
+    'https://localbite.app',
+  ],
   config: {
     screens: {
       ExploreTab: {
         screens: {
-          ExploreHome: `${basePath}explore`,
-          DishDetail: `${basePath}dish/:dishId`,
-          LocationDetail: `${basePath}location/:locationId`,
-          SeasonalSearch: `${basePath}seasonal/:season`,
+          ExploreHome: '',
+          DishDetail: 'dish/:dishId',
+          LocationDetail: 'location/:locationId',
+          SeasonalSearch: 'seasonal/:season',
         },
       },
       SearchTab: {
         screens: {
-          SearchHome: `${basePath}search`,
+          SearchHome: 'search',
+          DishDetail: 'search/dish/:dishId',
+          LocationDetail: 'search/location/:locationId',
+          SeasonalSearch: 'search/seasonal/:season',
         },
       },
       FavouritesTab: {
         screens: {
-          FavouritesHome: `${basePath}favourites`,
+          FavouritesHome: 'favourites',
+          DishDetail: 'favourites/dish/:dishId',
         },
       },
       SettingsTab: {
         screens: {
-          SettingsHome: `${basePath}settings`,
+          SettingsHome: 'settings',
         },
       },
     },

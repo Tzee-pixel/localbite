@@ -40,8 +40,7 @@ jobs:
           EXPO_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlyaGFtbWxzZnZidWlscGdsd3FiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0NTY2MzgsImV4cCI6MjEwNTAzMjYzOH0.5nYGOWjmPmCgtSju-HelEJbu7sCZzzqy5IkmA_PKP4s
         run: |
           npx expo export --platform web
-          touch dist/.nojekyll
-          cp dist/index.html dist/404.html
+          node scripts/prepare-github-pages.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
