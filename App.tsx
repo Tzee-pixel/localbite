@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { View, ActivityIndicator, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { NavigationContainer, LinkingOptions } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  LinkingOptions,
+  getStateFromPath as defaultGetStateFromPath,
+  getPathFromState as defaultGetPathFromState,
+} from '@react-navigation/native';
 import { QueryClientProvider } from '@tanstack/react-query';
 import * as Linking from 'expo-linking';
 import { useFonts, NotoSansJP_900Black } from '@expo-google-fonts/noto-sans-jp';
@@ -23,6 +28,11 @@ import { colors } from './src/theme';
 import { RootTabParamList } from './src/navigation/types';
 
 const prefix = Linking.createURL('/');
+
+const isSubpathDeployment =
+  Platform.OS === 'web' &&
+  typeof window !== 'undefined' &&
+  (window.location.pathname.startsWith('/localbite') || window.location.hostname.includes('github.io'));
 
 const linking: LinkingOptions<RootTabParamList> = {
   prefixes: [
@@ -63,6 +73,17 @@ const linking: LinkingOptions<RootTabParamList> = {
         },
       },
     },
+  },
+  getStateFromPath: (path, options) => {
+    const cleanPath = path.replace(/^\/?localbite\/?/, '');
+    return defaultGetStateFromPath(cleanPath || '', options);
+  },
+  getPathFromState: (state, options) => {
+    const rawPath = defaultGetPathFromState(state, options);
+    if (isSubpathDeployment) {
+      return `/localbite${rawPath.startsWith('/') ? rawPath : '/' + rawPath}`;
+    }
+    return rawPath;
   },
 };
 
