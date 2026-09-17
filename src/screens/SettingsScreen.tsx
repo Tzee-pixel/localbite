@@ -134,7 +134,7 @@ export const SettingsScreen: React.FC = () => {
           </View>
           <View style={styles.aboutTextStack}>
             <Text style={styles.appNameText}>LocalBite</Text>
-            <Text style={styles.appVersionText}>Version 2.0</Text>
+            <Text style={styles.appVersionText}>Version 3.0</Text>
           </View>
         </View>
 
@@ -151,7 +151,7 @@ export const SettingsScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9F6F0',
+    backgroundColor: colors.paper,
   },
   content: {
     padding: spacing.md + 2,
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(28, 25, 23, 0.08)',
+    borderColor: colors.hairline,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.04,
@@ -190,16 +190,12 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 16,
+    borderRadius: borderRadius.lg,
     padding: spacing.lg,
     marginBottom: spacing.lg,
     borderWidth: 1,
-    borderColor: 'rgba(28, 25, 23, 0.06)',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.03,
-    shadowRadius: 8,
-    elevation: 2,
+    borderColor: colors.hairline,
+    ...shadows.shadowFloat,
   },
   cardSectionTitle: {
     fontSize: 12,
@@ -223,7 +219,7 @@ const styles = StyleSheet.create({
   rowIconBadge: {
     width: 34,
     height: 34,
-    borderRadius: 8,
+    borderRadius: borderRadius.sm,
     backgroundColor: '#F5F2EC',
     justifyContent: 'center',
     alignItems: 'center',
@@ -243,10 +239,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   statusGrantedBadge: {
-    backgroundColor: '#E8F5E9',
+    backgroundColor: colors.successTint,
   },
   statusDeniedBadge: {
-    backgroundColor: '#FFEBEE',
+    backgroundColor: colors.cautionTint,
   },
   statusDot: {
     fontSize: 14,
@@ -254,10 +250,10 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   statusGrantedDot: {
-    color: '#2E7D32',
+    color: colors.success,
   },
   statusDeniedDot: {
-    color: '#C62828',
+    color: colors.caution,
   },
   statusBadgeText: {
     fontSize: 11,
@@ -266,22 +262,22 @@ const styles = StyleSheet.create({
     letterSpacing: 0.4,
   },
   statusGrantedText: {
-    color: '#2E7D32',
+    color: colors.successDark,
   },
   statusDeniedText: {
-    color: '#C62828',
+    color: colors.caution,
   },
   hairlineDivider: {
     height: 1,
-    backgroundColor: 'rgba(28, 25, 23, 0.08)',
+    backgroundColor: colors.hairline,
     marginVertical: spacing.md,
   },
   primaryOutlineButton: {
     width: '100%',
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: 'rgba(28, 25, 23, 0.16)',
-    borderRadius: 12,
+    borderColor: colors.hairline,
+    borderRadius: borderRadius.md,
     paddingVertical: 14,
     alignItems: 'center',
     marginBottom: spacing.sm + 2,
@@ -294,10 +290,10 @@ const styles = StyleSheet.create({
   },
   tintedDangerButton: {
     width: '100%',
-    backgroundColor: '#FDF2F0',
+    backgroundColor: colors.cautionTint,
     borderWidth: 1,
     borderColor: '#E8B6A8',
-    borderRadius: 12,
+    borderRadius: borderRadius.md,
     paddingVertical: 14,
     alignItems: 'center',
   },
@@ -305,7 +301,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: typography.fontFamily.bodySemiBold,
     fontWeight: '700',
-    color: '#C2410C',
+    color: colors.caution,
   },
   greyPillBadge: {
     backgroundColor: '#F3F0EC',
@@ -327,7 +323,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 14,
-    backgroundColor: colors.rust,
+    backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: spacing.md,

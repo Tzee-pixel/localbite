@@ -12,13 +12,13 @@ export const FILTER_OPTIONS = [
 
 export type FilterChipOption = typeof FILTER_OPTIONS[number];
 
-// Dot color indicator category rotation per §5.5
+// Dot color indicator category rotation per §5.6
 const CHIP_DOT_COLORS: Record<string, string> = {
-  'Quick Bite': colors.seasonal.autumn,
-  'Vegetarian': colors.seasonal.summer,
-  'Dine-in': colors.rust,
-  'Halal': colors.seasonal.summer,
-  'Seasonal Peak': colors.seasonal.spring,
+  'Quick Bite': colors.primary,       // #EC4900
+  'Vegetarian': colors.success,       // #49B019
+  'Dine-in': colors.info,             // #3A51F5
+  'Halal': colors.success,            // #49B019
+  'Seasonal Peak': colors.highlight,  // #FFBF00
 };
 
 interface FilterChipsProps {
@@ -31,7 +31,7 @@ export const FilterChips: React.FC<FilterChipsProps> = ({ selectedFilters, onTog
     <View style={styles.container}>
       {FILTER_OPTIONS.map((option) => {
         const isSelected = selectedFilters.includes(option);
-        const dotColor = CHIP_DOT_COLORS[option] || colors.rust;
+        const dotColor = CHIP_DOT_COLORS[option] || colors.primary;
 
         return (
           <TouchableOpacity
@@ -74,12 +74,13 @@ const styles = StyleSheet.create({
   },
   chipUnselected: {
     backgroundColor: colors.surface,
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: colors.hairline,
   },
   chipSelected: {
-    backgroundColor: colors.rust,
-    borderWidth: 0,
+    backgroundColor: colors.primary,
+    borderWidth: 1,
+    borderColor: colors.primary,
   },
   dot: {
     width: 6,

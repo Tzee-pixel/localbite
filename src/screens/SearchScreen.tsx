@@ -199,7 +199,7 @@ export const SearchScreen: React.FC = () => {
         <View style={styles.resultsContainer}>
           {isSearching ? (
             <View style={styles.loadingBox}>
-              <ActivityIndicator size="large" color={colors.rust} />
+              <ActivityIndicator size="large" color={colors.primary} />
               <Text style={styles.loadingText}>Searching for "{debouncedQuery}"...</Text>
             </View>
           ) : filteredSearchDishes.length === 0 && filteredSearchLocations.length === 0 ? (
@@ -259,7 +259,7 @@ export const SearchScreen: React.FC = () => {
                         activeOpacity={0.8}
                       >
                         <View style={styles.locationIconBox}>
-                          <MapPin size={20} color={colors.rust} />
+                          <MapPin size={20} color={colors.primary} />
                         </View>
                         <View style={styles.locationResultInfo}>
                           <Text style={styles.locationResultName}>
@@ -351,7 +351,7 @@ const styles = StyleSheet.create({
   moreLinkText: {
     fontSize: typography.fontSize.sm,
     fontFamily: typography.fontFamily.bodyMedium,
-    color: colors.rust,
+    color: colors.primary,
   },
   shortcutCarousel: {
     marginBottom: spacing.xl,
@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
   locationImagePlaceholder: {
     width: '100%',
     height: 90,
-    backgroundColor: colors.trustIndigoTint,
+    backgroundColor: colors.infoTint,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -447,7 +447,7 @@ const styles = StyleSheet.create({
   dishResultJapanese: {
     fontSize: typography.fontSize.xs,
     fontFamily: typography.fontFamily.japanese,
-    color: colors.rust,
+    color: colors.primary,
     marginBottom: 2,
   },
   dishResultSummary: {
@@ -470,7 +470,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: borderRadius.sm,
-    backgroundColor: colors.trustIndigoTint,
+    backgroundColor: colors.infoTint,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: spacing.md,
@@ -546,13 +546,13 @@ const styles = StyleSheet.create({
   clearRecentText: {
     fontSize: typography.fontSize.sm,
     fontFamily: typography.fontFamily.bodySemiBold,
-    color: colors.rust,
+    color: colors.primary,
   },
   recentListCard: {
     backgroundColor: colors.surface,
     borderRadius: borderRadius.md,
     overflow: 'hidden',
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: colors.hairline,
   },
   recentItemRow: {
@@ -589,7 +589,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   itemDividerLine: {
-    height: 0.5,
+    height: 1,
     backgroundColor: colors.hairline,
     marginLeft: 64,
   },

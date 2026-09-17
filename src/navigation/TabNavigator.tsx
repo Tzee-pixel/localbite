@@ -73,12 +73,12 @@ export const TabNavigator: React.FC = () => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarActiveTintColor: colors.rust,
-        tabBarInactiveTintColor: colors.body,
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: 'rgba(28, 25, 23, 0.45)', // ink @ 45% per §4 & §5.7
         tabBarStyle: {
           backgroundColor: colors.surface,
           borderTopColor: colors.hairline,
-          borderTopWidth: 0.5,
+          borderTopWidth: 1, // 1px firmer border
           height: 64,
           paddingTop: 4,
           paddingBottom: 4,

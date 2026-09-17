@@ -66,7 +66,7 @@ export const DishCard: React.FC<DishCardProps> = ({ dish, variant = 'grid', onPr
               <TouchableOpacity style={styles.inlineBookmark} onPress={handleToggleBookmark} activeOpacity={0.8}>
                 <Bookmark
                   size={16}
-                  color={isSaved ? colors.rust : colors.ink}
+                  color={isSaved ? colors.primary : 'rgba(28, 25, 23, 0.55)'}
                   weight={isSaved ? 'fill' : 'regular'}
                 />
               </TouchableOpacity>
@@ -107,7 +107,7 @@ export const DishCard: React.FC<DishCardProps> = ({ dish, variant = 'grid', onPr
         <TouchableOpacity style={styles.bookmarkButton} onPress={handleToggleBookmark} activeOpacity={0.8}>
           <Bookmark
             size={16}
-            color={isSaved ? colors.rust : colors.ink}
+            color={isSaved ? colors.primary : 'rgba(28, 25, 23, 0.55)'}
             weight={isSaved ? 'fill' : 'regular'}
           />
         </TouchableOpacity>
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     borderRadius: borderRadius.md,
     overflow: 'hidden',
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: colors.hairline,
   },
   gridCard: {
@@ -150,9 +150,9 @@ const styles = StyleSheet.create({
   horizontalCard: {
     flexDirection: 'row',
     backgroundColor: colors.surface,
-    borderRadius: borderRadius.md + 2,
+    borderRadius: borderRadius.md,
     overflow: 'hidden',
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: colors.hairline,
     width: 310,
     height: 120,
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
   knowMoreText: {
     fontSize: typography.fontSize.xs + 1,
     fontFamily: typography.fontFamily.bodyMedium,
-    color: colors.rust,
+    color: colors.primary,
   },
 });
 

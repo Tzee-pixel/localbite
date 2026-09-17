@@ -61,7 +61,7 @@ export const FavouritesScreen: React.FC = () => {
         /* Empty State */
         <View style={styles.emptyStateContainer}>
           <View style={styles.emptyIconBox}>
-            <Bookmark size={32} color={colors.rust} weight="regular" />
+            <Bookmark size={32} color={colors.primary} weight="regular" />
           </View>
           <Text style={styles.emptyTitle}>No saved dishes yet</Text>
           <Text style={styles.emptySubtitle}>
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   japaneseName: {
     fontSize: typography.fontSize.xs + 1,
     fontFamily: typography.fontFamily.japanese,
-    color: colors.rust,
+    color: colors.primary,
     marginBottom: 2,
   },
   summary: {
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: colors.trustIndigoTint,
+    backgroundColor: colors.infoTint,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: spacing.md,
@@ -175,8 +175,8 @@ const styles = StyleSheet.create({
   exploreCtaButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.rust,
-    borderRadius: borderRadius.full, // radius-full pill shape
+    backgroundColor: colors.primary,
+    borderRadius: borderRadius.md, // Rounded rectangle (12px) per §3 & §5.1
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.xl,
   },

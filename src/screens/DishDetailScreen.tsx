@@ -318,7 +318,7 @@ export const DishDetailScreen: React.FC = () => {
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.rust} />
+        <ActivityIndicator size="large" color={colors.primary} />
         <Text style={styles.loadingText}>Loading dish details...</Text>
       </View>
     );
@@ -415,7 +415,7 @@ export const DishDetailScreen: React.FC = () => {
           <TouchableOpacity style={styles.circularBookmarkButton} onPress={handleToggleBookmark} activeOpacity={0.8}>
             <Bookmark
               size={18}
-              color={isSaved ? colors.rust : colors.rust}
+              color={isSaved ? colors.primary : 'rgba(28, 25, 23, 0.55)'}
               weight={isSaved ? 'fill' : 'regular'}
             />
           </TouchableOpacity>
@@ -526,7 +526,7 @@ export const DishDetailScreen: React.FC = () => {
               {whereToLookData.map((item, idx) => (
                 <View key={idx} style={styles.whereToLookRow}>
                   <View style={styles.checkBadgeCircle}>
-                    <Check size={14} color={colors.rust} weight="bold" />
+                    <Check size={14} color="rgba(28, 25, 23, 0.50)" weight="bold" />
                   </View>
                   <View style={styles.whereToLookContent}>
                     <Text style={styles.whereToLookItemTitle}>{item.title}</Text>
@@ -567,7 +567,7 @@ export const DishDetailScreen: React.FC = () => {
           {dish.did_you_know && (
             <View style={styles.peachCalloutCard}>
               <View style={styles.calloutIconCircle}>
-                <Lightbulb size={22} color="#FFFFFF" weight="bold" />
+                <Lightbulb size={22} color={colors.highlightIconInk} weight="bold" />
               </View>
               <View style={styles.calloutTextContainer}>
                 <Text style={styles.calloutTitle}>Did You Know?</Text>
@@ -608,7 +608,7 @@ export const DishDetailScreen: React.FC = () => {
               {/* Top Row: Icon + Text */}
               <View style={styles.findNearbyTopRow}>
                 <View style={styles.findNearbyIconBox}>
-                  <MapTrifold size={26} color="#2563EB" weight="bold" />
+                  <MapTrifold size={26} color={colors.info} weight="bold" />
                 </View>
                 <View style={styles.findNearbyTextContent}>
                   <Text style={styles.findNearbyTitle}>
@@ -672,10 +672,10 @@ const styles = StyleSheet.create({
     marginBottom: spacing.lg,
   },
   retryButton: {
-    backgroundColor: colors.rust,
+    backgroundColor: colors.primary,
     paddingHorizontal: spacing.xl,
     paddingVertical: spacing.md,
-    borderRadius: borderRadius.full,
+    borderRadius: borderRadius.md,
   },
   retryButtonText: {
     color: '#FFFFFF',
@@ -797,9 +797,9 @@ const styles = StyleSheet.create({
   },
   englishSubtitle: {
     fontSize: 20,
-    fontFamily: typography.fontFamily.dishSubtitle, // Figtree_500Medium
-    fontWeight: '500',
-    color: colors.rust, // #C2410C
+    fontFamily: typography.fontFamily.dishSubtitle, // Figtree 600 SemiBold
+    fontWeight: '600',
+    color: colors.primary, // #EC4900
     marginBottom: spacing.sm + 2, // 10px spacing
   },
   pronunciationRow: {
@@ -836,14 +836,14 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius.full,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs + 1,
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: colors.hairline,
   },
   chipDot: {
     width: 5,
     height: 5,
     borderRadius: 2.5,
-    backgroundColor: colors.rust,
+    backgroundColor: colors.primary,
     marginRight: spacing.xs,
   },
   tagChipText: {
@@ -884,7 +884,7 @@ const styles = StyleSheet.create({
   },
   bulletPoint: {
     fontSize: 16,
-    color: colors.rust,
+    color: 'rgba(28, 25, 23, 0.50)',
     marginRight: spacing.xs,
     lineHeight: 26,
   },
@@ -908,14 +908,14 @@ const styles = StyleSheet.create({
   readMoreText: {
     fontSize: typography.fontSize.sm,
     fontFamily: typography.fontFamily.bodyMedium,
-    color: colors.rust,
+    color: colors.primary,
     textDecorationLine: 'underline',
   },
   peachCalloutCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFEDD5', // bg color #FFEDD5 per user request
-    borderRadius: 24, // 24px smooth rounded corners
+    backgroundColor: colors.highlightTint, // #FFF3D2
+    borderRadius: borderRadius.md, // 12px rounded rectangle
     paddingHorizontal: 24,
     paddingVertical: 20,
     marginBottom: spacing.xl + 8, // 32px room to breathe
@@ -923,8 +923,8 @@ const styles = StyleSheet.create({
   calloutIconCircle: {
     width: 44,
     height: 44,
-    borderRadius: 22,
-    backgroundColor: '#C2410C', // rust #C2410C
+    borderRadius: borderRadius.badge, // 6px square-ish
+    backgroundColor: colors.highlight, // #FFBF00
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 18,
@@ -968,16 +968,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     backgroundColor: '#FFFFFF', // White card
-    borderRadius: 16, // 16px smooth rounded corners
+    borderRadius: borderRadius.md, // 12px smooth rounded corners
     paddingVertical: 18,
     paddingHorizontal: 20,
-    borderWidth: 0.5,
-    borderColor: 'rgba(28,25,23,0.12)', // Hairline border
+    borderWidth: 1,
+    borderColor: colors.hairline, // 1px Hairline border
   },
   ingredientNumber: {
     fontSize: 22,
     fontFamily: typography.fontFamily.h2, // Playfair Display 700 Bold
-    color: colors.rust, // Rust color (#C2410C)
+    color: colors.ink, // Neutral ink (#1C1917) per §5.5
     width: 32,
     marginRight: 14,
     marginTop: 1,
@@ -1010,8 +1010,8 @@ const styles = StyleSheet.create({
   nearbyIconBox: {
     width: 44,
     height: 44,
-    backgroundColor: colors.trustIndigoTint,
-    borderRadius: borderRadius.md,
+    backgroundColor: colors.infoTint,
+    borderRadius: borderRadius.sm,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: spacing.md,
@@ -1035,7 +1035,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.lg,
   },
   sectionDivider: {
-    height: 0.5,
+    height: 1,
     backgroundColor: colors.hairline,
   },
   whereToLookTitle: {
@@ -1057,7 +1057,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: '#FDEEE9', // Soft peach/coral circle badge
+    backgroundColor: 'rgba(28, 25, 23, 0.07)', // neutral restrained circle badge
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: spacing.md,
@@ -1084,11 +1084,11 @@ const styles = StyleSheet.create({
   },
   findNearbyCard: {
     backgroundColor: '#FFFFFF', // White card background
-    borderRadius: 24, // 24px rounded corners
+    borderRadius: borderRadius.md, // 12px rounded rectangle
     padding: 24, // 24px padding inside
     marginTop: spacing.lg,
-    borderWidth: 0.5,
-    borderColor: 'rgba(28,25,23,0.12)', // Hairline border
+    borderWidth: 1,
+    borderColor: colors.hairline, // 1px Hairline border
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.04,
@@ -1103,8 +1103,8 @@ const styles = StyleSheet.create({
   findNearbyIconBox: {
     width: 52,
     height: 52,
-    borderRadius: 16,
-    backgroundColor: '#EFF6FF', // Light blue tint
+    borderRadius: borderRadius.sm,
+    backgroundColor: colors.infoTint, // Info blue tint
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
@@ -1129,12 +1129,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.rust, // Solid rust fill (#C2410C)
-    borderRadius: borderRadius.full, // Pill shape (999px)
+    backgroundColor: colors.primary, // Solid primary fill (#EC4900)
+    borderRadius: borderRadius.md, // Rounded rectangle (12px), not pill per §3 & §5.1
     paddingVertical: 14,
-    shadowColor: colors.rust,
+    shadowColor: colors.primary,
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 3,
   },

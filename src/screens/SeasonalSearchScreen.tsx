@@ -21,12 +21,12 @@ const REGION_TABS = [
   { label: 'Kyushu', id: 'kyuushuu' },
 ] as const;
 
-// Terracotta region filter color palette (consistent across all season screens)
+// Region filter color palette
 const REGION_FILTER_THEME = {
-  regionLabelColor: '#9b6b54',
-  tabSelectedBg: '#a93613',
-  tabUnselectedBorder: 'rgba(155, 107, 84, 0.25)',
-  tabUnselectedText: '#442217',
+  regionLabelColor: colors.ink,
+  tabSelectedBg: colors.primary,
+  tabUnselectedBorder: colors.hairline,
+  tabUnselectedText: colors.body,
 };
 
 export interface SeasonalThemeConfig {
@@ -436,7 +436,7 @@ const styles = StyleSheet.create({
   },
   regionTabUnselected: {
     backgroundColor: '#FFFFFF',
-    borderWidth: 0.8,
+    borderWidth: 1,
   },
   regionTabText: {
     fontSize: typography.fontSize.uiLabel,

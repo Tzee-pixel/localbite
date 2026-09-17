@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Svg, { Path, Circle } from 'react-native-svg';
-import { colors, typography, spacing } from '../theme';
+import { colors, typography, spacing, borderRadius } from '../theme';
 import { getCurrentSeason } from '../lib/queries';
 
 export type SeasonType = 'Spring' | 'Summer' | 'Autumn' | 'Winter';
@@ -119,39 +119,51 @@ const SEASON_THEMES: Record<
     shadowColor: string;
     bgIconColorLight: string;
     bgIconColorDark: string;
+    textColor?: string;
+    iconColor?: string;
+    iconCircleBg?: string;
     BadgeIcon: React.FC<any>;
     BgIcon: React.FC<any>;
   }
 > = {
   Autumn: {
-    bgColor: '#C45C1A',
-    shadowColor: '#692F0E',
-    bgIconColorLight: 'rgba(232, 138, 63, 0.35)',
-    bgIconColorDark: 'rgba(143, 60, 22, 0.45)',
+    bgColor: colors.primary, // #EC4900
+    shadowColor: '#802600',
+    bgIconColorLight: 'rgba(255, 255, 255, 0.25)',
+    bgIconColorDark: 'rgba(128, 38, 0, 0.35)',
+    textColor: '#FFFFFF',
+    iconColor: '#FFFFFF',
     BadgeIcon: LeafIcon,
     BgIcon: FilledLeafIcon,
   },
   Spring: {
-    bgColor: '#D42B76',
-    shadowColor: '#6E0D3A',
-    bgIconColorLight: 'rgba(255, 179, 218, 0.35)',
-    bgIconColorDark: 'rgba(145, 15, 75, 0.45)',
+    bgColor: colors.success, // #49B019
+    shadowColor: '#20550B',
+    bgIconColorLight: 'rgba(255, 255, 255, 0.25)',
+    bgIconColorDark: 'rgba(32, 85, 11, 0.35)',
+    textColor: '#FFFFFF',
+    iconColor: '#FFFFFF',
     BadgeIcon: FlowerIcon,
     BgIcon: FlowerIcon,
   },
   Summer: {
-    bgColor: '#E89214',
-    shadowColor: '#784400',
-    bgIconColorLight: 'rgba(255, 220, 120, 0.35)',
-    bgIconColorDark: 'rgba(170, 95, 0, 0.45)',
+    bgColor: colors.highlight, // #FFBF00
+    shadowColor: '#806000',
+    bgIconColorLight: 'rgba(255, 255, 255, 0.35)',
+    bgIconColorDark: 'rgba(90, 61, 0, 0.25)',
+    textColor: colors.highlightIconInk, // #5A3D00 for high contrast on amber
+    iconColor: colors.highlightIconInk,
+    iconCircleBg: 'rgba(90, 61, 0, 0.12)',
     BadgeIcon: SunIcon,
     BgIcon: SunIcon,
   },
   Winter: {
-    bgColor: '#2B4C7E',
-    shadowColor: '#0F213E',
-    bgIconColorLight: 'rgba(145, 188, 245, 0.35)',
-    bgIconColorDark: 'rgba(20, 48, 90, 0.45)',
+    bgColor: colors.info, // #3A51F5
+    shadowColor: '#1A2578',
+    bgIconColorLight: 'rgba(255, 255, 255, 0.25)',
+    bgIconColorDark: 'rgba(26, 37, 120, 0.35)',
+    textColor: '#FFFFFF',
+    iconColor: '#FFFFFF',
     BadgeIcon: SnowflakeIcon,
     BgIcon: SnowflakeIcon,
   },
@@ -166,6 +178,8 @@ export const SeasonalHintBanner: React.FC<SeasonalHintBannerProps> = ({
 
   const BadgeIconComponent = theme.BadgeIcon;
   const BgIconComponent = theme.BgIcon;
+  const textColor = theme.textColor || '#FFFFFF';
+  const iconColor = theme.iconColor || '#FFFFFF';
 
   return (
     <TouchableOpacity
@@ -197,13 +211,18 @@ export const SeasonalHintBanner: React.FC<SeasonalHintBannerProps> = ({
 
       {/* Main Content Layout */}
       <View style={styles.contentRow}>
-        <View style={styles.iconCircle}>
-          <BadgeIconComponent size={28} color="#FFF8ED" strokeWidth={2.2} />
+        <View
+          style={[
+            styles.iconCircle,
+            theme.iconCircleBg ? { backgroundColor: theme.iconCircleBg } : undefined,
+          ]}
+        >
+          <BadgeIconComponent size={28} color={iconColor} strokeWidth={2.2} />
         </View>
 
         <View style={styles.textStack}>
-          <Text style={styles.titleText}>It's {activeSeason}</Text>
-          <Text style={styles.subtitleText}>
+          <Text style={[styles.titleText, { color: textColor }]}>It's {activeSeason}</Text>
+          <Text style={[styles.subtitleText, { color: textColor }]}>
             Try searching "seasonal" to see what's peaking
           </Text>
         </View>
@@ -215,7 +234,7 @@ export const SeasonalHintBanner: React.FC<SeasonalHintBannerProps> = ({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    borderRadius: 12,
+    borderRadius: borderRadius.md,
     overflow: 'hidden',
     marginBottom: spacing.lg,
     shadowOffset: { width: 0, height: 8 },
@@ -271,14 +290,12 @@ const styles = StyleSheet.create({
     fontSize: 19,
     fontFamily: typography.fontFamily.bodySemiBold,
     fontWeight: '800',
-    color: '#FFFFFF',
     letterSpacing: -0.4,
     lineHeight: 22,
   },
   subtitleText: {
     fontSize: 14,
     fontFamily: typography.fontFamily.bodyMedium,
-    color: '#FFFFFF',
     lineHeight: 18,
     marginTop: 4,
   },

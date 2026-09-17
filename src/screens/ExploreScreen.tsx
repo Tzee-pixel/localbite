@@ -239,7 +239,7 @@ export const ExploreScreen: React.FC = () => {
             <Text style={styles.modalTitle}>Set Your Location</Text>
 
             <TouchableOpacity style={styles.presetItemLive} onPress={handleLiveGPS}>
-              <NavigationArrow size={18} color={colors.rust} weight="bold" style={{ marginRight: 8 }} />
+              <NavigationArrow size={18} color={colors.primary} weight="bold" style={{ marginRight: 8 }} />
               <Text style={styles.presetTextLive}>Detect Live Device GPS</Text>
             </TouchableOpacity>
 
@@ -258,7 +258,7 @@ export const ExploreScreen: React.FC = () => {
                 onPress={() => handleSelectPreset(preset)}
               >
                 {isCoordinatesOutsideJapan(preset.lat, preset.lng) ? (
-                  <GlobeHemisphereWest size={18} color={colors.rust} weight="bold" style={{ marginRight: 8 }} />
+                  <GlobeHemisphereWest size={18} color={colors.primary} weight="bold" style={{ marginRight: 8 }} />
                 ) : (
                   <MapPin size={18} color={colors.body} style={{ marginRight: 8 }} />
                 )}
@@ -279,14 +279,14 @@ export const ExploreScreen: React.FC = () => {
             onPress={() => setIsLocationModalVisible(true)}
             activeOpacity={0.7}
           >
-            <GlobeHemisphereWest size={22} color={colors.rust} weight="bold" style={{ marginRight: 10, marginTop: 2 }} />
+            <GlobeHemisphereWest size={22} color={colors.primary} weight="bold" style={{ marginRight: 10, marginTop: 2 }} />
             <View style={styles.locationTextStack}>
               <Text style={styles.currentLocationSublabel}>CONNECTED FROM</Text>
               <View style={styles.locationNameRow}>
                 <Text style={styles.locationNameText}>
                   {userDetectedLocationName || displayLocationName || 'London, UK'}
                 </Text>
-                <CaretDown size={16} color={colors.rust} weight="bold" style={{ marginLeft: 6 }} />
+                <CaretDown size={16} color={colors.primary} weight="bold" style={{ marginLeft: 6 }} />
               </View>
             </View>
           </TouchableOpacity>
@@ -313,14 +313,14 @@ export const ExploreScreen: React.FC = () => {
             onPress={() => setIsLocationModalVisible(true)}
             activeOpacity={0.7}
           >
-            <MapPin size={22} color={colors.rust} weight="bold" style={{ marginRight: 10, marginTop: 2 }} />
+            <MapPin size={22} color={colors.primary} weight="bold" style={{ marginRight: 10, marginTop: 2 }} />
             <View style={styles.locationTextStack}>
               <Text style={styles.currentLocationSublabel}>CURRENT LOCATION</Text>
               <View style={styles.locationNameRow}>
                 <Text style={styles.locationNameText}>
                   {displayLocationName || resolvedLocation?.location_name || 'Tokyo'}
                 </Text>
-                <CaretDown size={16} color={colors.rust} weight="bold" style={{ marginLeft: 6 }} />
+                <CaretDown size={16} color={colors.primary} weight="bold" style={{ marginLeft: 6 }} />
               </View>
             </View>
           </TouchableOpacity>
@@ -340,7 +340,7 @@ export const ExploreScreen: React.FC = () => {
           onPress={() => navigation.navigate('FavouritesTab')}
           activeOpacity={0.8}
         >
-          <Bookmark size={15} color={colors.rust} weight="fill" />
+          <Bookmark size={15} color={colors.primary} weight="fill" />
           <Text style={styles.savedCollectionText}>Saved</Text>
         </TouchableOpacity>
       </View>
@@ -423,7 +423,7 @@ export const ExploreScreen: React.FC = () => {
           {!showGrantedState && (
             <View style={styles.locationHeroCard}>
               <View style={styles.locationIconBadge}>
-                <MapPin size={30} color={colors.rust} weight="fill" />
+                <MapPin size={30} color={colors.primary} weight="fill" />
               </View>
               <Text style={styles.locationHeroTitle}>See What's Good Nearby</Text>
               <Text style={styles.locationHeroSubtitle}>
@@ -684,7 +684,7 @@ const styles = StyleSheet.create({
   viewAllText: {
     fontSize: typography.fontSize.sm,
     fontFamily: typography.fontFamily.bodyMedium,
-    color: colors.rust,
+    color: colors.primary,
   },
   carousel: {
     marginBottom: spacing.xl,
@@ -743,7 +743,7 @@ const styles = StyleSheet.create({
   presetItemLive: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.trustIndigoTint,
+    backgroundColor: colors.infoTint,
     padding: spacing.md,
     borderRadius: borderRadius.md,
     marginBottom: spacing.xs,
@@ -751,7 +751,7 @@ const styles = StyleSheet.create({
   presetTextLive: {
     fontSize: typography.fontSize.sm,
     fontFamily: typography.fontFamily.bodySemiBold,
-    color: colors.rust,
+    color: colors.primary,
   },
   presetItem: {
     flexDirection: 'row',
@@ -766,7 +766,7 @@ const styles = StyleSheet.create({
     color: colors.ink,
   },
   divider: {
-    height: 0.5,
+    height: 1,
     backgroundColor: colors.hairline,
     marginVertical: spacing.sm,
   },
@@ -775,9 +775,9 @@ const styles = StyleSheet.create({
     marginTop: spacing.lg,
     marginBottom: spacing.sm,
     backgroundColor: colors.surface,
-    borderColor: colors.rust,
+    borderColor: colors.primary,
     borderWidth: 1.5,
-    borderRadius: borderRadius.full,
+    borderRadius: borderRadius.md,
     paddingVertical: 14,
     alignItems: 'center',
     justifyContent: 'center',
@@ -785,7 +785,7 @@ const styles = StyleSheet.create({
   seeMoreButtonText: {
     fontSize: typography.fontSize.sm,
     fontFamily: typography.fontFamily.bodySemiBold,
-    color: colors.rust,
+    color: colors.primary,
   },
   setHeaderTitleText: {
     fontSize: 20,
@@ -832,8 +832,8 @@ const styles = StyleSheet.create({
   },
   enableLocationButton: {
     width: '100%',
-    backgroundColor: colors.rust,
-    borderRadius: borderRadius.full,
+    backgroundColor: colors.primary,
+    borderRadius: borderRadius.md, // 12px rounded rectangle CTA per §3 & §5.1
     paddingVertical: 14,
     alignItems: 'center',
     justifyContent: 'center',
@@ -851,7 +851,7 @@ const styles = StyleSheet.create({
   searchCityButtonText: {
     fontSize: typography.fontSize.sm,
     fontFamily: typography.fontFamily.bodySemiBold,
-    color: colors.rust,
+    color: colors.primary,
     textDecorationLine: 'underline',
   },
 });

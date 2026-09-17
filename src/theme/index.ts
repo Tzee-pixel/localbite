@@ -1,66 +1,81 @@
 export const colors = {
-  // 1.1 Core
+  // 1.1 Core — dual role (system function + season)
+  primary: '#EC4900',            // Primary accent — CTAs, links, active nav, primary badges (Autumn)
+  success: '#49B019',            // Success — verified dietary status (Spring)
+  info: '#3A51F5',               // Info — price/factual data (Winter)
+  highlight: '#FFBF00',          // Highlight — "Did You Know," premium/featured tags (Summer)
+
+  // 1.2 Derived tints (for cards/badges)
+  successTint: '#E8F4E1',        // Dietary trust card background
+  successDark: '#276312',        // Dietary trust card headline text
+  successLabel: '#2F7A16',       // Dietary trust card label/subtext
+  infoTint: '#E9EBFD',           // Price trust card background
+  infoDark: '#2E3EC2',           // Price trust card label / headline
+  infoSubtext: '#3E4BA8',        // Price trust card subtext
+  highlightTint: '#FFF3D2',      // "Did You Know" callout background
+  highlightIconInk: '#5A3D00',   // Icon color on highlight-tint badges
+
+  // 1.3 Caution
+  cautionTint: '#F5E1E1',
+  caution: '#C23B3B',
+
+  // 1.4 Neutrals
   paper: '#FAF8F5',              // App background
   surface: '#FFFFFF',            // Cards, search bar, nav bar
   ink: '#1C1917',                // Headings, primary text
   body: '#44403C',               // Body/paragraph text
-  rust: '#C2410C',               // Primary accent — CTAs, links, active nav, icons
-  hairline: 'rgba(28, 25, 23, 0.12)', // Borders, dividers
+  hairline: 'rgba(28, 25, 23, 0.14)', // Borders, dividers (1px firmer)
 
-  // Legacy & Alias Mappings
-  primary: '#C2410C',            // rust
-  primaryLight: '#E8ECF8',
-  primaryDark: '#9A3412',
-  secondary: '#D9622C',
-  secondaryLight: '#FAF0E2',
+  // Backward-compatible aliases
+  rust: '#EC4900',               // Primary alias
+  primaryLight: '#FFF3D2',
+  primaryDark: '#B83800',
+  secondary: '#EC4900',
+  secondaryLight: '#FFF3D2',
 
-  ai: '#C2410C',                 // rust alias
-  aiTint: '#E8ECF8',             // indigo tint alias
+  ai: '#EC4900',
+  aiTint: '#E9EBFD',
 
-  background: '#FAF8F5',         // paper
-  card: '#FFFFFF',               // surface
+  background: '#FAF8F5',
+  card: '#FFFFFF',
   cardElevated: '#FFFFFF',
 
-  textPrimary: '#1C1917',        // ink
-  textSecondary: '#44403C',      // body
+  textPrimary: '#1C1917',
+  textSecondary: '#44403C',
   textMuted: 'rgba(28, 25, 23, 0.45)',
   textOnPrimary: '#FFFFFF',
 
-  border: 'rgba(28, 25, 23, 0.12)',
-  borderLight: 'rgba(28, 25, 23, 0.06)',
+  border: 'rgba(28, 25, 23, 0.14)',
+  borderLight: 'rgba(28, 25, 23, 0.08)',
 
   chipBackground: '#FFFFFF',
-  chipSelectedBg: '#C2410C',
+  chipSelectedBg: '#EC4900',
   chipSelectedText: '#FFFFFF',
 
   overlay: 'rgba(28, 25, 23, 0.4)',
   shadow: 'rgba(28, 25, 23, 0.08)',
 
-  // 1.2 Seasonal accent (signature element)
+  // Seasonal dual-role mapping
   seasonal: {
-    spring: '#DB5A73',
-    summer: '#5B8C3E',
-    autumn: '#D9622C',
-    winter: '#4A7C9E',
+    spring: '#49B019',
+    summer: '#FFBF00',
+    autumn: '#EC4900',
+    winter: '#3A51F5',
   },
 
-  // 1.3 Trust card system (exception palette)
-  trustGreenTint: '#E4F0E1',
-  trustGreenBadge: '#3D7A41',
-  trustGreenHeadline: '#2F6B33',
-  trustGreenLabel: '#4B7C4F',
+  // Legacy Trust aliases for backward compatibility
+  trustGreenTint: '#E8F4E1',
+  trustGreenBadge: '#49B019',
+  trustGreenHeadline: '#276312',
+  trustGreenLabel: '#2F7A16',
 
-  trustIndigoTint: '#E8ECF8',
-  trustIndigoBadge: '#2E4C8C',
-  trustIndigoLabel: '#3E4E7A',
-  trustIndigoSubtext: '#5A6B95',
+  trustIndigoTint: '#E9EBFD',
+  trustIndigoBadge: '#3A51F5',
+  trustIndigoLabel: '#2E3EC2',
+  trustIndigoSubtext: '#3E4BA8',
 
-  cautionTint: '#F5E1E1',
-  caution: '#C23B3B',
-
-  // 1.4 Supporting
-  peach: '#F3DFC5',              // "Did You Know?" callout background
-  gold: '#E7A73E',               // Rating star (flagged)
+  peach: '#FFF3D2',              // Highlight tint alias
+  gold: '#FFBF00',
 };
 
 export const spacing = {
@@ -82,7 +97,7 @@ export const typography = {
     h1: 'PlayfairDisplay_700Bold',
     h2: 'PlayfairDisplay_700Bold',
     h3: 'PlayfairDisplay_700Bold',
-    dishSubtitle: 'Figtree_500Medium',
+    dishSubtitle: 'Figtree_600SemiBold',
     body: 'Figtree_400Regular',
     bodyMedium: 'Figtree_500Medium',
     bodySemiBold: 'Figtree_600SemiBold',
@@ -97,7 +112,7 @@ export const typography = {
     caption: 12,
     uiLabel: 13,
     sm: 14,
-    body: 16,
+    body: 14,
     md: 16,
     h3: 18,
     xl: 20,
@@ -128,17 +143,18 @@ export const typography = {
 };
 
 export const borderRadius = {
-  sm: 8,        // radius-sm
-  md: 12,       // radius-md
-  lg: 20,       // radius-lg
+  sm: 8,        // radius-sm: inputs, icon buttons
+  badge: 6,     // square-ish trust card badges
+  md: 12,       // radius-md: cards, primary CTA button (rounded rectangle)
+  lg: 16,       // radius-lg: modals, sheets (tightened from 20px)
   xl: 24,
-  full: 999,    // radius-full (pill shape for primary CTA button)
+  full: 999,    // radius-full: chips/pills only
 };
 
 export const shadows = {
   hairline: {
-    borderWidth: 0.5,
-    borderColor: 'rgba(28, 25, 23, 0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(28, 25, 23, 0.14)',
   },
   shadowFloat: {
     shadowColor: '#1C1917',
@@ -149,12 +165,12 @@ export const shadows = {
   },
   // Legacy aliases
   sm: {
-    borderWidth: 0.5,
-    borderColor: 'rgba(28, 25, 23, 0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(28, 25, 23, 0.14)',
   },
   md: {
-    borderWidth: 0.5,
-    borderColor: 'rgba(28, 25, 23, 0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(28, 25, 23, 0.14)',
   },
   lg: {
     shadowColor: '#1C1917',

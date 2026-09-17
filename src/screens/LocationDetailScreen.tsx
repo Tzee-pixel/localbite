@@ -41,7 +41,7 @@ export const LocationDetailScreen: React.FC = () => {
           hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
         >
           <View style={styles.backIconCircle}>
-            <ArrowLeft size={16} color={colors.rust} weight="bold" />
+            <ArrowLeft size={16} color={colors.primary} weight="bold" />
           </View>
           <Text style={styles.backText}>Back</Text>
         </TouchableOpacity>
@@ -59,7 +59,7 @@ export const LocationDetailScreen: React.FC = () => {
           hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
         >
           <View style={styles.backIconCircle}>
-            <ArrowLeft size={16} color={colors.rust} weight="bold" />
+            <ArrowLeft size={16} color={colors.primary} weight="bold" />
           </View>
           <Text style={styles.backText}>Back</Text>
         </TouchableOpacity>
@@ -121,7 +121,7 @@ export const LocationDetailScreen: React.FC = () => {
               onPress={() => navigation.navigate('LocationDetail', { locationId: parentLocation.location_id })}
               activeOpacity={0.7}
             >
-              <Buildings size={13} color={colors.rust} weight="bold" />
+              <Buildings size={13} color={colors.primary} weight="bold" />
               <Text style={styles.breadcrumbParent}>{parentLocation.location_name}</Text>
             </TouchableOpacity>
             <CaretRight size={11} color={colors.textMuted} weight="bold" style={styles.breadcrumbArrow} />
@@ -146,7 +146,7 @@ export const LocationDetailScreen: React.FC = () => {
 
         {/* Subtitle with MapPin */}
         <View style={styles.pinSubtitleRow}>
-          <MapPin size={16} color={colors.rust} weight="fill" style={styles.pinIcon} />
+          <MapPin size={16} color={colors.primary} weight="fill" style={styles.pinIcon} />
           <Text style={styles.pinSubtitleText}>{prefectureName}, Japan</Text>
         </View>
 
@@ -158,7 +158,7 @@ export const LocationDetailScreen: React.FC = () => {
         {/* Transit Lines (if present) */}
         {transitLines.length > 0 && (
           <View style={styles.transitRow}>
-            <Train size={13} color={colors.rust} weight="bold" />
+            <Train size={13} color={colors.primary} weight="bold" />
             <Text style={styles.transitText}>{transitLines.slice(0, 2).join(', ')}</Text>
           </View>
         )}
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
   breadcrumbParent: {
     fontSize: typography.fontSize.xs,
     fontFamily: typography.fontFamily.bodyMedium,
-    color: colors.rust,
+    color: colors.primary,
   },
   breadcrumbArrow: {
     marginHorizontal: 3,
@@ -330,11 +330,11 @@ const styles = StyleSheet.create({
   transitText: {
     fontSize: 12,
     fontFamily: typography.fontFamily.bodyMedium,
-    color: colors.rust,
+    color: colors.primary,
   },
   hairlineDivider: {
     height: 1,
-    backgroundColor: '#E7E2DA',
+    backgroundColor: colors.hairline,
     width: '100%',
     marginTop: 6,
     marginBottom: 20,
@@ -396,7 +396,7 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: typography.fontSize.sm,
     fontFamily: typography.fontFamily.bodySemiBold,
-    color: colors.rust,
+    color: colors.primary,
   },
 });
 

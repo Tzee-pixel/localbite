@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: colors.aiTint,
+    backgroundColor: colors.infoTint,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: spacing.lg,
@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
     marginBottom: spacing.xxl,
   },
   primaryButton: {
-    backgroundColor: colors.ai,
-    borderRadius: borderRadius.sm,
+    backgroundColor: colors.primary,
+    borderRadius: borderRadius.md, // 12px rounded rectangle per §3 & §5.1
     paddingVertical: spacing.lg,
     paddingHorizontal: spacing.xl,
     alignItems: 'center',
@@ -99,15 +99,15 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     backgroundColor: colors.surface,
-    borderColor: colors.ai,
+    borderColor: colors.primary,
     borderWidth: 1.5,
-    borderRadius: borderRadius.sm,
+    borderRadius: borderRadius.md,
     paddingVertical: spacing.lg,
     paddingHorizontal: spacing.xl,
     alignItems: 'center',
   },
   secondaryButtonText: {
-    color: colors.ai,
+    color: colors.primary,
     fontSize: typography.fontSize.md,
     fontFamily: typography.fontFamily.bodySemiBold,
   },

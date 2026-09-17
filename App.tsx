@@ -93,7 +93,7 @@ function MainAppShell() {
   if (isLoadingLocation || hasCompletedOnboarding === null) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.paper }}>
-        <ActivityIndicator size="large" color={colors.rust} />
+        <ActivityIndicator size="large" color={colors.primary} />
       </View>
     );
   }
@@ -134,7 +134,7 @@ export default function App() {
   if (!fontsLoaded && !fontTimeoutPassed) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.paper }}>
-        <ActivityIndicator size="large" color={colors.rust} />
+        <ActivityIndicator size="large" color={colors.primary} />
       </View>
     );
   }

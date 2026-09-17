@@ -104,17 +104,17 @@ const styles = StyleSheet.create({
   },
   trustCard: {
     flex: 1,
-    borderRadius: borderRadius.md + 2,
+    borderRadius: borderRadius.md,
     padding: spacing.lg, // 16px internal padding
   },
   greenCardBg: {
-    backgroundColor: colors.trustGreenTint, // #E4F0E1
+    backgroundColor: colors.successTint, // #E8F4E1
   },
   cautionCardBg: {
-    backgroundColor: colors.cautionTint,     // #F5E1E1
+    backgroundColor: colors.cautionTint, // #F5E1E1
   },
   indigoCardBg: {
-    backgroundColor: colors.trustIndigoTint,  // #E8ECF8
+    backgroundColor: colors.infoTint,    // #E9EBFD
   },
   topRow: {
     flexDirection: 'row',
@@ -124,19 +124,19 @@ const styles = StyleSheet.create({
   badge: {
     width: 20,
     height: 20,
-    borderRadius: 10,
+    borderRadius: borderRadius.badge, // 6px square-ish badge per §5.4
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: spacing.xs,
   },
   greenBadgeBg: {
-    backgroundColor: colors.trustGreenBadge, // #3D7A41
+    backgroundColor: colors.success,     // #49B019
   },
   cautionBadgeBg: {
-    backgroundColor: colors.caution,         // #C23B3B
+    backgroundColor: colors.caution,     // #C23B3B
   },
   indigoBadgeBg: {
-    backgroundColor: colors.trustIndigoBadge, // #2E4C8C
+    backgroundColor: colors.info,        // #3A51F5
   },
   monoLabel: {
     fontSize: typography.fontSize.monoLabel, // 10px
@@ -144,13 +144,13 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   greenLabelText: {
-    color: colors.trustGreenLabel,           // #4B7C4F
+    color: colors.successLabel,          // #2F7A16
   },
   cautionLabelText: {
-    color: colors.caution,                   // #C23B3B
+    color: colors.caution,               // #C23B3B
   },
   indigoLabelText: {
-    color: colors.trustIndigoLabel,          // #3E4E7A
+    color: colors.infoDark,              // #2E3EC2
   },
   headline: {
     fontSize: 15,
@@ -158,28 +158,28 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   greenHeadlineText: {
-    color: colors.trustGreenHeadline,        // #2F6B33
+    color: colors.successDark,           // #276312
   },
   cautionHeadlineText: {
-    color: colors.caution,                   // #C23B3B
+    color: colors.caution,               // #C23B3B
   },
   monoPriceHeadline: {
     fontFamily: typography.fontFamily.utilitySemiBold, // IBM Plex Mono
-    color: colors.ink,                       // #1C1917
+    color: colors.infoDark,              // #2E3EC2 dark variant
   },
   subtext: {
-    fontSize: 13, // 13px per user request
+    fontSize: 13,
     fontFamily: typography.fontFamily.body,
     lineHeight: 18,
   },
   greenSubtextText: {
-    color: colors.trustGreenLabel,
+    color: colors.successLabel,          // #2F7A16
   },
   cautionSubtextText: {
     color: colors.caution,
   },
   indigoSubtextText: {
-    color: colors.trustIndigoSubtext,        // #5A6B95
+    color: colors.infoSubtext,           // #3E4BA8
   },
 });
 

@@ -153,7 +153,7 @@ export const OutsideJapanView: React.FC<OutsideJapanViewProps> = ({
       <View style={styles.heroCard}>
         <View style={styles.badgeRow}>
           <View style={styles.detectedBadge}>
-            <GlobeHemisphereWest size={13} color={colors.rust} weight="bold" />
+            <GlobeHemisphereWest size={13} color={colors.primary} weight="bold" />
             <Text style={styles.detectedBadgeText} numberOfLines={1}>
               {detectedLocationText}
             </Text>
@@ -176,7 +176,7 @@ export const OutsideJapanView: React.FC<OutsideJapanViewProps> = ({
           onPress={onNavigateToSearch}
           activeOpacity={0.88}
         >
-          <MagnifyingGlass size={17} color={colors.rust} weight="bold" style={{ marginRight: 8 }} />
+          <MagnifyingGlass size={17} color={colors.primary} weight="bold" style={{ marginRight: 8 }} />
           <Text style={styles.searchPromptText}>Search any dish, city or station in Japan...</Text>
         </TouchableOpacity>
       </View>
@@ -185,7 +185,7 @@ export const OutsideJapanView: React.FC<OutsideJapanViewProps> = ({
       <View style={styles.sectionHeader}>
         <View>
           <View style={styles.sectionTitleRow}>
-            <AirplaneTilt size={18} color={colors.rust} weight="fill" style={{ marginRight: 6 }} />
+            <AirplaneTilt size={18} color={colors.primary} weight="fill" style={{ marginRight: 6 }} />
             <Text style={styles.sectionHeading}>Choose Your Destination</Text>
           </View>
           <Text style={styles.sectionSubtitle}>
@@ -239,7 +239,7 @@ export const OutsideJapanView: React.FC<OutsideJapanViewProps> = ({
       <View style={[styles.sectionHeader, { marginTop: spacing.xxl }]}>
         <View>
           <View style={styles.sectionTitleRow}>
-            <CalendarCheck size={18} color={colors.rust} weight="fill" style={{ marginRight: 6 }} />
+            <CalendarCheck size={18} color={colors.primary} weight="fill" style={{ marginRight: 6 }} />
             <Text style={styles.sectionHeading}>{currentSeason} in Japan</Text>
           </View>
           <Text style={styles.sectionSubtitle}>
@@ -281,7 +281,7 @@ export const OutsideJapanView: React.FC<OutsideJapanViewProps> = ({
       <View style={[styles.sectionHeader, { marginTop: spacing.xxl }]}>
         <View>
           <View style={styles.sectionTitleRow}>
-            <Sparkle size={18} color={colors.rust} weight="fill" style={{ marginRight: 6 }} />
+            <Sparkle size={18} color={colors.primary} weight="fill" style={{ marginRight: 6 }} />
             <Text style={styles.sectionHeading}>Iconic Dishes to Know</Text>
           </View>
           <Text style={styles.sectionSubtitle}>
@@ -310,7 +310,7 @@ export const OutsideJapanView: React.FC<OutsideJapanViewProps> = ({
       <View style={[styles.sectionHeader, { marginTop: spacing.xxl }]}>
         <View>
           <View style={styles.sectionTitleRow}>
-            <Compass size={18} color={colors.rust} weight="fill" style={{ marginRight: 6 }} />
+            <Compass size={18} color={colors.primary} weight="fill" style={{ marginRight: 6 }} />
             <Text style={styles.sectionHeading}>Browse Japan by Region</Text>
           </View>
           <Text style={styles.sectionSubtitle}>
@@ -335,7 +335,7 @@ export const OutsideJapanView: React.FC<OutsideJapanViewProps> = ({
               {region.desc}
             </Text>
             <View style={styles.regionCardArrow}>
-              <CaretRight size={14} color={colors.rust} weight="bold" />
+              <CaretRight size={14} color={colors.primary} weight="bold" />
             </View>
           </TouchableOpacity>
         ))}
@@ -344,7 +344,7 @@ export const OutsideJapanView: React.FC<OutsideJapanViewProps> = ({
       {/* 6. Switch Location Banner / Test Helper */}
       <View style={styles.locationSwitcherBanner}>
         <View style={styles.switcherIconContainer}>
-          <MapPin size={22} color={colors.rust} weight="fill" />
+          <MapPin size={22} color={colors.primary} weight="fill" />
         </View>
         <View style={{ flex: 1, marginRight: spacing.sm }}>
           <Text style={styles.switcherTitle}>Arrived in Japan or Testing?</Text>
@@ -398,7 +398,7 @@ const styles = StyleSheet.create({
   detectedBadgeText: {
     fontSize: typography.fontSize.caption,
     fontFamily: typography.fontFamily.utilitySemiBold,
-    color: colors.rust,
+    color: colors.primary,
     letterSpacing: 0.3,
   },
   tripPlanBadge: {
@@ -477,7 +477,7 @@ const styles = StyleSheet.create({
   moreLinkText: {
     fontSize: typography.fontSize.caption,
     fontFamily: typography.fontFamily.bodySemiBold,
-    color: colors.rust,
+    color: colors.primary,
   },
   citiesCarousel: {
     gap: spacing.md,
@@ -644,7 +644,7 @@ const styles = StyleSheet.create({
   switcherButtonText: {
     fontSize: typography.fontSize.caption,
     fontFamily: typography.fontFamily.bodySemiBold,
-    color: colors.rust,
+    color: colors.primary,
   },
   emptyCard: {
     backgroundColor: colors.surface,
