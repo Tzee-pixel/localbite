@@ -24,36 +24,34 @@ import { RootTabParamList } from './src/navigation/types';
 
 const prefix = Linking.createURL('/');
 
+const isWeb = Platform.OS === 'web';
+const basePath = isWeb ? 'localbite/' : '';
+
 const linking: LinkingOptions<RootTabParamList> = {
-  prefixes: [
-    prefix + '/localbite',
-    prefix,
-    'localbite://',
-    'https://localbite.app',
-  ],
+  prefixes: [prefix, 'localbite://', 'https://localbite.app'],
   config: {
     screens: {
       ExploreTab: {
         screens: {
-          ExploreHome: 'explore',
-          DishDetail: 'dish/:dishId',
-          LocationDetail: 'location/:locationId',
-          SeasonalSearch: 'seasonal/:season',
+          ExploreHome: `${basePath}explore`,
+          DishDetail: `${basePath}dish/:dishId`,
+          LocationDetail: `${basePath}location/:locationId`,
+          SeasonalSearch: `${basePath}seasonal/:season`,
         },
       },
       SearchTab: {
         screens: {
-          SearchHome: 'search',
+          SearchHome: `${basePath}search`,
         },
       },
       FavouritesTab: {
         screens: {
-          FavouritesHome: 'favourites',
+          FavouritesHome: `${basePath}favourites`,
         },
       },
       SettingsTab: {
         screens: {
-          SettingsHome: 'settings',
+          SettingsHome: `${basePath}settings`,
         },
       },
     },
