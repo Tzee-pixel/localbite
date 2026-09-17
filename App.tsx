@@ -25,7 +25,12 @@ import { RootTabParamList } from './src/navigation/types';
 const prefix = Linking.createURL('/');
 
 const linking: LinkingOptions<RootTabParamList> = {
-  prefixes: [prefix, 'localbite://', 'https://localbite.app'],
+  prefixes: [
+    prefix + '/localbite',
+    prefix,
+    'localbite://',
+    'https://localbite.app',
+  ],
   config: {
     screens: {
       ExploreTab: {
