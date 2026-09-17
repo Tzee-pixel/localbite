@@ -526,7 +526,7 @@ export const DishDetailScreen: React.FC = () => {
               {whereToLookData.map((item, idx) => (
                 <View key={idx} style={styles.whereToLookRow}>
                   <View style={styles.checkBadgeCircle}>
-                    <Check size={14} color="rgba(28, 25, 23, 0.50)" weight="bold" />
+                    <Check size={14} color={colors.success} weight="bold" />
                   </View>
                   <View style={styles.whereToLookContent}>
                     <Text style={styles.whereToLookItemTitle}>{item.title}</Text>
@@ -1057,7 +1057,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: 'rgba(28, 25, 23, 0.07)', // neutral restrained circle badge
+    backgroundColor: colors.successTint, // Soft matcha green tint (#E8F4E1)
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: spacing.md,
