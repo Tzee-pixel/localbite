@@ -8,6 +8,7 @@ import {
   getStationById,
   JAPAN_STATIONS,
 } from './stationRegistry';
+import { isCoordinatesOutsideJapan } from '../context/LocationContext';
 
 export interface NearbyDish extends Dish {
   distance_km?: number;
@@ -38,8 +39,97 @@ export function calculateDistanceKm(lat1: number, lon1: number, lat2: number, lo
   return R * c;
 }
 
+// Helper: Robust Postgres & JSON array parser for tags, seasons, ingredients, etc.
+export function parsePostgresArray(val: any): string[] {
+  if (!val) return [];
+  if (Array.isArray(val)) {
+    const flattened: string[] = [];
+    for (const item of val) {
+      if (typeof item === 'string') {
+        const trimmed = item.trim();
+        if (
+          (trimmed.startsWith('{') && trimmed.endsWith('}')) ||
+          (trimmed.startsWith('[') && trimmed.endsWith(']'))
+        ) {
+          flattened.push(...parsePostgresArray(trimmed));
+        } else if (trimmed) {
+          const clean = trimmed.replace(/^["']|["']$/g, '').trim();
+          if (clean) flattened.push(clean);
+        }
+      } else if (item) {
+        flattened.push(String(item));
+      }
+    }
+    return Array.from(new Set(flattened.filter(Boolean)));
+  }
+
+  if (typeof val === 'string') {
+    const trimmed = val.trim();
+    if (!trimmed || trimmed === '{}' || trimmed === '[]') return [];
+
+    if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        if (Array.isArray(parsed)) {
+          return parsePostgresArray(parsed);
+        }
+      } catch {}
+    }
+
+    if (trimmed.startsWith('{') && trimmed.endsWith('}')) {
+      const inner = trimmed.slice(1, -1).trim();
+      if (!inner) return [];
+      const matches = inner.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+      if (matches && matches.length > 0) {
+        return matches
+          .map(s => s.replace(/^["']|["']$/g, '').trim())
+          .filter(Boolean);
+      }
+      return inner
+        .split(',')
+        .map(s => s.replace(/^["']|["']$/g, '').trim())
+        .filter(Boolean);
+    }
+
+    if (trimmed.includes('{') || trimmed.includes('}')) {
+      const stripped = trimmed.replace(/[{}]/g, '').trim();
+      return stripped
+        .split(',')
+        .map(s => s.replace(/^["']|["']$/g, '').trim())
+        .filter(Boolean);
+    }
+
+    if (trimmed.includes(',')) {
+      return trimmed
+        .split(',')
+        .map(s => s.replace(/^["']|["']$/g, '').trim())
+        .filter(Boolean);
+    }
+
+    const clean = trimmed.replace(/^["']|["']$/g, '').trim();
+    return clean ? [clean] : [];
+  }
+
+  return [];
+}
+
+export function normalizeDish(dish: Dish): Dish {
+  if (!dish) return dish;
+  return {
+    ...dish,
+    home_filter_tags: parsePostgresArray(dish.home_filter_tags),
+    tags: parsePostgresArray(dish.tags),
+    seasons: parsePostgresArray(dish.seasons),
+  };
+}
+
 // Helper: Get local resolved location with coordinate fallback
 function getLocalResolvedLocation(lat: number, lng: number): Location | null {
+  // If coordinates are outside Japan anywhere in the world, return null
+  if (isCoordinatesOutsideJapan(lat, lng)) {
+    return null;
+  }
+
   let nearestLoc: LocationWithCoords | null = null;
   let minDistance = Infinity;
 
@@ -51,10 +141,9 @@ function getLocalResolvedLocation(lat: number, lng: number): Location | null {
     }
   }
 
-  // If outside Japan (> 500km from any Japanese location), fallback to default Tokyo Nerima Ward
-  if (!nearestLoc || minDistance > 500) {
-    const defaultTokyo = MOCK_LOCATIONS.find(l => l.location_id === 'nerima-ward') || MOCK_LOCATIONS[0];
-    return defaultTokyo;
+  // If outside Japan or > 65km from any mapped Japanese location, return null
+  if (!nearestLoc || minDistance > 65) {
+    return null;
   }
 
   // Sparse content fallback check
@@ -77,11 +166,10 @@ export function useResolvedLocation(lat: number | null, lng: number | null) {
   return useQuery<Location | null>({
     queryKey: ['resolvedLocation', lat, lng],
     queryFn: async () => {
-      const activeLat = lat ?? 35.7356;
-      const activeLng = lng ?? 139.6517;
-      return getLocalResolvedLocation(activeLat, activeLng);
+      if (lat === null || lng === null) return null;
+      return getLocalResolvedLocation(lat, lng);
     },
-    enabled: true,
+    enabled: lat !== null && lng !== null,
     staleTime: 1000 * 60 * 10,
   });
 }
@@ -168,7 +256,7 @@ export function useDishesInPeakSeason(regionId?: string | null) {
         });
       }
 
-      return filtered;
+      return filtered.map(normalizeDish);
     },
     staleTime: 1000 * 60 * 10,
   });
@@ -192,7 +280,7 @@ export function useLocalSpecialities(locationId?: string | null) {
         const linkMap = new Map(matchingLinks.map(l => [l.dish_id, l]));
 
         const rankRel = (r: string) => (r === 'best-known' ? 1 : r === 'origin' ? 2 : 3);
-        return dishes.sort((a, b) => {
+        return dishes.map(normalizeDish).sort((a, b) => {
           const linkA = linkMap.get(a.dish_id);
           const linkB = linkMap.get(b.dish_id);
           const rankA = linkA ? rankRel(linkA.relationship) : 99;
@@ -221,7 +309,7 @@ export function useLocalSpecialities(locationId?: string | null) {
             const rankRel = (r: string) => (r === 'best-known' ? 1 : r === 'origin' ? 2 : 3);
             const linkMap = new Map(links.map(l => [l.dish_id, l]));
 
-            return (dishes as Dish[]).sort((a, b) => {
+            return (dishes as Dish[]).map(normalizeDish).sort((a, b) => {
               const linkA = linkMap.get(a.dish_id);
               const linkB = linkMap.get(b.dish_id);
               const rankA = linkA ? rankRel(linkA.relationship) : 99;
@@ -243,7 +331,7 @@ export function useLocalSpecialities(locationId?: string | null) {
       const linkMap = new Map(matchingLinks.map(l => [l.dish_id, l]));
 
       const rankRel = (r: string) => (r === 'best-known' ? 1 : r === 'origin' ? 2 : 3);
-      return dishes.sort((a, b) => {
+      return dishes.map(normalizeDish).sort((a, b) => {
         const linkA = linkMap.get(a.dish_id);
         const linkB = linkMap.get(b.dish_id);
         const rankA = linkA ? rankRel(linkA.relationship) : 99;
@@ -265,7 +353,7 @@ export function useFeaturedDishes() {
     queryKey: ['featuredDishes'],
     queryFn: async () => {
       if (!isSupabaseConfigured) {
-        return MOCK_DISHES.filter(d => d.content_status === 'Published' && d.featured);
+        return MOCK_DISHES.filter(d => d.content_status === 'Published' && d.featured).map(normalizeDish);
       }
 
       try {
@@ -275,11 +363,11 @@ export function useFeaturedDishes() {
           .eq('content_status', 'Published')
           .eq('featured', true);
 
-        if (data && data.length > 0) return data as Dish[];
+        if (data && data.length > 0) return (data as Dish[]).map(normalizeDish);
       } catch {
         // fallback
       }
-      return MOCK_DISHES.filter(d => d.content_status === 'Published' && d.featured);
+      return MOCK_DISHES.filter(d => d.content_status === 'Published' && d.featured).map(normalizeDish);
     },
     staleTime: 1000 * 60 * 10,
   });
@@ -335,14 +423,14 @@ export function useDish(dishId?: string | null) {
               mergedDish.google_maps_query = mockMatch.google_maps_query;
             }
 
-            return mergedDish;
+            return normalizeDish(mergedDish);
           }
         } catch {
           // fallback
         }
       }
 
-      return mockMatch;
+      return mockMatch ? normalizeDish(mockMatch) : null;
     },
     enabled: Boolean(dishId),
     staleTime: 1000 * 60 * 10,
@@ -465,7 +553,7 @@ export function useSearch(searchQuery: string) {
         });
 
         const combinedDishes = [...directNameDishes, ...locationLinkedDishes, ...contentMatchedDishes];
-        return { dishes: combinedDishes, locations: combinedLocations };
+        return { dishes: combinedDishes.map(normalizeDish), locations: combinedLocations };
       };
 
       if (!isSupabaseConfigured) {
@@ -487,7 +575,7 @@ export function useSearch(searchQuery: string) {
 
         if (dbDishes && dbDishes.length > 0) {
           return {
-            dishes: (dbDishes || []) as Dish[],
+            dishes: ((dbDishes || []) as Dish[]).map(normalizeDish),
             locations: (dbLocations || []) as Location[],
           };
         }
@@ -543,7 +631,7 @@ export function useSeasonalDishes(season: string, regionId?: string | null) {
           return drLower === rLower;
         });
       }
-      return filtered;
+      return filtered.map(normalizeDish);
     },
     staleTime: 1000 * 60 * 10,
   });
@@ -594,7 +682,7 @@ export function useLocationDetail(locationId?: string | null) {
           }
         }
 
-        return { location: loc, dishes: dishesList, parentLocation: parentLoc };
+        return { location: loc, dishes: dishesList.map(normalizeDish), parentLocation: parentLoc };
       };
 
       if (!isSupabaseConfigured) {
@@ -661,7 +749,7 @@ export function useLocationDetail(locationId?: string | null) {
             }
           }
 
-          return { location: loc, dishes: dishesList, parentLocation: parentLoc };
+          return { location: loc, dishes: dishesList.map(normalizeDish), parentLocation: parentLoc };
         }
       } catch {
         // fallback
@@ -682,13 +770,17 @@ export function useNearbyDishes(lat: number | null, lng: number | null) {
   return useQuery<NearbyDish[]>({
     queryKey: ['nearbyDishes', lat, lng],
     queryFn: async () => {
-      const activeLat = (lat !== null && !isNaN(lat)) ? lat : 35.7356;
-      const activeLng = (lng !== null && !isNaN(lng)) ? lng : 139.6517;
+      if (lat === null || lng === null || isNaN(lat) || isNaN(lng)) {
+        return [];
+      }
 
-      // If outside Japan (> 600km from Tokyo center), use default Tokyo coordinates
-      const distToTokyo = calculateDistanceKm(activeLat, activeLng, 35.6762, 139.6503);
-      const targetLat = distToTokyo > 600 ? 35.7356 : activeLat;
-      const targetLng = distToTokyo > 600 ? 139.6517 : activeLng;
+      // If outside Japan anywhere in the world, don't return false "nearby" Tokyo dishes
+      if (isCoordinatesOutsideJapan(lat, lng)) {
+        return [];
+      }
+
+      const targetLat = lat;
+      const targetLng = lng;
 
       // 1. Try Supabase RPC get_nearby_dishes if configured
       if (isSupabaseConfigured) {
@@ -777,11 +869,57 @@ export function useNearbyDishes(lat: number | null, lng: number | null) {
         }
       }
 
-      const resultList = Array.from(bestPerDish.values());
+      const resultList = Array.from(bestPerDish.values()).map(d => ({
+        ...normalizeDish(d),
+        distance_km: d.distance_km,
+        nearest_location_name: d.nearest_location_name,
+        _rankScore: (d as any)._rankScore,
+      }));
       resultList.sort((a, b) => ((a as any)._rankScore ?? 0) - ((b as any)._rankScore ?? 0));
       return resultList;
     },
     enabled: lat !== null && lng !== null,
     staleTime: 1000 * 60 * 10,
+  });
+}
+
+// -------------------------------------------------------------
+// 10. useIconicJapanDishes() — Curated all-Japan iconic specialties for travelers
+// -------------------------------------------------------------
+export function useIconicJapanDishes() {
+  return useQuery<Dish[]>({
+    queryKey: ['iconicJapanDishes'],
+    queryFn: async () => {
+      // Prioritize dishes with rich image assets and famous regional status across Japan
+      const iconicDishIds = [
+        'sapporo-miso-ramen',
+        'soup-curry-sapporo',
+        'hitsumabushi',
+        'takoyaki',
+        'okonomiyaki-osaka',
+        'hakata-ramen',
+        'nerima-daikon-manju',
+        'inagi-pears',
+        'sable-manju-komae',
+        'bunka-fry',
+      ];
+
+      const foundDishes: Dish[] = [];
+      for (const id of iconicDishIds) {
+        const d = MOCK_DISHES.find(item => item.dish_id === id && item.content_status === 'Published');
+        if (d) foundDishes.push(normalizeDish(d));
+      }
+
+      // If we need more, add featured dishes from various regions
+      if (foundDishes.length < 8) {
+        const featured = MOCK_DISHES.filter(
+          d => d.content_status === 'Published' && d.featured && !foundDishes.some(fd => fd.dish_id === d.dish_id)
+        );
+        foundDishes.push(...featured.slice(0, 8 - foundDishes.length).map(normalizeDish));
+      }
+
+      return foundDishes;
+    },
+    staleTime: 1000 * 60 * 15,
   });
 }

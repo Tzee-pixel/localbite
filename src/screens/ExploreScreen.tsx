@@ -22,20 +22,25 @@ import {
   Wind,
   FlowerLotus,
   Info,
+  AirplaneTilt,
+  GlobeHemisphereWest,
+  ArrowRight,
 } from 'phosphor-react-native';
-import { useLocation } from '../context/LocationContext';
+import { useLocation, TripPlanningDestination, isCoordinatesOutsideJapan } from '../context/LocationContext';
 import {
   useNearbyDishes,
   useDishesInPeakSeason,
   useFeaturedDishes,
   useResolvedLocation,
   useLocalSpecialities,
+  useIconicJapanDishes,
   getCurrentSeason,
   calculateDistanceKm,
 } from '../lib/queries';
 import SearchBar from '../components/SearchBar';
 import FilterChips from '../components/FilterChips';
 import DishCard from '../components/DishCard';
+import OutsideJapanView, { GATEWAY_CITIES, GatewayCity } from '../components/OutsideJapanView';
 import { CarouselSkeleton, GridSkeleton } from '../components/SkeletonLoader';
 import { colors, typography, spacing, borderRadius, shadows } from '../theme';
 import { Dish } from '../types';
@@ -77,9 +82,14 @@ export const ExploreScreen: React.FC = () => {
     permissionStatus,
     displayLocationName,
     coords,
+    isOutsideJapan,
+    userDetectedLocationName,
+    tripPlanningDestination,
     requestPermission,
     setCustomLocation,
     refreshCurrentLocation,
+    setTripPlanningDestination,
+    clearTripPlanning,
   } = useLocation();
 
   const [isLocationModalVisible, setIsLocationModalVisible] = useState(false);
@@ -87,12 +97,19 @@ export const ExploreScreen: React.FC = () => {
   const [simulatedDenied, setSimulatedDenied] = useState(false);
 
   const LOCATION_PRESETS = [
-    { name: 'Bunkyo, Tokyo', lat: 35.7080, lng: 139.7519 },
-    { name: 'Chiyoda, Tokyo', lat: 35.6938, lng: 139.7530 },
-    { name: 'Shinjuku, Tokyo', lat: 35.6938, lng: 139.7034 },
-    { name: 'Nerima, Tokyo', lat: 35.7356, lng: 139.6517 },
+    { name: 'London, UK', lat: 51.5074, lng: -0.1278 },
+    { name: 'New York, USA', lat: 40.7128, lng: -74.0060 },
+    { name: 'Paris, France', lat: 48.8566, lng: 2.3522 },
+    { name: 'Sydney, Australia', lat: -33.8688, lng: 151.2093 },
+    { name: 'Singapore', lat: 1.3521, lng: 103.8198 },
+    { name: 'Seoul, South Korea', lat: 37.5665, lng: 126.9780 },
+    { name: 'Tokyo (Shinjuku)', lat: 35.6938, lng: 139.7034 },
+    { name: 'Tokyo (Bunkyo)', lat: 35.7080, lng: 139.7519 },
+    { name: 'Tokyo (Nerima)', lat: 35.7356, lng: 139.6517 },
     { name: 'Osaka City', lat: 34.6937, lng: 135.5023 },
+    { name: 'Kyoto City', lat: 35.0116, lng: 135.7681 },
     { name: 'Sapporo, Hokkaido', lat: 43.0618, lng: 141.3545 },
+    { name: 'Fukuoka (Hakata)', lat: 33.5904, lng: 130.4017 },
   ];
 
   const handleSelectPreset = async (preset: { name: string; lat: number; lng: number }) => {
@@ -112,23 +129,40 @@ export const ExploreScreen: React.FC = () => {
     await refreshCurrentLocation();
   };
 
-  const lat = coords?.latitude ?? 35.7356;
-  const lng = coords?.longitude ?? 139.6517;
+  // Determine active coordinates and location resolution
+  const isPlanningMode = isOutsideJapan && tripPlanningDestination !== null;
+  const isOutsideJapanRoot = isOutsideJapan && !isPlanningMode && !simulatedDenied;
 
-  const showGrantedState = !simulatedDenied && permissionStatus === 'granted' && Boolean(displayLocationName);
+  const lat = isPlanningMode
+    ? tripPlanningDestination.lat
+    : (coords?.latitude ?? 35.7356);
+  const lng = isPlanningMode
+    ? tripPlanningDestination.lng
+    : (coords?.longitude ?? 139.6517);
+
+  const showGrantedState = !simulatedDenied && (
+    permissionStatus === 'granted' || isPlanningMode
+  ) && Boolean(displayLocationName || tripPlanningDestination);
 
   const { data: resolvedLocation } = useResolvedLocation(lat, lng);
-  const activeLocationId = resolvedLocation?.location_id || 'nerima-ward';
+
+  const activeLocationId = isPlanningMode
+    ? tripPlanningDestination.location_id
+    : (resolvedLocation?.location_id || 'shinjuku-ward');
 
   const { data: localSpecialityDishes, isLoading: isLoadingLocal } = useLocalSpecialities(activeLocationId);
   const { data: nearbyDishes, isLoading: isLoadingNearby } = useNearbyDishes(lat, lng);
   const { data: peakDishes, isLoading: isLoadingPeak } = useDishesInPeakSeason();
   const { data: featuredDishes, isLoading: isLoadingFeatured } = useFeaturedDishes();
+  const { data: iconicDishes, isLoading: isLoadingIconic } = useIconicJapanDishes();
 
-  const rawLocationName = displayLocationName || resolvedLocation?.location_name || 'Nerima Ward';
+  const rawLocationName = isPlanningMode
+    ? tripPlanningDestination.location_name
+    : (displayLocationName || resolvedLocation?.location_name || 'Tokyo');
+
   const shortLocationName = rawLocationName
-    .replace(/ Ward| City|, Tokyo| Prefecture/g, '')
-    .trim() || 'Nerima';
+    .replace(/ Ward| City|, Tokyo| Prefecture|, Japan/g, '')
+    .trim() || 'Tokyo';
 
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
@@ -144,18 +178,20 @@ export const ExploreScreen: React.FC = () => {
 
     return dishes.filter((dish) => {
       return selectedFilters.every((filter) => {
+        const homeTags = Array.isArray(dish.home_filter_tags) ? dish.home_filter_tags : [];
         if (filter === 'Vegetarian') {
-          return dish.vegetarian_status === 'Verified vegetarian';
+          return dish.vegetarian_status === 'Verified vegetarian' || homeTags.includes('Vegetarian');
         }
         if (filter === 'Halal') {
-          return dish.halal_status === 'Verified halal';
+          return dish.halal_status === 'Verified halal' || homeTags.includes('Halal');
         }
-        return dish.home_filter_tags.includes(filter);
+        return homeTags.includes(filter);
       });
     });
   };
 
   const filteredPeakDishes = applyFilters(peakDishes);
+  const filteredIconicDishes = applyFilters(iconicDishes);
 
   const baseLocalDishes = (localSpecialityDishes && localSpecialityDishes.length > 0)
     ? localSpecialityDishes
@@ -214,15 +250,21 @@ export const ExploreScreen: React.FC = () => {
 
             <View style={styles.divider} />
 
-            <Text style={styles.modalSubheader}>Test Locations / Presets</Text>
+            <Text style={styles.modalSubheader}>Test Locations & Presets</Text>
             {LOCATION_PRESETS.map((preset, idx) => (
               <TouchableOpacity
                 key={idx}
                 style={styles.presetItem}
                 onPress={() => handleSelectPreset(preset)}
               >
-                <MapPin size={18} color={colors.body} style={{ marginRight: 8 }} />
-                <Text style={styles.presetText}>{preset.name}</Text>
+                {isCoordinatesOutsideJapan(preset.lat, preset.lng) ? (
+                  <GlobeHemisphereWest size={18} color={colors.rust} weight="bold" style={{ marginRight: 8 }} />
+                ) : (
+                  <MapPin size={18} color={colors.body} style={{ marginRight: 8 }} />
+                )}
+                <Text style={styles.presetText}>
+                  {preset.name}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -231,7 +273,41 @@ export const ExploreScreen: React.FC = () => {
 
       {/* 1. Top Location Header */}
       <View style={styles.header}>
-        {showGrantedState ? (
+        {isOutsideJapan && !isPlanningMode ? (
+          <TouchableOpacity
+            style={styles.locationHeaderContainer}
+            onPress={() => setIsLocationModalVisible(true)}
+            activeOpacity={0.7}
+          >
+            <GlobeHemisphereWest size={22} color={colors.rust} weight="bold" style={{ marginRight: 10, marginTop: 2 }} />
+            <View style={styles.locationTextStack}>
+              <Text style={styles.currentLocationSublabel}>CONNECTED FROM</Text>
+              <View style={styles.locationNameRow}>
+                <Text style={styles.locationNameText}>
+                  {userDetectedLocationName || displayLocationName || 'London, UK'}
+                </Text>
+                <CaretDown size={16} color={colors.rust} weight="bold" style={{ marginLeft: 6 }} />
+              </View>
+            </View>
+          </TouchableOpacity>
+        ) : isPlanningMode ? (
+          <TouchableOpacity
+            style={styles.locationHeaderContainer}
+            onPress={() => setIsLocationModalVisible(true)}
+            activeOpacity={0.7}
+          >
+            <AirplaneTilt size={22} color="#1E40AF" weight="bold" style={{ marginRight: 10, marginTop: 2 }} />
+            <View style={styles.locationTextStack}>
+              <Text style={[styles.currentLocationSublabel, { color: '#1E40AF' }]}>TRIP DESTINATION</Text>
+              <View style={styles.locationNameRow}>
+                <Text style={styles.locationNameText}>
+                  {tripPlanningDestination.location_name}
+                </Text>
+                <CaretDown size={16} color="#1E40AF" weight="bold" style={{ marginLeft: 6 }} />
+              </View>
+            </View>
+          </TouchableOpacity>
+        ) : showGrantedState ? (
           <TouchableOpacity
             style={styles.locationHeaderContainer}
             onPress={() => setIsLocationModalVisible(true)}
@@ -242,7 +318,7 @@ export const ExploreScreen: React.FC = () => {
               <Text style={styles.currentLocationSublabel}>CURRENT LOCATION</Text>
               <View style={styles.locationNameRow}>
                 <Text style={styles.locationNameText}>
-                  {displayLocationName || resolvedLocation?.location_name || 'Nerima, Tokyo'}
+                  {displayLocationName || resolvedLocation?.location_name || 'Tokyo'}
                 </Text>
                 <CaretDown size={16} color={colors.rust} weight="bold" style={{ marginLeft: 6 }} />
               </View>
@@ -259,160 +335,214 @@ export const ExploreScreen: React.FC = () => {
           </TouchableOpacity>
         )}
 
-        {showGrantedState ? (
-          <TouchableOpacity
-            style={styles.savedCollectionButton}
-            onPress={() => navigation.navigate('FavouritesTab')}
-            activeOpacity={0.8}
-          >
-            <Bookmark size={15} color={colors.rust} weight="fill" />
-            <Text style={styles.savedCollectionText}>Saved Collection</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            style={styles.infoIconButton}
-            onPress={() => setIsLocationModalVisible(true)}
-            activeOpacity={0.8}
-          >
-            <Info size={18} color={colors.ink} weight="regular" />
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity
+          style={styles.savedCollectionButton}
+          onPress={() => navigation.navigate('FavouritesTab')}
+          activeOpacity={0.8}
+        >
+          <Bookmark size={15} color={colors.rust} weight="fill" />
+          <Text style={styles.savedCollectionText}>Saved</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.subtleDividerLine} />
 
-      {/* 2. Main Page H1 Heading (when location is granted) */}
-      {showGrantedState && (
-        <Text style={styles.homepageH1Title}>
-          Discover{'\n'}Local Speciality Nearby
-        </Text>
-      )}
-
-      {/* 3. Persistent Search Bar & Filter Chips */}
-      <SearchBar
-        placeholder="Search by location, dish or season..."
-        onPress={() => navigation.navigate('SearchTab')}
-      />
-
-      <FilterChips selectedFilters={selectedFilters} onToggleFilter={handleToggleFilter} />
-
-      {/* 4. Location Permission Hero Card (When Location Access is Denied / Unavailable) */}
-      {!showGrantedState && (
-        <View style={styles.locationHeroCard}>
-          <View style={styles.locationIconBadge}>
-            <MapPin size={30} color={colors.rust} weight="fill" />
-          </View>
-          <Text style={styles.locationHeroTitle}>See What's Good Nearby</Text>
-          <Text style={styles.locationHeroSubtitle}>
-            Turn on location to find local specialities close to you.
-          </Text>
-          <TouchableOpacity
-            style={styles.enableLocationButton}
-            onPress={handleAllowLocationAccess}
-            activeOpacity={0.85}
-          >
-            <Text style={styles.enableLocationButtonText}>Enable Location</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.searchCityButton}
-            onPress={() => setIsLocationModalVisible(true)}
-            activeOpacity={0.7}
-          >
-            <Text style={styles.searchCityButtonText}>Select a city manually</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-
-      {/* 4. "In Peak Season Right Now" Carousel */}
-      <View style={styles.sectionHeaderRow}>
-        <Text style={styles.sectionHeadingH2}>In Peak Season Right Now</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('SeasonalSearch', { season: currentSeason })}>
-          <Text style={styles.viewAllText}>More &gt;</Text>
-        </TouchableOpacity>
-      </View>
-
-      {isLoadingPeak ? (
-        <CarouselSkeleton />
-      ) : filteredPeakDishes.length > 0 ? (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.carousel}>
-          {filteredPeakDishes.map((dish) => (
-            <DishCard
-              key={dish.dish_id}
-              dish={dish}
-              variant="carousel"
-              onPress={() => navigation.navigate('DishDetail', { dishId: dish.dish_id })}
-            />
-          ))}
-        </ScrollView>
+      {/* ========================================================== */}
+      {/* 2. SPECIAL SCREEN: When user is outside Japan (e.g. London) */}
+      {/* ========================================================== */}
+      {isOutsideJapanRoot ? (
+        <OutsideJapanView
+          userLocationName={userDetectedLocationName || displayLocationName}
+          seasonalDishes={filteredPeakDishes}
+          isLoadingSeasonal={isLoadingPeak}
+          iconicDishes={filteredIconicDishes}
+          isLoadingIconic={isLoadingIconic}
+          onSelectCity={(city: GatewayCity) => {
+            setTripPlanningDestination({
+              location_id: city.id === 'tokyo-central' ? 'shinjuku-ward' : city.id,
+              location_name: city.name,
+              city: city.name,
+              prefecture: city.prefecture,
+              region: city.region,
+              lat: city.lat,
+              lng: city.lng,
+              tagline: city.tagline,
+            });
+          }}
+          onSelectRegion={(regionId) => {
+            navigation.navigate('SeasonalSearch', { season: currentSeason, regionId });
+          }}
+          onOpenLocationModal={() => setIsLocationModalVisible(true)}
+          onNavigateToDish={(dishId) => navigation.navigate('DishDetail', { dishId })}
+          onNavigateToSeasonal={(season) => navigation.navigate('SeasonalSearch', { season })}
+          onNavigateToSearch={() => navigation.navigate('SearchTab')}
+        />
       ) : (
-        <View style={styles.emptyCard}>
-          <Text style={styles.emptyText}>No seasonal dishes match the selected filters.</Text>
-        </View>
-      )}
-
-      {/* 5. Section 5 & 6 (Only shown when location is granted / selected) */}
-      {showGrantedState && (
+        /* ========================================================== */
+        /* 3. STANDARD / TRIP PLANNING EXPLORE SCREEN                  */
+        /* ========================================================== */
         <>
-          <View style={styles.sectionHeaderRow}>
-            <Text style={styles.sectionHeadingH2}>
-              Local Speciality in {shortLocationName}
-            </Text>
-          </View>
-
-          {isLoadingLocal ? (
-            <GridSkeleton />
-          ) : filteredLocalDishes.length > 0 ? (
-            <View style={styles.gridContainer}>
-              {filteredLocalDishes.map((dish) => (
-                <View key={dish.dish_id} style={styles.gridItem}>
-                  <DishCard
-                    dish={dish}
-                    variant="grid"
-                    onPress={() => navigation.navigate('DishDetail', { dishId: dish.dish_id })}
-                  />
+          {/* Trip Planning Banner when exploring a specific destination */}
+          {isPlanningMode && tripPlanningDestination && (
+            <View style={styles.tripPlanningBanner}>
+              <View style={styles.tripPlanningLeft}>
+                <View style={styles.tripPlanningIconCircle}>
+                  <AirplaneTilt size={18} color="#1E40AF" weight="bold" />
                 </View>
-              ))}
-            </View>
-          ) : (
-            <View style={styles.emptyCard}>
-              <Text style={styles.emptyText}>No local specialties match the selected filters.</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.tripPlanningTag}>TRIP PLANNING DESTINATION</Text>
+                  <Text style={styles.tripPlanningTitle}>{tripPlanningDestination.location_name}, Japan</Text>
+                </View>
+              </View>
+              <TouchableOpacity
+                style={styles.switchDestinationBtn}
+                onPress={clearTripPlanning}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.switchDestinationBtnText}>All Destinations</Text>
+              </TouchableOpacity>
             </View>
           )}
 
-          <View style={[styles.sectionHeaderRow, { marginTop: spacing.xl }]}>
-            <Text style={styles.sectionHeadingH2}>More Results Nearby</Text>
+          {/* Main Page H1 Heading */}
+          {showGrantedState && !isPlanningMode && (
+            <Text style={styles.homepageH1Title}>
+              Discover{'\n'}Local Speciality Nearby
+            </Text>
+          )}
+
+          {/* Persistent Search Bar & Filter Chips */}
+          <SearchBar
+            placeholder="Search by location, dish or season..."
+            onPress={() => navigation.navigate('SearchTab')}
+          />
+
+          <FilterChips selectedFilters={selectedFilters} onToggleFilter={handleToggleFilter} />
+
+          {/* Location Permission Hero Card (When Location Access is Denied / Unavailable) */}
+          {!showGrantedState && (
+            <View style={styles.locationHeroCard}>
+              <View style={styles.locationIconBadge}>
+                <MapPin size={30} color={colors.rust} weight="fill" />
+              </View>
+              <Text style={styles.locationHeroTitle}>See What's Good Nearby</Text>
+              <Text style={styles.locationHeroSubtitle}>
+                Turn on location to find local specialities close to you.
+              </Text>
+              <TouchableOpacity
+                style={styles.enableLocationButton}
+                onPress={handleAllowLocationAccess}
+                activeOpacity={0.85}
+              >
+                <Text style={styles.enableLocationButtonText}>Enable Location</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.searchCityButton}
+                onPress={() => setIsLocationModalVisible(true)}
+                activeOpacity={0.7}
+              >
+                <Text style={styles.searchCityButtonText}>Select a city manually</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+
+          {/* "In Peak Season Right Now" Carousel */}
+          <View style={styles.sectionHeaderRow}>
+            <Text style={styles.sectionHeadingH2}>In Peak Season Right Now</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('SeasonalSearch', { season: currentSeason })}>
+              <Text style={styles.viewAllText}>More &gt;</Text>
+            </TouchableOpacity>
           </View>
 
-          {isLoadingNearby ? (
-            <GridSkeleton />
-          ) : displayedNearbyDishes.length > 0 ? (
-            <View>
-              <View style={styles.gridContainer}>
-                {displayedNearbyDishes.map((dish) => (
-                  <View key={dish.dish_id} style={styles.gridItem}>
-                    <DishCard
-                      dish={dish}
-                      variant="grid"
-                      onPress={() => navigation.navigate('DishDetail', { dishId: dish.dish_id })}
-                    />
-                  </View>
-                ))}
-              </View>
-
-              {!showAllNearby && filteredNearbyDishes.length > 4 && (
-                <TouchableOpacity
-                  style={styles.seeMoreButton}
-                  onPress={() => setShowAllNearby(true)}
-                  activeOpacity={0.8}
-                >
-                  <Text style={styles.seeMoreButtonText}>See More</Text>
-                </TouchableOpacity>
-              )}
-            </View>
+          {isLoadingPeak ? (
+            <CarouselSkeleton />
+          ) : filteredPeakDishes.length > 0 ? (
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.carousel}>
+              {filteredPeakDishes.map((dish) => (
+                <DishCard
+                  key={dish.dish_id}
+                  dish={dish}
+                  variant="carousel"
+                  onPress={() => navigation.navigate('DishDetail', { dishId: dish.dish_id })}
+                />
+              ))}
+            </ScrollView>
           ) : (
             <View style={styles.emptyCard}>
-              <Text style={styles.emptyText}>No nearby dishes match the selected filters.</Text>
+              <Text style={styles.emptyText}>No seasonal dishes match the selected filters.</Text>
             </View>
+          )}
+
+          {/* Local Specialities Section */}
+          {showGrantedState && (
+            <>
+              <View style={styles.sectionHeaderRow}>
+                <Text style={styles.sectionHeadingH2}>
+                  Local Speciality in {shortLocationName}
+                </Text>
+              </View>
+
+              {isLoadingLocal ? (
+                <GridSkeleton />
+              ) : filteredLocalDishes.length > 0 ? (
+                <View style={styles.gridContainer}>
+                  {filteredLocalDishes.map((dish) => (
+                    <View key={dish.dish_id} style={styles.gridItem}>
+                      <DishCard
+                        dish={dish}
+                        variant="grid"
+                        onPress={() => navigation.navigate('DishDetail', { dishId: dish.dish_id })}
+                      />
+                    </View>
+                  ))}
+                </View>
+              ) : (
+                <View style={styles.emptyCard}>
+                  <Text style={styles.emptyText}>No local specialties match the selected filters.</Text>
+                </View>
+              )}
+
+              {/* More Results Nearby (only when within Japan) */}
+              {!isPlanningMode && (
+                <>
+                  <View style={[styles.sectionHeaderRow, { marginTop: spacing.xl }]}>
+                    <Text style={styles.sectionHeadingH2}>More Results Nearby</Text>
+                  </View>
+
+                  {isLoadingNearby ? (
+                    <GridSkeleton />
+                  ) : displayedNearbyDishes.length > 0 ? (
+                    <View>
+                      <View style={styles.gridContainer}>
+                        {displayedNearbyDishes.map((dish) => (
+                          <View key={dish.dish_id} style={styles.gridItem}>
+                            <DishCard
+                              dish={dish}
+                              variant="grid"
+                              onPress={() => navigation.navigate('DishDetail', { dishId: dish.dish_id })}
+                            />
+                          </View>
+                        ))}
+                      </View>
+
+                      {!showAllNearby && filteredNearbyDishes.length > 4 && (
+                        <TouchableOpacity
+                          style={styles.seeMoreButton}
+                          onPress={() => setShowAllNearby(true)}
+                          activeOpacity={0.8}
+                        >
+                          <Text style={styles.seeMoreButtonText}>See More</Text>
+                        </TouchableOpacity>
+                      )}
+                    </View>
+                  ) : (
+                    <View style={styles.emptyCard}>
+                      <Text style={styles.emptyText}>No nearby dishes match the selected filters.</Text>
+                    </View>
+                  )}
+                </>
+              )}
+            </>
           )}
         </>
       )}
@@ -454,6 +584,7 @@ const styles = StyleSheet.create({
     fontSize: typography.fontSize.xs,
     fontFamily: typography.fontFamily.bodySemiBold,
     color: colors.ink,
+    marginLeft: 4,
   },
   locationHeaderContainer: {
     flexDirection: 'row',
@@ -463,19 +594,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   currentLocationSublabel: {
-    fontSize: 11,
-    fontFamily: typography.fontFamily.bodyMedium,
-    fontWeight: '700',
-    color: '#78716C', // Warm muted gray
+    fontSize: 10,
+    fontFamily: typography.fontFamily.utilitySemiBold,
+    color: '#78716C',
     letterSpacing: 0.8,
     marginBottom: 2,
+    textTransform: 'uppercase',
   },
   locationNameRow: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   locationNameText: {
-    fontSize: 22,
+    fontSize: 20,
     fontFamily: typography.fontFamily.bodySemiBold,
     fontWeight: '700',
     color: colors.ink,
@@ -489,42 +620,55 @@ const styles = StyleSheet.create({
     marginBottom: spacing.xl,
     lineHeight: 38,
   },
-  refreshLocButton: {
-    marginLeft: spacing.sm,
-    padding: spacing.xs,
-    backgroundColor: colors.trustIndigoTint,
-    borderRadius: borderRadius.full,
-  },
-  allowLinkContainer: {
-    marginTop: spacing.xs,
-  },
-  allowLinkText: {
-    fontSize: typography.fontSize.sm,
-    fontFamily: typography.fontFamily.bodyMedium,
-    color: colors.rust,
-  },
-  seasonHeaderBlock: {
-    backgroundColor: colors.surface,
-    borderRadius: borderRadius.md,
-    padding: spacing.lg,
-    marginBottom: spacing.xl,
-    borderLeftWidth: 4,
-    ...shadows.hairline,
-  },
-  seasonTitleRow: {
+  tripPlanningBanner: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: spacing.xs,
+    justifyContent: 'space-between',
+    backgroundColor: '#EFF6FF',
+    borderWidth: 1,
+    borderColor: '#BFDBFE',
+    borderRadius: borderRadius.md,
+    padding: spacing.md,
+    marginBottom: spacing.lg,
   },
-  seasonTitle: {
-    fontSize: typography.fontSize.h2,
-    fontFamily: typography.fontFamily.display,
+  tripPlanningLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    marginRight: spacing.sm,
   },
-  seasonCopy: {
+  tripPlanningIconCircle: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#DBEAFE',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: spacing.sm,
+  },
+  tripPlanningTag: {
+    fontSize: 9,
+    fontFamily: typography.fontFamily.utilitySemiBold,
+    color: '#1E40AF',
+    letterSpacing: 0.5,
+  },
+  tripPlanningTitle: {
     fontSize: typography.fontSize.sm,
-    fontFamily: typography.fontFamily.body,
-    color: colors.body,
-    lineHeight: 20,
+    fontFamily: typography.fontFamily.bodySemiBold,
+    color: colors.ink,
+  },
+  switchDestinationBtn: {
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: '#BFDBFE',
+    borderRadius: borderRadius.full,
+    paddingHorizontal: spacing.sm + 2,
+    paddingVertical: 5,
+  },
+  switchDestinationBtnText: {
+    fontSize: 11,
+    fontFamily: typography.fontFamily.bodySemiBold,
+    color: '#1E40AF',
   },
   sectionHeaderRow: {
     flexDirection: 'row',
@@ -533,8 +677,8 @@ const styles = StyleSheet.create({
     marginBottom: spacing.md,
   },
   sectionHeadingH2: {
-    fontSize: typography.fontSize.h2, // 22px
-    fontFamily: typography.fontFamily.h2, // Playfair Display 700 Bold
+    fontSize: typography.fontSize.h2,
+    fontFamily: typography.fontFamily.h2,
     color: colors.ink,
   },
   viewAllText: {
@@ -644,20 +788,10 @@ const styles = StyleSheet.create({
     color: colors.rust,
   },
   setHeaderTitleText: {
-    fontSize: 22,
+    fontSize: 20,
     fontFamily: typography.fontFamily.bodySemiBold,
     fontWeight: '700',
     color: colors.ink,
-  },
-  infoIconButton: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
-    backgroundColor: '#F5F2EC',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 0.5,
-    borderColor: colors.hairline,
   },
   locationHeroCard: {
     backgroundColor: 'rgba(255, 255, 255, 0.5)',
@@ -674,7 +808,7 @@ const styles = StyleSheet.create({
     width: 68,
     height: 68,
     borderRadius: 34,
-    backgroundColor: '#FFF1EC', // Soft warm rust tint
+    backgroundColor: '#FFF1EC',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: spacing.md,

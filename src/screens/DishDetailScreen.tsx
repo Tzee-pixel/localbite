@@ -158,6 +158,70 @@ export function parseStructuredSections(rawData?: string[] | string | null): { t
   return results;
 }
 
+export function parseTagList(rawData?: any): string[] {
+  if (!rawData) return [];
+  const entries = Array.isArray(rawData) ? rawData : [rawData];
+  const results: string[] = [];
+
+  entries.forEach((entry) => {
+    if (!entry) return;
+    if (typeof entry !== 'string') {
+      if (Array.isArray(entry)) {
+        results.push(...parseTagList(entry));
+      }
+      return;
+    }
+
+    let clean = entry.trim();
+    if (!clean || clean === '{}' || clean === '[]') return;
+
+    // JSON array string: e.g. ["Vegetarian", "Halal"]
+    if (clean.startsWith('[') && clean.endsWith(']')) {
+      try {
+        const parsed = JSON.parse(clean);
+        if (Array.isArray(parsed)) {
+          results.push(...parseTagList(parsed));
+          return;
+        }
+      } catch {}
+    }
+
+    // Postgres array format: e.g. {"Vegetarian","Halal","Seasonal peak"}
+    if (clean.startsWith('{') && clean.endsWith('}')) {
+      const inner = clean.slice(1, -1).trim();
+      if (!inner) return;
+      const matches = inner.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+      if (matches && matches.length > 0) {
+        matches.forEach((m) => {
+          const item = m.replace(/^["']|["']$/g, '').trim();
+          if (item) results.push(item);
+        });
+        return;
+      }
+      inner.split(',').forEach((p) => {
+        const item = p.replace(/^["']|["']$/g, '').trim();
+        if (item) results.push(item);
+      });
+      return;
+    }
+
+    // Handle any leftover braces or quotes
+    if (clean.includes('{') || clean.includes('}')) {
+      const stripped = clean.replace(/[{}]/g, '').trim();
+      stripped.split(',').forEach((p) => {
+        const item = p.replace(/^["']|["']$/g, '').trim();
+        if (item) results.push(item);
+      });
+      return;
+    }
+
+    const item = clean.replace(/^["']|["']$/g, '').trim();
+    if (item) results.push(item);
+  });
+
+  return Array.from(new Set(results.filter((t) => t && t.toLowerCase() !== 'local classic')));
+}
+
 export const DishDetailScreen: React.FC = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
@@ -273,12 +337,8 @@ export const DishDetailScreen: React.FC = () => {
 
   // Filter chips strictly from TRUE sheet data values
   const rawTrueChips: string[] = [];
-  if (dish.home_filter_tags && Array.isArray(dish.home_filter_tags)) {
-    dish.home_filter_tags.forEach((tag) => {
-      if (tag && tag.trim() !== '' && tag.toLowerCase() !== 'local classic') {
-        rawTrueChips.push(tag.trim());
-      }
-    });
+  if (dish.home_filter_tags) {
+    rawTrueChips.push(...parseTagList(dish.home_filter_tags));
   }
   if (dish.vegetarian_status === 'Verified vegetarian') {
     rawTrueChips.push('Vegetarian');
@@ -289,7 +349,9 @@ export const DishDetailScreen: React.FC = () => {
   if (dish.featured) {
     rawTrueChips.push('Featured');
   }
-  const activeChips = Array.from(new Set(rawTrueChips));
+  const activeChips = Array.from(
+    new Set(rawTrueChips.filter(t => t && t.trim() !== '' && t.toLowerCase() !== 'local classic'))
+  );
 
   const formattedPrice =
     dish.price_min && dish.price_max

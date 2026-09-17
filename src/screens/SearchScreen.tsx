@@ -108,13 +108,14 @@ export const SearchScreen: React.FC = () => {
 
     return dishes.filter((dish) =>
       selectedFilters.every((filter) => {
+        const homeTags = Array.isArray(dish.home_filter_tags) ? dish.home_filter_tags : [];
         if (filter === 'Vegetarian') {
-          return dish.vegetarian_status === 'Verified vegetarian';
+          return dish.vegetarian_status === 'Verified vegetarian' || homeTags.includes('Vegetarian');
         }
         if (filter === 'Halal') {
-          return dish.halal_status === 'Verified halal';
+          return dish.halal_status === 'Verified halal' || homeTags.includes('Halal');
         }
-        return dish.home_filter_tags.includes(filter);
+        return homeTags.includes(filter);
       })
     );
   };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Linking, Platform } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Linking, Platform, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {
   CaretLeft,
@@ -130,7 +130,7 @@ export const SettingsScreen: React.FC = () => {
 
         <View style={styles.aboutHeaderRow}>
           <View style={styles.appIconBadge}>
-            <BowlFood size={26} color="#FFFFFF" weight="fill" />
+            <Image source={require('../../assets/localbite-logo.jpg')} style={{ width: 48, height: 48, borderRadius: 14 }} />
           </View>
           <View style={styles.aboutTextStack}>
             <Text style={styles.appNameText}>LocalBite</Text>
