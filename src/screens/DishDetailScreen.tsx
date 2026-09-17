@@ -793,13 +793,13 @@ const styles = StyleSheet.create({
   ratingCount: {
     fontSize: 13,
     fontFamily: typography.fontFamily.body,
-    color: 'rgba(28, 25, 23, 0.5)',
+    color: colors.textMuted,
   },
   englishSubtitle: {
     fontSize: 20,
     fontFamily: typography.fontFamily.dishSubtitle, // Figtree 600 SemiBold
     fontWeight: '600',
-    color: colors.primary, // #EC4900
+    color: colors.primary,
     marginBottom: spacing.sm + 2, // 10px spacing
   },
   pronunciationRow: {
@@ -884,7 +884,7 @@ const styles = StyleSheet.create({
   },
   bulletPoint: {
     fontSize: 16,
-    color: 'rgba(28, 25, 23, 0.50)',
+    color: colors.textMuted,
     marginRight: spacing.xs,
     lineHeight: 26,
   },
@@ -1122,14 +1122,14 @@ const styles = StyleSheet.create({
   findNearbySubtitle: {
     fontSize: 14,
     fontFamily: typography.fontFamily.body,
-    color: '#6B7280',
+    color: colors.body,
     lineHeight: 20,
   },
   findNearbyCtaButton: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.primary, // Solid primary fill (#EC4900)
+    backgroundColor: colors.primary, // Solid primary fill
     borderRadius: borderRadius.md, // Rounded rectangle (12px), not pill per §3 & §5.1
     paddingVertical: 14,
     shadowColor: colors.primary,

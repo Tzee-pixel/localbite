@@ -1,39 +1,39 @@
 export const colors = {
-  // 1.1 Core — dual role (system function + season)
-  primary: '#EC4900',            // Primary accent — CTAs, links, active nav, primary badges (Autumn)
-  success: '#49B019',            // Success — verified dietary status (Spring)
-  info: '#3A51F5',               // Info — price/factual data (Winter)
+  // 1.1 Core — dual role (system function + season, tuned for 100% WCAG AA compliance)
+  primary: '#D33800',            // Primary accent — CTAs, links, active nav, primary badges (Autumn, 4.84:1 on white, 4.57:1 on paper)
+  success: '#2A7E0B',            // Success — verified dietary status (Spring, 5.14:1 with white text, 4.52:1 on successTint)
+  info: '#3A51F5',               // Info — price/factual data (Winter, 5.71:1 with white icon)
   highlight: '#FFBF00',          // Highlight — "Did You Know," premium/featured tags (Summer)
 
   // 1.2 Derived tints (for cards/badges)
   successTint: '#E8F4E1',        // Dietary trust card background
-  successDark: '#276312',        // Dietary trust card headline text
-  successLabel: '#2F7A16',       // Dietary trust card label/subtext
+  successDark: '#276312',        // Dietary trust card headline text (6.41:1 on successTint)
+  successLabel: '#2F7A16',       // Dietary trust card label/subtext (4.71:1 on successTint)
   infoTint: '#E9EBFD',           // Price trust card background
-  infoDark: '#2E3EC2',           // Price trust card label / headline
-  infoSubtext: '#3E4BA8',        // Price trust card subtext
+  infoDark: '#2E3EC2',           // Price trust card label / headline (6.87:1 on infoTint)
+  infoSubtext: '#3E4BA8',        // Price trust card subtext (6.40:1 on infoTint)
   highlightTint: '#FFF3D2',      // "Did You Know" callout background
-  highlightIconInk: '#5A3D00',   // Icon color on highlight-tint badges
+  highlightIconInk: '#5A3D00',   // Icon color on highlight-tint badges (6.04:1 on highlight)
 
-  // 1.3 Caution
+  // 1.3 Caution (tuned for 100% WCAG AA)
   cautionTint: '#F5E1E1',
-  caution: '#C23B3B',
+  caution: '#B82C2C',            // 4.87:1 on cautionTint, 6.11:1 on white
 
   // 1.4 Neutrals
   paper: '#FAF8F5',              // App background
   surface: '#FFFFFF',            // Cards, search bar, nav bar
-  ink: '#1C1917',                // Headings, primary text
-  body: '#44403C',               // Body/paragraph text
+  ink: '#1C1917',                // Headings, primary text (16.5:1 on paper, 17.5:1 on surface)
+  body: '#44403C',               // Body/paragraph text (9.69:1 on paper, 10.27:1 on surface)
   hairline: 'rgba(28, 25, 23, 0.14)', // Borders, dividers (1px firmer)
 
   // Backward-compatible aliases
-  rust: '#EC4900',               // Primary alias
+  rust: '#D33800',               // Primary alias
   primaryLight: '#FFF3D2',
   primaryDark: '#B83800',
-  secondary: '#EC4900',
+  secondary: '#D33800',
   secondaryLight: '#FFF3D2',
 
-  ai: '#EC4900',
+  ai: '#D33800',
   aiTint: '#E9EBFD',
 
   background: '#FAF8F5',
@@ -42,14 +42,14 @@ export const colors = {
 
   textPrimary: '#1C1917',
   textSecondary: '#44403C',
-  textMuted: 'rgba(28, 25, 23, 0.45)',
+  textMuted: 'rgba(28, 25, 23, 0.64)', // 5.24:1 on white, 5.13:1 on paper (WCAG AA pass)
   textOnPrimary: '#FFFFFF',
 
   border: 'rgba(28, 25, 23, 0.14)',
   borderLight: 'rgba(28, 25, 23, 0.08)',
 
   chipBackground: '#FFFFFF',
-  chipSelectedBg: '#EC4900',
+  chipSelectedBg: '#D33800',
   chipSelectedText: '#FFFFFF',
 
   overlay: 'rgba(28, 25, 23, 0.4)',
@@ -57,15 +57,15 @@ export const colors = {
 
   // Seasonal dual-role mapping
   seasonal: {
-    spring: '#49B019',
+    spring: '#2A7E0B',
     summer: '#FFBF00',
-    autumn: '#EC4900',
+    autumn: '#D33800',
     winter: '#3A51F5',
   },
 
   // Legacy Trust aliases for backward compatibility
   trustGreenTint: '#E8F4E1',
-  trustGreenBadge: '#49B019',
+  trustGreenBadge: '#2A7E0B',
   trustGreenHeadline: '#276312',
   trustGreenLabel: '#2F7A16',
 

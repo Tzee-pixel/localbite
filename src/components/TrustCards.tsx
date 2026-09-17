@@ -130,10 +130,10 @@ const styles = StyleSheet.create({
     marginRight: spacing.xs,
   },
   greenBadgeBg: {
-    backgroundColor: colors.success,     // #49B019
+    backgroundColor: colors.success,     // #2A7E0B
   },
   cautionBadgeBg: {
-    backgroundColor: colors.caution,     // #C23B3B
+    backgroundColor: colors.caution,     // #B82C2C
   },
   indigoBadgeBg: {
     backgroundColor: colors.info,        // #3A51F5
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     color: colors.successLabel,          // #2F7A16
   },
   cautionLabelText: {
-    color: colors.caution,               // #C23B3B
+    color: colors.caution,               // #B82C2C
   },
   indigoLabelText: {
     color: colors.infoDark,              // #2E3EC2
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     color: colors.successDark,           // #276312
   },
   cautionHeadlineText: {
-    color: colors.caution,               // #C23B3B
+    color: colors.caution,               // #B82C2C
   },
   monoPriceHeadline: {
     fontFamily: typography.fontFamily.utilitySemiBold, // IBM Plex Mono

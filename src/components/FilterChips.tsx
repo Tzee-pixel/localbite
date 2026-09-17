@@ -14,11 +14,11 @@ export type FilterChipOption = typeof FILTER_OPTIONS[number];
 
 // Dot color indicator category rotation per §5.6
 const CHIP_DOT_COLORS: Record<string, string> = {
-  'Quick Bite': colors.primary,       // #EC4900
-  'Vegetarian': colors.success,       // #49B019
-  'Dine-in': colors.info,             // #3A51F5
-  'Halal': colors.success,            // #49B019
-  'Seasonal Peak': colors.highlight,  // #FFBF00
+  'Quick Bite': colors.primary,       // #D33800 (Autumn)
+  'Vegetarian': colors.success,       // #2A7E0B (Spring)
+  'Dine-in': colors.info,             // #3A51F5 (Winter)
+  'Halal': colors.success,            // #2A7E0B (Spring)
+  'Seasonal Peak': colors.highlight,  // #FFBF00 (Summer)
 };
 
 interface FilterChipsProps {

@@ -127,7 +127,7 @@ const SEASON_THEMES: Record<
   }
 > = {
   Autumn: {
-    bgColor: colors.primary, // #EC4900
+    bgColor: colors.primary, // #D33800
     shadowColor: '#802600',
     bgIconColorLight: 'rgba(255, 255, 255, 0.25)',
     bgIconColorDark: 'rgba(128, 38, 0, 0.35)',
@@ -137,7 +137,7 @@ const SEASON_THEMES: Record<
     BgIcon: FilledLeafIcon,
   },
   Spring: {
-    bgColor: colors.success, // #49B019
+    bgColor: colors.success, // #2A7E0B
     shadowColor: '#20550B',
     bgIconColorLight: 'rgba(255, 255, 255, 0.25)',
     bgIconColorDark: 'rgba(32, 85, 11, 0.35)',

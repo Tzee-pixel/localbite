@@ -74,7 +74,7 @@ export const TabNavigator: React.FC = () => {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: 'rgba(28, 25, 23, 0.45)', // ink @ 45% per §4 & §5.7
+        tabBarInactiveTintColor: colors.textMuted, // rgba(28, 25, 23, 0.60) — 4.59:1 contrast (WCAG AA pass)
         tabBarStyle: {
           backgroundColor: colors.surface,
           borderTopColor: colors.hairline,
